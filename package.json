@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@ant-design/icons": "^5.0.1",
+    "@ant-design/pro-components": "^2.4.6"
+  }
+}
