@@ -11,10 +11,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/pro-components": "^2.4.6",
     "@tanstack/react-query": "^4.29.5",
     "antd": "^5.4.6",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^0.0.0-experimental-18282f881-20230428",
+    "react-dom": "^0.0.0-experimental-18282f881-20230428",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.11.0",
     "redux": "^4.2.1",
