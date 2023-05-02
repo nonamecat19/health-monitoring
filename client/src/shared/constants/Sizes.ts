@@ -1,4 +1,4 @@
-const SIZES: Record<string, string> = {
+const SIZES = {
 
     xxs: '3px',
     xs: '6px',
@@ -6,8 +6,6 @@ const SIZES: Record<string, string> = {
     md: '24px',
     lg: '48px',
     xl: '72px'
-
-
 
 }
 export default SIZES

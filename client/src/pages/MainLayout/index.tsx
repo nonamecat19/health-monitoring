@@ -1,14 +1,16 @@
-import {FC, useState} from 'react'
+import {FC, Suspense, useState} from 'react'
 import {Layout, Menu} from "antd"
 import Sider from "antd/es/layout/Sider"
-import {Content, Header} from "antd/es/layout/layout"
+import {Content} from "antd/es/layout/layout"
 import styled from "styled-components"
 import COLORS from "../../shared/constants/Colors.ts"
 import {Outlet, useNavigate} from "react-router-dom";
 import items from "./sidebarItem.tsx";
+import ErrorBoundary from "../../components/ErrorBoundary.tsx";
+import {IPage} from "../../shared/types/Global.ts";
 
 
-const MainLayout: FC = ({}) => {
+const MainLayout: FC<IPage> = ({}) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const navigate = useNavigate()
 
@@ -19,20 +21,24 @@ const MainLayout: FC = ({}) => {
                 collapsed={collapsed}
                 onCollapse={(value) => setCollapsed(value)}
             >
-                <Devider/>
+                <Divider/>
                 <Menu
                     theme="dark"
-                    defaultSelectedKeys={['1']}
                     onClick={({key}) => navigate(key)}
                     mode="inline"
                     items={items}
                 />
             </Sider>
             <Layout className="site-layout">
-                <MyHeader/>
                 <MyContent>
                     <ContentContainer>
-                        <Outlet/>
+
+                        <ErrorBoundary fallback={<>Error</>}>
+                            <Suspense fallback={<>Loading</>}>
+                                <Outlet/>
+                            </Suspense>
+                        </ErrorBoundary>
+
                     </ContentContainer>
                 </MyContent>
             </Layout>
@@ -40,24 +46,18 @@ const MainLayout: FC = ({}) => {
     )
 }
 
-
-
-
 const ContentContainer = styled.div`
   padding: 24px;
   min-height: 360px;
   background: ${COLORS.white};
   margin-top: 20px;
+  height: calc(100vh - 40px);
+  overflow-y: auto;
 `
 
-const Devider = styled.div`
+const Divider = styled.div`
   height: 32px;
   margin: 16px;
-`
-
-const MyHeader = styled(Header)`
-  padding: 0;
-  background: ${COLORS.white}
 `
 
 const MyContent = styled(Content)`

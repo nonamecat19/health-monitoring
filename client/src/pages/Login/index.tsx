@@ -7,8 +7,9 @@ import LoginForm from './loginForm.tsx'
 import Title from 'antd/es/typography/Title'
 import {ToCenter} from '../../shared/styles/styles.ts'
 import SIZES from '../../shared/constants/Sizes.ts'
+import {IPage} from "../../shared/types/Global.ts";
 
-const Login: FC = () => {
+const Login: FC<IPage> = () => {
     return (
         <Background>
             <SidebarLogin>

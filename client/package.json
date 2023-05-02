@@ -2,7 +2,7 @@
   "name": "health-monitoring",
   "private": true,
   "version": "0.0.0",
-  "proxy": "http://localhost:3000",
+  "proxy": "localhost:3000",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,12 +14,16 @@
     "@ant-design/icons": "^5.0.1",
     "@tanstack/react-query": "^4.29.5",
     "antd": "^5.4.6",
+    "axios": "^1.4.0",
+    "moment": "^2.29.4",
     "react": "^0.0.0-experimental-491aec5d6-20230501",
     "react-dom": "^0.0.0-experimental-491aec5d6-20230501",
     "react-helmet": "^6.1.0",
+    "react-icons": "^4.8.0",
     "react-router-dom": "^6.11.0",
     "redux": "^4.2.1",
-    "styled-components": "^5.3.10"
+    "styled-components": "^5.3.10",
+    "swr-devtools": "^1.3.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
