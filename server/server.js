@@ -14,8 +14,432 @@ const corsOption = {
 
 app.use(cors(corsOption))
 
-//http://localhost:3000/person_conditions?page=2
+app.get('/test/environment_conditions?page=1', async (req, res) => {
+    try {
+        const data = [
+            {
+                "id_environment_condition": 1,
+                "id_room": 1,
+                "id_date": 1,
+                "humidity": 50.3,
+                "air_temperature": 22.1,
+                "air_pressure": 1013.2,
+                "nitrogen_content": 78.5,
+                "is_critical_condition": false,
+                "recorded_time": "1970-01-01T12:30:00.000Z",
+                "room": {
+                    "id_room": 1,
+                    "room_number": 383
+                },
+                "date_of_recording": {
+                    "id_date": 1,
+                    "recorded_date": "2023-01-22T00:00:00.000Z"
+                }
+            },
+            {
+                "id_environment_condition": 2,
+                "id_room": 2,
+                "id_date": 1,
+                "humidity": 48.7,
+                "air_temperature": 23.5,
+                "air_pressure": 1011.8,
+                "nitrogen_content": 79.2,
+                "is_critical_condition": false,
+                "recorded_time": "1970-01-01T12:30:00.000Z",
+                "room": {
+                    "id_room": 2,
+                    "room_number": 180
+                },
+                "date_of_recording": {
+                    "id_date": 1,
+                    "recorded_date": "2023-01-22T00:00:00.000Z"
+                }
+            },
+            {
+                "id_environment_condition": 3,
+                "id_room": 3,
+                "id_date": 1,
+                "humidity": 52.1,
+                "air_temperature": 22.8,
+                "air_pressure": 1014.5,
+                "nitrogen_content": 77.8,
+                "is_critical_condition": false,
+                "recorded_time": "1970-01-01T12:30:00.000Z",
+                "room": {
+                    "id_room": 3,
+                    "room_number": 179
+                },
+                "date_of_recording": {
+                    "id_date": 1,
+                    "recorded_date": "2023-01-22T00:00:00.000Z"
+                }
+            },
+            {
+                "id_environment_condition": 4,
+                "id_room": 18,
+                "id_date": 10,
+                "humidity": 45.2,
+                "air_temperature": 20.4,
+                "air_pressure": 1010.7,
+                "nitrogen_content": 81.3,
+                "is_critical_condition": false,
+                "recorded_time": "1970-01-01T22:30:00.000Z",
+                "room": {
+                    "id_room": 18,
+                    "room_number": 122
+                },
+                "date_of_recording": {
+                    "id_date": 10,
+                    "recorded_date": "2023-02-21T00:00:00.000Z"
+                }
+            },
+            {
+                "id_environment_condition": 5,
+                "id_room": 19,
+                "id_date": 10,
+                "humidity": 43.6,
+                "air_temperature": 19.8,
+                "air_pressure": 1011.5,
+                "nitrogen_content": 80.9,
+                "is_critical_condition": false,
+                "recorded_time": "1970-01-01T22:30:00.000Z",
+                "room": {
+                    "id_room": 19,
+                    "room_number": 434
+                },
+                "date_of_recording": {
+                    "id_date": 10,
+                    "recorded_date": "2023-02-21T00:00:00.000Z"
+                }
+            }
+        ]
+        res.json(data)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json(error.message)
+    }
+})
 
+app.get('/test/environment_conditions?page=2', async (req, res) => {
+    try {
+        const data = [
+            {
+                "id_environment_condition": 6,
+                "id_room": 20,
+                "id_date": 10,
+                "humidity": 42.8,
+                "air_temperature": 20.2,
+                "air_pressure": 1012.3,
+                "nitrogen_content": 80.5,
+                "is_critical_condition": false,
+                "recorded_time": "1970-01-01T22:30:00.000Z",
+                "room": {
+                    "id_room": 20,
+                    "room_number": 417
+                },
+                "date_of_recording": {
+                    "id_date": 10,
+                    "recorded_date": "2023-02-21T00:00:00.000Z"
+                }
+            }
+        ]
+        res.json(data)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json(error.message)
+    }
+})
+
+app.get('/test/person_conditions?page=1', async (req, res) => {
+    try {
+        const data = [
+            {
+                "id_person_condition": 1,
+                "id_person": 1,
+                "id_room": 1,
+                "id_date": 1,
+                "oxygen": 90,
+                "heart_rate": 120,
+                "body_temperature": 38.5,
+                "is_critical_condition": true,
+                "recorded_time": "1970-01-01T08:00:00.000Z",
+                "person": {
+                    "id_person": 1,
+                    "name_person": "Іваненко Іван Іванович",
+                    "study_group": "ВТ-21-1",
+                    "role": "Студент"
+                },
+                "room": {
+                    "id_room": 1,
+                    "room_number": 383
+                },
+                "date_of_recording": {
+                    "id_date": 1,
+                    "recorded_date": "2023-01-22T00:00:00.000Z"
+                }
+            },
+            {
+                "id_person_condition": 2,
+                "id_person": 1,
+                "id_room": 1,
+                "id_date": 1,
+                "oxygen": 95,
+                "heart_rate": 80,
+                "body_temperature": 36.6,
+                "is_critical_condition": false,
+                "recorded_time": "1970-01-01T09:00:00.000Z",
+                "person": {
+                    "id_person": 1,
+                    "name_person": "Іваненко Іван Іванович",
+                    "study_group": "ВТ-21-1",
+                    "role": "Студент"
+                },
+                "room": {
+                    "id_room": 1,
+                    "room_number": 383
+                },
+                "date_of_recording": {
+                    "id_date": 1,
+                    "recorded_date": "2023-01-22T00:00:00.000Z"
+                }
+            },
+            {
+                "id_person_condition": 3,
+                "id_person": 2,
+                "id_room": 2,
+                "id_date": 1,
+                "oxygen": 88,
+                "heart_rate": 115,
+                "body_temperature": 38.9,
+                "is_critical_condition": true,
+                "recorded_time": "1970-01-01T08:00:00.000Z",
+                "person": {
+                    "id_person": 2,
+                    "name_person": "Петренко Олександр Миколайович",
+                    "study_group": "ВТ-22-1",
+                    "role": "Студент"
+                },
+                "room": {
+                    "id_room": 2,
+                    "room_number": 180
+                },
+                "date_of_recording": {
+                    "id_date": 1,
+                    "recorded_date": "2023-01-22T00:00:00.000Z"
+                }
+            },
+            {
+                "id_person_condition": 4,
+                "id_person": 2,
+                "id_room": 2,
+                "id_date": 1,
+                "oxygen": 98,
+                "heart_rate": 70,
+                "body_temperature": 36.5,
+                "is_critical_condition": false,
+                "recorded_time": "1970-01-01T09:00:00.000Z",
+                "person": {
+                    "id_person": 2,
+                    "name_person": "Петренко Олександр Миколайович",
+                    "study_group": "ВТ-22-1",
+                    "role": "Студент"
+                },
+                "room": {
+                    "id_room": 2,
+                    "room_number": 180
+                },
+                "date_of_recording": {
+                    "id_date": 1,
+                    "recorded_date": "2023-01-22T00:00:00.000Z"
+                }
+            },
+            {
+                "id_person_condition": 5,
+                "id_person": 3,
+                "id_room": 3,
+                "id_date": 2,
+                "oxygen": 85,
+                "heart_rate": 125,
+                "body_temperature": 39.2,
+                "is_critical_condition": true,
+                "recorded_time": "1970-01-01T08:00:00.000Z",
+                "person": {
+                    "id_person": 3,
+                    "name_person": "Ковальчук Оксана Сергіївна",
+                    "study_group": "ІСТ-22-1",
+                    "role": "Студент"
+                },
+                "room": {
+                    "id_room": 3,
+                    "room_number": 179
+                },
+                "date_of_recording": {
+                    "id_date": 2,
+                    "recorded_date": "2023-03-07T00:00:00.000Z"
+                }
+            }
+        ]
+        res.json(data)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json(error.message)
+    }
+})
+
+app.get('/test/person_conditions?page=2', async (req, res) => {
+    try {
+        const data = [
+            {
+                "id_person_condition": 6,
+                "id_person": 3,
+                "id_room": 3,
+                "id_date": 2,
+                "oxygen": 96,
+                "heart_rate": 75,
+                "body_temperature": 36.8,
+                "is_critical_condition": false,
+                "recorded_time": "1970-01-01T09:00:00.000Z",
+                "person": {
+                    "id_person": 3,
+                    "name_person": "Ковальчук Оксана Сергіївна",
+                    "study_group": "ІСТ-22-1",
+                    "role": "Студент"
+                },
+                "room": {
+                    "id_room": 3,
+                    "room_number": 179
+                },
+                "date_of_recording": {
+                    "id_date": 2,
+                    "recorded_date": "2023-03-07T00:00:00.000Z"
+                }
+            },
+            {
+                "id_person_condition": 7,
+                "id_person": 4,
+                "id_room": 4,
+                "id_date": 4,
+                "oxygen": 88,
+                "heart_rate": 115,
+                "body_temperature": 36.5,
+                "is_critical_condition": true,
+                "recorded_time": "1970-01-01T08:00:00.000Z",
+                "person": {
+                    "id_person": 4,
+                    "name_person": "Сидоренко Анастасія Олександрівна",
+                    "study_group": "КБ-22-2",
+                    "role": "Студент"
+                },
+                "room": {
+                    "id_room": 4,
+                    "room_number": 200
+                },
+                "date_of_recording": {
+                    "id_date": 4,
+                    "recorded_date": "2023-02-08T00:00:00.000Z"
+                }
+            },
+            {
+                "id_person_condition": 8,
+                "id_person": 4,
+                "id_room": 4,
+                "id_date": 4,
+                "oxygen": 98,
+                "heart_rate": 70,
+                "body_temperature": 38.9,
+                "is_critical_condition": false,
+                "recorded_time": "1970-01-01T10:00:00.000Z",
+                "person": {
+                    "id_person": 4,
+                    "name_person": "Сидоренко Анастасія Олександрівна",
+                    "study_group": "КБ-22-2",
+                    "role": "Студент"
+                },
+                "room": {
+                    "id_room": 4,
+                    "room_number": 200
+                },
+                "date_of_recording": {
+                    "id_date": 4,
+                    "recorded_date": "2023-02-08T00:00:00.000Z"
+                }
+            },
+            {
+                "id_person_condition": 9,
+                "id_person": 4,
+                "id_room": 4,
+                "id_date": 4,
+                "oxygen": 85,
+                "heart_rate": 125,
+                "body_temperature": 39.2,
+                "is_critical_condition": false,
+                "recorded_time": "1970-01-01T13:00:00.000Z",
+                "person": {
+                    "id_person": 4,
+                    "name_person": "Сидоренко Анастасія Олександрівна",
+                    "study_group": "КБ-22-2",
+                    "role": "Студент"
+                },
+                "room": {
+                    "id_room": 4,
+                    "room_number": 200
+                },
+                "date_of_recording": {
+                    "id_date": 4,
+                    "recorded_date": "2023-02-08T00:00:00.000Z"
+                }
+            }
+        ]
+        res.json(data)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json(error.message)
+    }
+})
+
+app.get('/persons', async (req, res) => {
+    try {
+        const data = [
+            {
+                "id_person": 1,
+                "name_person": "Іваненко Іван Іванович",
+                "study_group": "ВТ-21-1",
+                "role": "Студент"
+            },
+            {
+                "id_person": 2,
+                "name_person": "Петренко Олександр Миколайович",
+                "study_group": "ВТ-22-1",
+                "role": "Студент"
+            },
+            {
+                "id_person": 3,
+                "name_person": "Ковальчук Оксана Сергіївна",
+                "study_group": "ІСТ-22-1",
+                "role": "Студент"
+            },
+            {
+                "id_person": 4,
+                "name_person": "Сидоренко Анастасія Олександрівна",
+                "study_group": "КБ-22-2",
+                "role": "Студент"
+            },
+            {
+                "id_person": 5,
+                "name_person": "Григоренко Тетяна Василівна",
+                "study_group": "ІПЗ-22-3",
+                "role": "Студент"
+            }
+        ]
+        res.json(data)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json(error.message)
+    }
+})
+
+
+//http://localhost:3000/person_conditions?page=2
 app.get('/persons', async (req, res) => {
     try {
         const page = req.query.page || 1
