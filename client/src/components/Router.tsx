@@ -2,12 +2,14 @@ import {Route, BrowserRouter, Routes, Outlet} from 'react-router-dom'
 import {FC} from 'react'
 import MainLayout from '../pages/MainLayout'
 import Login from '../pages/Login'
-import PATH from "../shared/constants/Path.ts";
-import Persons from "../pages/Persons";
-import RoomRecords from "../pages/RoomRecords";
-import PersonRecords from "../pages/PersonRecords";
+import PATH from "../shared/constants/Path.ts"
+import Persons from "../pages/Persons"
+import RoomRecords from "../pages/RoomRecords"
+import PersonRecords from "../pages/PersonRecords"
+
 
 const Router: FC = () => {
+
     return (
         <BrowserRouter>
             <Routes>
@@ -25,6 +27,7 @@ const Router: FC = () => {
 
                     <Route path={PATH.ME} element={<div>Me</div>}/>
                     <Route path='/*' element={<div>NO ROUTE FOUND</div>}/>
+
                 </Route>
                 <Route path={PATH.LOGIN} element={<Login/>}/>
             </Routes>

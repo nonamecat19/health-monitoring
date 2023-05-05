@@ -1,15 +1,15 @@
 import {FC} from "react";
 import {RoomRecordsContainerProps, RoomRecordType} from "../../shared/types/RoomRecords.ts";
-import RoomRecordsItem from "./RoomRecordsItem.tsx";
+import Item from "./Item.tsx";
 import {DetailsContainer} from "../../shared/styles/styles.ts";
 
-const RoomRecordsContainer: FC<RoomRecordsContainerProps> = ({data}) => {
+const Container: FC<RoomRecordsContainerProps> = ({data}) => {
 
     return (
         <DetailsContainer>
-            {data.map((item: RoomRecordType) => <RoomRecordsItem data={item} key={item.id_room}/>)}
+            {data.map((item: RoomRecordType) => <Item data={item} key={item.id_room}/>)}
         </DetailsContainer>
     )
 }
 
-export default RoomRecordsContainer
+export default Container

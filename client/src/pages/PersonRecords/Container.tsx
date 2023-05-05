@@ -1,16 +1,16 @@
 import {IPersonRecordsContainerProps, PersonRecordType} from "../../shared/types/PersonsRecords.ts";
 import {FC} from "react";
-import PersonRecordsElement from "./PersonRecordsElement.tsx";
+import Element from "./Element.tsx";
 import {DetailsContainer} from "../../shared/styles/styles.ts";
 
-const PersonRecordsContainer: FC<IPersonRecordsContainerProps> = ({data}) => {
+const Container: FC<IPersonRecordsContainerProps> = ({data}) => {
 
     return (
         <DetailsContainer>
             {
                 data.map((item: PersonRecordType) => {
                     return (
-                        <PersonRecordsElement
+                        <Element
                             data={item}
                             key={item.id_person_condition}
                         />
@@ -21,4 +21,4 @@ const PersonRecordsContainer: FC<IPersonRecordsContainerProps> = ({data}) => {
     )
 }
 
-export default PersonRecordsContainer
+export default Container

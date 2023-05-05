@@ -34,9 +34,9 @@ const MainLayout: FC<IPage> = ({}) => {
                     <ContentContainer>
 
                         <ErrorBoundary fallback={<>Error</>}>
-                            <Suspense fallback={<>Loading</>}>
+                            {/*<Suspense fallback={<>Loading</>}>*/}
                                 <Outlet/>
-                            </Suspense>
+                            {/*</Suspense>*/}
                         </ErrorBoundary>
 
                     </ContentContainer>

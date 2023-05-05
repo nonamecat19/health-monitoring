@@ -2,6 +2,10 @@ body {
     margin: 0;
 }
 
+*{
+    font-family: 'Shantell Sans', cursive;
+}
+
 ::-webkit-scrollbar {
     width: 20px;
 }

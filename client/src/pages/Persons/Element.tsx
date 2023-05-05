@@ -6,7 +6,7 @@ import RoleIcon from "./RoleIcon.tsx";
 import SIZES from "../../shared/constants/Sizes.ts";
 import {BetweenItems, Block} from "../../shared/styles/styles.ts";
 
-const PersonElement: FC<IPersonsElementProps> = ({data}) => {
+const Element: FC<IPersonsElementProps> = ({data}) => {
     const {name_person, study_group, role, id_person} = data
     const clickHandler = (): void => {
         console.log(id_person)
@@ -15,7 +15,7 @@ const PersonElement: FC<IPersonsElementProps> = ({data}) => {
 
 
     return (
-        <Element onClick={clickHandler}>
+        <DivElement onClick={clickHandler}>
             <BetweenItems>
                 <DataBlock>
                     <Block>{name_person}</Block>
@@ -30,14 +30,14 @@ const PersonElement: FC<IPersonsElementProps> = ({data}) => {
 
             </BetweenItems>
 
-        </Element>
+        </DivElement>
     )
 }
 
-const Element = styled.div`
+const DivElement = styled.div`
   background: ${COLORS.green2};
-  width: 300px;
-  padding: ${SIZES.sm};
+  width: 330px;
+  padding: ${SIZES.md};
   border-radius: ${SIZES.sm};
 `
 
@@ -50,4 +50,4 @@ export const DataBlock = styled.div`
   color: ${COLORS.darkAccent};
 `
 
-export default PersonElement
+export default Element

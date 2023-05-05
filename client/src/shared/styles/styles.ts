@@ -30,7 +30,6 @@ export const DetailsContainer = styled.div`
 `
 
 export const baseDetailsElement = `
-  background: ${COLORS.green2};
   padding: ${SIZES.md};
   border-radius: ${SIZES.md};
   position: relative;

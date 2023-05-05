@@ -1,6 +1,6 @@
 import {IPage} from "../../shared/types/Global.ts";
 import {FC} from "react";
-import PersonRecordsContainer from "./PersonRecordsContainer.tsx";
+import Container from "./Container.tsx";
 import usePagination from "../../shared/hooks/usePagination.tsx";
 import REQUESTS from "../../shared/constants/Requests.ts";
 import useSWR from "swr";
@@ -12,7 +12,7 @@ const PersonRecords: FC<IPage> = () => {
 
     return (
         <>
-            <PersonRecordsContainer data={data}/>
+            <Container data={data}/>
             <Pagination page={page} prev={prev} next={next}/>
         </>
     )

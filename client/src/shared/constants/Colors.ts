@@ -13,5 +13,7 @@ const COLORS= {
     darkAccent: '#0a252a',
 
     red: '#dd3d3d',
+
+    orange: '#ff8537'
 }
 export default COLORS

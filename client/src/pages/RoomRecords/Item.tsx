@@ -1,12 +1,12 @@
-import {FC} from "react";
-import styled from "styled-components";
-import {RoomRecordsElementProps} from "../../shared/types/RoomRecords.ts";
-import CriticalIcon from "./CriticalIcon.tsx";
-import ParamElement from "./ParamElement.tsx";
+import {FC} from "react"
+import {RoomRecordsElementProps} from "../../shared/types/RoomRecords.ts"
+import CriticalIcon from "../../shared/ui/CriticalIcon.tsx"
+import ParamElement from "../../shared/ui/ParamElement.tsx"
 import moment from 'moment'
-import {baseDetailsElement} from "../../shared/styles/styles.ts";
+import COLORS from "../../shared/constants/Colors.ts";
+import {Title, Element} from "./styles.ts";
 
-const RoomRecordsItem: FC<RoomRecordsElementProps> = ({data}) => {
+const Item: FC<RoomRecordsElementProps> = ({data}) => {
 
     const {
         id_room,
@@ -21,12 +21,15 @@ const RoomRecordsItem: FC<RoomRecordsElementProps> = ({data}) => {
 
     const currentDate = moment(date_of_recording.recorded_date).format('L')
 
-    const clickHandler = () => {
+    const clickHandler = (): void => {
         console.log(id_room)
     }
 
     return (
-        <Element onClick={clickHandler}>
+        <Element
+            onClick={clickHandler}
+            color={is_critical_condition ? COLORS.orange : COLORS.green2}
+        >
 
             <CriticalIcon critical={is_critical_condition}/>
 
@@ -43,15 +46,6 @@ const RoomRecordsItem: FC<RoomRecordsElementProps> = ({data}) => {
     )
 }
 
-const Title = styled.div`
-  font-size: 2rem;
-  font-weight: bold;
-`
 
-const Element = styled.data`
-  ${baseDetailsElement};
-  width: 400px;
-  height: 200px;
-`
 
-export default RoomRecordsItem
+export default Item
