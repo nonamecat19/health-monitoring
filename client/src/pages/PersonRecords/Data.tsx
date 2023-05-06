@@ -1,14 +1,14 @@
 import {FC} from "react";
-import {IPage} from "../../shared/types/Global.ts";
-import useSWR from 'swr'
-import REQUESTS from "../../shared/constants/Requests.ts";
-import Pagination from "../../shared/ui/Pagination.tsx";
 import usePagination from "../../shared/hooks/usePagination.tsx";
+import useSWR from "swr";
+import REQUESTS from "../../shared/constants/Requests.ts";
 import Container from "./Container.tsx";
+import Pagination from "../../shared/ui/Pagination.tsx";
 
-const Data: FC<IPage> = () => {
+
+const Data: FC = () => {
     const [page, prev, next] = usePagination()
-    const {data} = useSWR(REQUESTS.ROOM_RECORDS(page))
+    const {data} = useSWR(REQUESTS.PERSON_RECORDS(page))
 
     return (
         <>

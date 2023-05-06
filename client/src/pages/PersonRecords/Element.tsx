@@ -1,12 +1,12 @@
 import {IPersonRecordsElementProps} from "../../shared/types/PersonsRecords.ts";
 import {FC} from "react";
-import {baseDetailsElement} from "../../shared/styles/styles.ts";
 import styled from "styled-components";
 import ParamElement from "../../shared/ui/ParamElement.tsx";
 import CriticalIcon from "../../shared/ui/CriticalIcon.tsx";
 import moment from "moment";
 import SIZES from "../../shared/constants/Sizes.ts";
 import COLORS from "../../shared/constants/Colors.ts";
+import {DivElement} from "./styles.ts";
 
 
 
@@ -44,12 +44,5 @@ const Date = styled.div`
   bottom: ${SIZES.sm};
 `
 
-const DivElement = styled.div`
-  ${baseDetailsElement};
-  width: 370px;
-  padding: ${SIZES.lg};
-  height: 210px;
-  background: ${props => props.color};
-`
 
 export default Element

@@ -1,9 +1,7 @@
 import {IPersonsElement, IPersonsListProps} from "../../shared/types/Persons.ts";
 import {FC} from "react";
-import styled from "styled-components";
 import Element from "./Element.tsx";
-import SIZES from "../../shared/constants/Sizes.ts";
-
+import {DivContainer} from "./styles.ts";
 
 const Container: FC<IPersonsListProps> = ({data}) => {
 
@@ -16,13 +14,7 @@ const Container: FC<IPersonsListProps> = ({data}) => {
             }
         </DivContainer>
     )
-
 }
 
-const DivContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  padding: ${SIZES.sm};
-  gap: 20px
-`
+
 export default Container
