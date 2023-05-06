@@ -1,67 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = "postgresql://postgres:1@localhost:5432/HealthMonitoring"
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
-model Person {
-  id_person       Int               @id @default(autoincrement())
-  name_person     String            @db.VarChar(150)
-  study_group     String?           @db.VarChar(150)
-  role            String            @default("Студент") @db.VarChar(150)
-  PersonCondition PersonCondition[]
-  Fingerprint     Fingerprint[]
-}
-
-model Fingerprint {
-  id_fingerprint   Int    @id @default(autoincrement())
-  id_person        Int
-  person           Person @relation(fields: [id_person], references: [id_person])
+model fingerprint {
+  id_fingerprint   Int     @id @default(autoincrement())
+  id_person        Int?
   fingerprint_data Bytes
+  person           person? @relation(fields: [id_person], references: [id_person], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model Room {
-  id_room              Int                    @id @default(autoincrement())
-  room_number          Int                    @unique
-  PersonCondition      PersonCondition[]
-  EnvironmentCondition EnvironmentCondition[]
+model person {
+  id_person      Int              @id @default(autoincrement())
+  name_person    String           @db.VarChar(150)
+  study_group    String?          @db.VarChar(150)
+  role_person    String           @db.VarChar(150)
+  fingerprint    fingerprint[]
+  person_records person_records[]
 }
 
-model DateOfRecording {
-  id_date              Int                    @id @default(autoincrement())
-  recorded_date        DateTime               @db.Date()
-  PersonCondition      PersonCondition[]
-  EnvironmentCondition EnvironmentCondition[]
+model person_records {
+  id_person_records   Int      @id @default(autoincrement())
+  id_person           Int?
+  room_number         String?  @db.VarChar
+  oxygen              Decimal  @db.Decimal
+  heart_rate          Decimal  @db.Decimal
+  temperature         Decimal  @db.Decimal
+  is_critical_results Boolean
+  recorded_time       DateTime @db.Time(6)
+  recorded_date       DateTime @db.Date
+  person              person?  @relation(fields: [id_person], references: [id_person], onDelete: NoAction, onUpdate: NoAction)
+  room                room?    @relation(fields: [room_number], references: [room_number], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model PersonCondition {
-  id_person_condition   Int             @id @default(autoincrement())
-  id_person             Int
-  person                Person          @relation(fields: [id_person], references: [id_person])
-  id_room               Int
-  room                  Room            @relation(fields: [id_room], references: [id_room])
-  id_date               Int
-  date_of_recording     DateOfRecording @relation(fields: [id_date], references: [id_date])
-  oxygen                Float
-  heart_rate            Float
-  body_temperature      Float
-  is_critical_condition Boolean         @db.Boolean()
-  recorded_time         DateTime        @db.Time()
+model room {
+  room_number    String           @id @db.VarChar(150)
+  room_type      String?          @db.VarChar(150)
+  person_records person_records[]
+  room_records   room_records[]
 }
 
-model EnvironmentCondition {
-  id_environment_condition Int             @id @default(autoincrement())
-  id_room                  Int
-  room                     Room            @relation(fields: [id_room], references: [id_room])
-  id_date                  Int
-  date_of_recording        DateOfRecording @relation(fields: [id_date], references: [id_date])
-  humidity                 Float
-  air_temperature          Float
-  air_pressure             Float
-  nitrogen_content         Float
-  is_critical_condition    Boolean         @db.Boolean()
-  recorded_time            DateTime        @db.Time()
+model room_records {
+  id_room_records     Int      @id @default(autoincrement())
+  room_number         String?  @db.VarChar
+  humidity            Decimal  @db.Decimal
+  temperature         Decimal  @db.Decimal
+  pressure            Decimal  @db.Decimal
+  carbon_dioxide      Decimal  @db.Decimal
+  air_ions            Decimal  @db.Decimal
+  ozone               Decimal  @db.Decimal
+  is_critical_results Boolean
+  recorded_time       DateTime @db.Time(6)
+  recorded_date       DateTime @db.Date
+  room                room?    @relation(fields: [room_number], references: [room_number], onDelete: NoAction, onUpdate: NoAction)
 }
