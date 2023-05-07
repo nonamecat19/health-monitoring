@@ -5,47 +5,63 @@ import ParamElement from "../../shared/ui/ParamElement.tsx"
 import moment from 'moment'
 import COLORS from "../../shared/constants/Colors.ts";
 import {Title, Element} from "./styles.ts";
+import styled from "styled-components";
+import SIZES from "../../shared/constants/Sizes.ts";
 
 const Item: FC<RoomRecordsElementProps> = ({data}) => {
 
     const {
-        id_room,
+        id_room_records,
         humidity,
-        air_temperature,
-        air_pressure,
-        nitrogen_content,
-        is_critical_condition,
+        temperature,
+        pressure,
+        carbon_dioxide,
+        air_ions,
+        ozone,
+        is_critical_results,
         room,
-        date_of_recording
+        recorded_date,
+        recorded_time
     } = data
 
-    const currentDate = moment(date_of_recording.recorded_date).format('L')
 
     const clickHandler = (): void => {
-        console.log(id_room)
+        console.log(id_room_records)
     }
 
     return (
         <Element
             onClick={clickHandler}
-            color={is_critical_condition ? COLORS.orange : COLORS.green2}
+            color={is_critical_results ? COLORS.orange : COLORS.green2}
         >
 
-            <CriticalIcon critical={is_critical_condition}/>
+            <CriticalIcon critical={is_critical_results}/>
 
             <Title>
                 Кімната {room.room_number}
             </Title>
 
-            <ParamElement label={'Температура повітря'} value={air_temperature}/>
+            <ParamElement label={'Температура повітря'} value={temperature}/>
             <ParamElement label={'Вологість повітря'} value={humidity}/>
-            <ParamElement label={'Тиск повітря'} value={air_pressure}/>
-            <ParamElement label={'Вміст кисню'} value={nitrogen_content}/>
-            <ParamElement label={'Дата'} value={currentDate}/>
+            <ParamElement label={'Тиск повітря'} value={pressure}/>
+            <ParamElement label={'Вуглекислий газ'} value={carbon_dioxide}/>
+            <ParamElement label={'Аероіони'} value={air_ions}/>
+            <ParamElement label={'Озон'} value={ozone}/>
+            <Date>
+                {moment(recorded_time).format('HH:MM')}
+                {' '}
+                {moment(recorded_date).format('L')}
+            </Date>
         </Element>
     )
 }
 
-
+const Date = styled.div`
+  position: absolute;
+  bottom: ${SIZES.sm};
+  right: ${SIZES.md};
+  font-size: 1.3rem;
+  font-weight: bold;
+`
 
 export default Item

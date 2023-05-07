@@ -8,22 +8,20 @@ export interface RoomRecordsElementProps {
 }
 
 export type RoomRecordType = {
-    id_environment_condition: number,
-    id_room: number,
-    id_date: number,
-    humidity: number,
-    air_temperature: number,
-    air_pressure: number,
-    nitrogen_content: number,
-    is_critical_condition: boolean,
-    recorded_time: Date,
-    room: {
-        id_room: number,
-        room_number: string
-    },
-    date_of_recording: {
-        id_date: number,
-        recorded_date: Date
+    "id_room_records": number,
+    "room_number": string,
+    "humidity": string,
+    "temperature": string,
+    "pressure":string,
+    "carbon_dioxide":string,
+    "air_ions":string,
+    "ozone": string,
+    "is_critical_results": boolean,
+    "recorded_time": Date,
+    "recorded_date": Date,
+    "room": {
+        "room_number": string,
+        "room_type": string
     }
 }
 

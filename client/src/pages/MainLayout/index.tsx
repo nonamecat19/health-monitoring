@@ -1,4 +1,4 @@
-import {FC, Suspense, useState} from 'react'
+import {FC, useState} from 'react'
 import {Layout, Menu} from "antd"
 import Sider from "antd/es/layout/Sider"
 import {Content} from "antd/es/layout/layout"
@@ -6,7 +6,7 @@ import styled from "styled-components"
 import COLORS from "../../shared/constants/Colors.ts"
 import {Outlet, useNavigate} from "react-router-dom";
 import items from "./sidebarItem.tsx";
-import ErrorBoundary from "../../components/ErrorBoundary.tsx";
+import ErrorBoundary from "../../shared/components/ErrorBoundary.tsx";
 import {IPage} from "../../shared/types/Global.ts";
 
 

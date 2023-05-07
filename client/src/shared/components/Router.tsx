@@ -1,11 +1,12 @@
 import {Route, BrowserRouter, Routes, Outlet} from 'react-router-dom'
 import {FC} from 'react'
-import MainLayout from '../pages/MainLayout'
-import Login from '../pages/Login'
-import PATH from "../shared/constants/Path.ts"
-import Persons from "../pages/Persons"
-import RoomRecords from "../pages/RoomRecords"
-import PersonRecords from "../pages/PersonRecords"
+import MainLayout from '../../pages/MainLayout'
+import Login from '../../pages/Login'
+import PATH from "../../shared/constants/Path.ts"
+import Persons from "../../pages/Persons"
+import RoomRecords from "../../pages/RoomRecords"
+import PersonRecords from "../../pages/PersonRecords"
+import Rooms from "../../pages/Rooms";
 
 
 const Router: FC = () => {
@@ -21,7 +22,7 @@ const Router: FC = () => {
                     </Route>
 
                     <Route path={PATH.ROOMS} element={<Outlet/>}>
-                        <Route path={PATH.LIST} element={<div>Всі кімнати</div>}/>
+                        <Route path={PATH.LIST} element={<Rooms/>}/>
                         <Route path={PATH.RECORDS} element={<RoomRecords/>}/>
                     </Route>
 

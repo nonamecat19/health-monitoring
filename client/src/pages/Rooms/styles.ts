@@ -4,8 +4,8 @@ import SIZES from "../../shared/constants/Sizes.ts";
 
 export const DivElement = styled.div`
   background: ${COLORS.green2};
-  width: 330px;
-  height: 100px;
+  width: 280px;
+  height: 65px;
   padding: ${SIZES.md};
   border-radius: ${SIZES.sm};
 `

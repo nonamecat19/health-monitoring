@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {DetailsContainer} from "../../shared/styles/styles.ts";
-import ForComponent from "../../components/ForComponent.tsx";
+import ForComponent from "../../shared/components/ForComponent.tsx";
 import {DivElement} from "./styles.ts";
 import COLORS from "../../shared/constants/Colors.ts";
 import ContentLoader from "react-content-loader";

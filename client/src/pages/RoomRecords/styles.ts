@@ -9,6 +9,7 @@ export const Title = styled.div`
 export const Element = styled.data`
   ${baseDetailsElement};
   width: 400px;
-  height: 200px;
+  height: 220px;
   background: ${props => props.color};
+  position: relative;
 `

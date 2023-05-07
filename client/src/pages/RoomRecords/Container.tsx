@@ -7,7 +7,7 @@ const Container: FC<RoomRecordsContainerProps> = ({data}) => {
 
     return (
         <DetailsContainer>
-            {data.map((item: RoomRecordType) => <Item data={item} key={item.id_room}/>)}
+            {data.map((item: RoomRecordType) => <Item data={item} key={item.id_room_records}/>)}
         </DetailsContainer>
     )
 }

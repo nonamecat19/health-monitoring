@@ -1,6 +1,6 @@
 import {FC, ReactNode} from "react";
 import {ConfigProvider} from "antd";
-import COLORS from "../shared/constants/Colors.ts";
+import COLORS from "../constants/Colors.ts";
 
 interface Props {
     children: ReactNode

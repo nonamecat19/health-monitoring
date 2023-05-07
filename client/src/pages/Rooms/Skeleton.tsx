@@ -12,15 +12,14 @@ const Skeleton: FC = () => {
                 <DivElement color={COLORS.green2}>
                     <ContentLoader
                         speed={1}
-                        width={400}
-                        height={76}
-                        viewBox="0 0 400 76"
+                        width={280}
+                        height={60}
+                        viewBox="0 0 280 60"
                         backgroundColor={COLORS.green3}
                         foregroundColor={COLORS.green2}
                     >
-                        <rect x="0" y="5"   rx="3" ry="3" width="270" height="6"/>
-                        <rect x="0" y="25"  rx="3" ry="3" width="270" height="6"/>
-                        <rect x="0" y="45"  rx="3" ry="3" width="270" height="6"/>
+                        <rect x="0" y="0"   rx="3" ry="3" width="230" height="6"/>
+                        <rect x="0" y="15"  rx="3" ry="3" width="230" height="6"/>
                     </ContentLoader>
                 </DivElement>
             </ForComponent>

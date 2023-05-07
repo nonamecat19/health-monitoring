@@ -16,5 +16,4 @@ const Container: FC<IPersonsListProps> = ({data}) => {
     )
 }
 
-
 export default Container

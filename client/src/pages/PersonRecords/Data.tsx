@@ -4,11 +4,14 @@ import useSWR from "swr";
 import REQUESTS from "../../shared/constants/Requests.ts";
 import Container from "./Container.tsx";
 import Pagination from "../../shared/ui/Pagination.tsx";
+import {PersonRecordType} from "../../shared/types/PersonsRecords.ts";
 
 
 const Data: FC = () => {
     const [page, prev, next] = usePagination()
-    const {data} = useSWR(REQUESTS.PERSON_RECORDS(page))
+    const {data} = useSWR<PersonRecordType[]>(REQUESTS.PERSON_RECORDS(page))
+
+    if (!data) return null
 
     return (
         <>

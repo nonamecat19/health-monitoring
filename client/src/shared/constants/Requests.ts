@@ -1,10 +1,13 @@
 
-export const REQUEST_DOMAIN: string = 'http://localhost:3000/test'
+export const REQUEST_DOMAIN: string = 'http://localhost:3000'
 
 const REQUESTS = {
-    ROOM_RECORDS: (page: number) => `${REQUEST_DOMAIN}/environment_conditions?page=${page}`,
-    PERSON_RECORDS: (page: number) => `${REQUEST_DOMAIN}/person_conditions?page=${page}`,
-    PERSONS: `${REQUEST_DOMAIN}/persons`
+    ROOM_RECORDS: (page: number) => `${REQUEST_DOMAIN}/testRooms/records?page=${page}`,
+    ROOM_RECORDS_ID: (id: number) => `${REQUEST_DOMAIN}/testRooms/records/${id}`,
+    PERSON_RECORDS: (page: number) => `${REQUEST_DOMAIN}/testPersons/records?page=${page}`,
+    PERSON_RECORDS_ID: (id: number) => `${REQUEST_DOMAIN}/testPersons/records/${id}`,
+    PERSONS: `${REQUEST_DOMAIN}/testPersons`,
+    ROOMS: `${REQUEST_DOMAIN}/testRooms`,
 }
 export default REQUESTS
 

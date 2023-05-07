@@ -6,7 +6,7 @@ export interface IPersonsElement {
     id_person: number,
     name_person: string,
     study_group: string,
-    role: RoleType
+    role_person: RoleType
 }
 
 export interface IPersonsElementProps {

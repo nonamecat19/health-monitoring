@@ -12,16 +12,16 @@ import {DivElement} from "./styles.ts";
 
 const Element: FC<IPersonRecordsElementProps> = ({data}) => {
 
-    const date = moment(data.date_of_recording.recorded_date).format('D/M/YYYY');
+    const date = moment(data.recorded_date).format('D/M/YYYY');
 
     return (
-        <DivElement color={data.is_critical_condition ? COLORS.orange : COLORS.green2}>
+        <DivElement color={data.is_critical_results ? COLORS.orange : COLORS.green2}>
             <Name>{data.person.name_person}</Name>
-            <CriticalIcon critical={data.is_critical_condition}/>
+            <CriticalIcon critical={data.is_critical_results}/>
             <ParamElement label={'Група'} value={data.person.study_group}/>
             <ParamElement label={'Кисень'} value={data.oxygen}/>
             <ParamElement label={'Частота серцебиття'} value={data.heart_rate}/>
-            <ParamElement label={'Температура тіла'} value={data.body_temperature}/>
+            <ParamElement label={'Температура тіла'} value={data.temperature}/>
             <ParamElement label={'Кімната'} value={data.room.room_number}/>
             <Date>{date}</Date>
         </DivElement>

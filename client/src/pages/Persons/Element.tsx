@@ -7,7 +7,7 @@ import {BetweenItems, Block} from "../../shared/styles/styles.ts";
 import {DivElement} from "./styles.ts";
 
 const Element: FC<IPersonsElementProps> = ({data}) => {
-    const {name_person, study_group, role, id_person} = data
+    const {name_person, study_group, role_person, id_person} = data
     const clickHandler = (): void => {
         console.log(id_person)
     }
@@ -21,8 +21,8 @@ const Element: FC<IPersonsElementProps> = ({data}) => {
                 </DataBlock>
 
                 <RoleIcon
-                    role={role}
-                    size={80}
+                    role={role_person}
+                    size={60}
                     color={COLORS.darkAccent}
                 />
 

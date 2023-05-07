@@ -1,5 +1,5 @@
 import {FC} from "react"
-import {IChildren} from "../shared/types/Global.ts"
+import {IChildren} from "../types/Global.ts"
 import {SWRConfig} from 'swr'
 import axios from 'axios'
 
@@ -16,7 +16,7 @@ const ConfigSWR: FC<IChildren> = ({children}) => {
                 suspense: true
             }}
         >
-                {children}
+            {children}
         </SWRConfig>
     )
 }
