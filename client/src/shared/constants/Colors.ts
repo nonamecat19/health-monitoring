@@ -1,4 +1,4 @@
-const COLORS: Record<string, string> = {
+const COLORS= {
     green1: '#01B636',
     green2: '#3BD16F',
     green3: '#74E39A',
@@ -10,6 +10,10 @@ const COLORS: Record<string, string> = {
     white: '#ffffff',
     black: '#000000',
 
-    darkBlue: '#001529'
+    darkAccent: '#0a252a',
+
+    red: '#dd3d3d',
+
+    orange: '#ff8537'
 }
 export default COLORS
