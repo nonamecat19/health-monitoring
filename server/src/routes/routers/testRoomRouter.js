@@ -3,25 +3,9 @@ const express = require("express")
 const router = express.Router()
 
 
-router.get("/", async (req, res) => {
+router.get("/?page=1", async (req, res) => {
     try {
         const data = [
-            {
-                "room_number": "112",
-                "room_type": "Лабораторна,ауд."
-            },
-            {
-                "room_number": "113",
-                "room_type": "Лекція,ауд."
-            },
-            {
-                "room_number": "12",
-                "room_type": "Практика,ауд."
-            },
-            {
-                "room_number": "124",
-                "room_type": "Практика,ауд."
-            },
             {
                 "room_number": "128",
                 "room_type": "Лабораторна,ауд."
@@ -46,7 +30,30 @@ router.get("/", async (req, res) => {
     }
 })
 
-router.get('/records', async (req, res) => {
+router.get("/?page=2", async (req, res) => {
+    try {
+        const data = [
+            {
+                "room_number": "135",
+                "room_type": "Лабораторна,ауд."
+            },
+            {
+                "room_number": "165",
+                "room_type": "Лабораторна,ауд."
+            },
+            {
+                "room_number": "229",
+                "room_type": "Лекція,ауд."
+            }
+        ]
+        res.json(data)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json(error.message)
+    }
+})
+
+router.get('/records?page=1', async (req, res) => {
     try {
         const data = [
             {
@@ -116,7 +123,18 @@ router.get('/records', async (req, res) => {
                     "room_number": "229",
                     "room_type": "Лекція,ауд."
                 }
-            },
+            }
+        ]
+        res.json(data)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json(error.message)
+    }
+})
+
+router.get('/records?page=2', async (req, res) => {
+    try {
+        const data = [
             {
                 "id_room_records": 5,
                 "room_number": "12",
@@ -159,8 +177,7 @@ router.get('/records', async (req, res) => {
     }
 })
 
-
-router.get('/records/:id', async (req, res) => {
+router.get('/records/:id?page=1', async (req, res) => {
     //по 12 кабінету
     try {
         const data =[
@@ -180,7 +197,19 @@ router.get('/records/:id', async (req, res) => {
                     "room_number": "12",
                     "room_type": "Практика,ауд."
                 }
-            },
+            }
+        ]
+        res.json(data)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json(error.message)
+    }
+})
+
+router.get('/records/:id?page=2', async (req, res) => {
+    //по 12 кабінету
+    try {
+        const data =[
             {
                 "id_room_records": 5,
                 "room_number": "12",
