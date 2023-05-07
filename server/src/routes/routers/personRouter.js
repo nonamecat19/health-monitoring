@@ -10,16 +10,42 @@ router.use(cors(corsOption))
 
 const PAGE_RECORDS = 24
 const PAGE_LIST = 48
+const PAGE_LIMIT = 9;
+
+// router.get("/", async (req, res) => {
+//     try {
+//         const page = req.query.page || 1
+//         const skip = (page - 1) * PAGE_LIST;
+//         const data = await prisma.person.findMany({
+//             skip,
+//             take: PAGE_LIST
+//         });
+//         res.json(data)
+//     } catch (error) {
+//         console.error(error)
+//         res.status(500).json(error.message)
+//     }
+// })
 
 router.get("/", async (req, res) => {
     try {
-        const page = req.query.page || 1
-        const skip = (page - 1) * PAGE_LIST;
-        const data = await prisma.person.findMany({
-            skip,
-            take: PAGE_LIST
+        const page =  req.query.page || null
+
+        const maxId = await prisma.person.aggregate({
+            _max: {
+                id_person: true
+            }
         });
-        res.json(data)
+
+        let cursor = maxId._max.id_person - PAGE_LIMIT * page
+
+        const data = await prisma.person.findMany({
+            cursor: cursor ? { id_person: cursor } : undefined,
+            take: PAGE_LIMIT,
+            orderBy: { id_person: "desc" }
+        });
+        const nextCursor = data[data.length - 1]?.id_person || null;
+        res.json({ data, nextCursor });
     } catch (error) {
         console.error(error)
         res.status(500).json(error.message)
