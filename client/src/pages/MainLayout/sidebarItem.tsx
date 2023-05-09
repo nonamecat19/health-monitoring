@@ -8,10 +8,12 @@ const SidebarItem = (label: ReactNode, key: Key, icon?: ReactNode, children?: Me
 }
 
 const items: MenuItem[] = [
-    SidebarItem('Люди', `${PATH.PERSON}/${PATH.LIST}`, <PieChartOutlined/>),
-    SidebarItem('Кімнати', `${PATH.ROOMS}/${PATH.LIST}`, <DesktopOutlined/>),
-    SidebarItem('Записи людей', `${PATH.PERSON}/${PATH.RECORDS}`, <DesktopOutlined/>),
-    SidebarItem('Записи кімнат', `${PATH.ROOMS}/${PATH.RECORDS}`, <PieChartOutlined/>),
+    SidebarItem('Список кімнат', `${PATH.ROOMS}/${PATH.LIST}`, <DesktopOutlined/>),
+    SidebarItem('Записи кімнат', `${PATH.ROOMS}/${PATH.RECORDS}/${PATH.ALL}`, <PieChartOutlined/>),
+    SidebarItem('Статистика кімнат', `${PATH.ROOMS}/${PATH.DASHBOARD}/${PATH.ALL}`, <DesktopOutlined/>),
+    SidebarItem('Список людей', `${PATH.PERSONS}/${PATH.LIST}`, <PieChartOutlined/>),
+    SidebarItem('Записи людей', `${PATH.PERSONS}/${PATH.RECORDS}/${PATH.ALL}`, <DesktopOutlined/>),
+    SidebarItem('Статистика людей', `${PATH.PERSONS}/${PATH.DASHBOARD}/${PATH.ALL}`, <DesktopOutlined/>),
     // SidebarItem('User', 'sub1', <UserOutlined/>, [
     //     SidebarItem('Tom', '3'),
     //     SidebarItem('Bill', '4'),

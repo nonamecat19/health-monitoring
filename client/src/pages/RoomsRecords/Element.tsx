@@ -4,11 +4,11 @@ import CriticalIcon from "../../shared/ui/CriticalIcon.tsx"
 import ParamElement from "../../shared/ui/ParamElement.tsx"
 import moment from 'moment'
 import COLORS from "../../shared/constants/Colors.ts";
-import {Title, Element} from "./styles.ts";
+import {Title, DivElement} from "./styles.ts";
 import styled from "styled-components";
 import SIZES from "../../shared/constants/Sizes.ts";
 
-const Item: FC<RoomRecordsElementProps> = ({data}) => {
+const Element: FC<RoomRecordsElementProps> = ({data}) => {
 
     const {
         id_room_records,
@@ -30,9 +30,9 @@ const Item: FC<RoomRecordsElementProps> = ({data}) => {
     }
 
     return (
-        <Element
+        <DivElement
             onClick={clickHandler}
-            color={is_critical_results ? COLORS.orange : COLORS.green2}
+            color={is_critical_results ? COLORS.red : COLORS.green2}
         >
 
             <CriticalIcon critical={is_critical_results}/>
@@ -41,18 +41,18 @@ const Item: FC<RoomRecordsElementProps> = ({data}) => {
                 Кімната {room.room_number}
             </Title>
 
-            <ParamElement label={'Температура повітря'} value={temperature}/>
-            <ParamElement label={'Вологість повітря'} value={humidity}/>
-            <ParamElement label={'Тиск повітря'} value={pressure}/>
-            <ParamElement label={'Вуглекислий газ'} value={carbon_dioxide}/>
-            <ParamElement label={'Аероіони'} value={air_ions}/>
-            <ParamElement label={'Озон'} value={ozone}/>
+            <ParamElement label={'Температура повітря'} value={temperature} units={'°С'}/>
+            <ParamElement label={'Вологість повітря'} value={humidity} units={'%'}/>
+            <ParamElement label={'Тиск повітря'} value={pressure} units={'мм рт. ст.'}/>
+            <ParamElement label={'Вуглекислий газ'} value={carbon_dioxide} units={'ррm'}/>
+            <ParamElement label={'Аероіони'} value={air_ions} units={'іон/см³'}/>
+            <ParamElement label={'Озон'} value={ozone} units={'мг/м³'}/>
             <Date>
                 {moment(recorded_time).format('HH:MM')}
                 {' '}
                 {moment(recorded_date).format('L')}
             </Date>
-        </Element>
+        </DivElement>
     )
 }
 
@@ -64,4 +64,4 @@ const Date = styled.div`
   font-weight: bold;
 `
 
-export default Item
+export default Element

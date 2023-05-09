@@ -4,13 +4,12 @@ import ForComponent from "../../shared/components/ForComponent.tsx";
 import {DivElement} from "./styles.ts";
 import COLORS from "../../shared/constants/Colors.ts";
 import ContentLoader from "react-content-loader";
-
+import {ELEMENTS_PER_PAGE_RECORDS} from "../../shared/constants/Elements.ts";
 
 const Skeleton: FC = () => {
-
     return (
         <DetailsContainer>
-            <ForComponent number={5}>
+            <ForComponent number={ELEMENTS_PER_PAGE_RECORDS}>
                 <DivElement color={COLORS.green2}>
                     <ContentLoader
                         speed={1}

@@ -1,9 +1,9 @@
 import {FC, FormEvent, useState} from 'react'
-import {Button, Checkbox, Form, Input} from 'antd'
+import {Button, Form, Input} from 'antd'
 import {LockOutlined, UserOutlined} from '@ant-design/icons'
 import COLORS from '../../shared/constants/Colors.ts'
-import styled from 'styled-components'
-import SIZES from '../../shared/constants/Sizes.ts'
+import {ErrorAlert, StyledForm} from "./styles.ts"
+import {GoogleLogin} from "@react-oauth/google";
 
 interface Props {
 
@@ -12,7 +12,7 @@ interface Props {
 const LoginForm: FC<Props> = ({}) => {
 
     const [loading, setLoading] = useState<boolean>(false)
-
+    const [isError, setIsError] = useState<boolean>(false);
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
     }
@@ -23,13 +23,12 @@ const LoginForm: FC<Props> = ({}) => {
     }]
 
     const onFinish = (values: any) => {
-        console.log('Success:', values);
+        console.log('Success:', values)
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
         }, 5000)
-
-    };
+    }
 
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo)
@@ -62,14 +61,19 @@ const LoginForm: FC<Props> = ({}) => {
                         placeholder="Пароль"
                     />
                 </Form.Item>
-                <Form.Item
-                    name="remember"
-                >
-                    <Checkbox>Запам'ятати мене</Checkbox>
-                    <a className="login-form-forgot" href="">
-                        Забули пароль
-                    </a>
-                </Form.Item>
+
+                <GoogleLogin
+                    onSuccess={credentialResponse => {
+                        console.log(credentialResponse);
+                        setIsError(false)
+
+                    }}
+                    onError={() => {
+                        setIsError(true)
+                    }}
+
+                />
+
                 <Form.Item>
                     <Button
                         type="primary"
@@ -84,13 +88,21 @@ const LoginForm: FC<Props> = ({}) => {
                     </Button>
                 </Form.Item>
             </StyledForm>
+
+            {
+                isError &&
+                <ErrorAlert
+                    message="Error Text"
+                    description="Error Description Error Description Error Description Error Description Error Description Error Description"
+                    type="error"
+                    closable
+                    onClose={() => setIsError(false)}
+                />
+            }
+
         </>
     )
 }
 
-const StyledForm = styled(Form)`
-  .ant-form-item {
-    margin-bottom: ${SIZES.sm}
-  }
-`
+
 export default LoginForm

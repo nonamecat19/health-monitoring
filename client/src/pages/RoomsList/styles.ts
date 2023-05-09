@@ -12,7 +12,13 @@ export const DivElement = styled.div`
 
 export const DivContainer = styled.div`
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   padding: ${SIZES.sm};
   gap: 20px
+`
+
+export const FiltersSpace = styled.div`
+  height: ${SIZES.xs};
+  width: 100%;
 `

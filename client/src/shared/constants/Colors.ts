@@ -6,14 +6,15 @@ const COLORS= {
 
     grey1: '#989898',
     grey2: '#E3E3E3',
+    grey3: '#f5f5f5',
 
     white: '#ffffff',
     black: '#000000',
 
-    darkAccent: '#0a252a',
+    darkAccent: '#003129',
+    darkAccentHover: '#104834',
 
-    red: '#dd3d3d',
-
-    orange: '#ff8537'
+    violet: '#8884d8',
+    red: '#ff5966'
 }
 export default COLORS

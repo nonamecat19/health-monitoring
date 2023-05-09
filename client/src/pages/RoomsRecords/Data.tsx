@@ -6,10 +6,14 @@ import Pagination from "../../shared/ui/Pagination.tsx";
 import usePagination from "../../shared/hooks/usePagination.tsx";
 import Container from "./Container.tsx";
 import {RoomRecordType} from "../../shared/types/RoomRecords.ts";
+import {useParams} from "react-router-dom";
 
 const Data: FC<IPage> = () => {
+
+    const {id} = useParams()
     const [page, prev, next] = usePagination()
-    const {data} = useSWR<RoomRecordType[]>(REQUESTS.ROOM_RECORDS(page))
+    const request = id ? REQUESTS.ROOM_RECORDS_ID(id) : REQUESTS.ROOM_RECORDS(page)
+    const {data} = useSWR<RoomRecordType[]>(request)
 
     if (!data) return null
 
