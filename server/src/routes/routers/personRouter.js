@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
     try {
         const page =  req.query.page || null
 
-        const maxId = await prisma.person.aggregate({
+        let maxId = await prisma.person.aggregate({
             _max: {
                 id_person: true
             }

@@ -58,3 +58,8 @@ model room_records {
   recorded_date       DateTime @db.Date
   room                room?    @relation(fields: [room_number], references: [room_number], onDelete: NoAction, onUpdate: NoAction)
 }
+
+model admin {
+  id_admin Int    @id @default(autoincrement())
+  email    String @db.VarChar(150)
+}
