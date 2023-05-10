@@ -1,14 +1,16 @@
 import {FC} from "react";
 import ForComponent from "../../shared/components/ForComponent.tsx";
-import {DivContainer, DivElement} from "./styles.ts";
+import {DivContainer, DivElement, FiltersSpace} from "./styles.ts";
 import COLORS from "../../shared/constants/Colors.ts";
 import ContentLoader from "react-content-loader";
+import {ELEMENTS_PER_PAGE_LIST} from "../../shared/constants/Elements.ts";
 
 const Skeleton: FC = () => {
 
     return (
         <DivContainer>
-            <ForComponent number={5}>
+            <FiltersSpace/>
+            <ForComponent number={ELEMENTS_PER_PAGE_LIST}>
                 <DivElement color={COLORS.green2}>
                     <ContentLoader
                         speed={1}
@@ -26,4 +28,6 @@ const Skeleton: FC = () => {
         </DivContainer>
     )
 }
+
+
 export default Skeleton

@@ -6,7 +6,7 @@ export const Title = styled.div`
   font-weight: bold;
 `
 
-export const Element = styled.data`
+export const DivElement = styled.data`
   ${baseDetailsElement};
   width: 400px;
   height: 220px;
