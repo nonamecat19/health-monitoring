@@ -1,7 +1,7 @@
 // @ts-ignore
 import backgroundImage from '../../shared/assets/login-background.jpg'
 import styled from "styled-components";
-import {Alert, Form} from "antd";
+import {Form} from "antd";
 import SIZES from "../../shared/constants/Sizes.ts";
 import COLORS from "../../shared/constants/Colors.ts";
 
@@ -49,11 +49,4 @@ export const LoginWrapper = styled.div`
   @media (max-width: 720px) {
     width: 70%;
   }
-`
-
-export const ErrorAlert = styled(Alert)`
-  position: absolute;
-  bottom: ${SIZES.md};
-  right: ${SIZES.md};
-  width: 500px;
 `
