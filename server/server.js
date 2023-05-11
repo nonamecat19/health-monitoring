@@ -3,8 +3,6 @@ const cors = require('cors')
 const { PrismaClient } = require("@prisma/client")
 const mainRouter = require('./src/routes/mainRouter')
 const cookieSession = require('express-session')
-const passport = require('passport')
-const passportSetup = require('./src/config/passport')
 
 const app = express()
 const prisma = new PrismaClient()
@@ -16,18 +14,7 @@ const corsOption = {
     origin: ['http://localhost:5173'],
 }
 
-app.use(express.urlencoded({ extended: true }));
 
-app.use(
-    cookieSession({
-        secret: 'secret_key',
-        resave: false,
-        saveUninitialized: false
-    })
-)
-
-app.use(passport.initialize())
-app.use(passport.session())
 app.use(cors(corsOption))
 app.use(express.json())
 app.use('/', mainRouter)

@@ -1,57 +1,52 @@
 const express = require("express")
-const { PrismaClient } = require("@prisma/client")
+const {PrismaClient} = require("@prisma/client")
 const prisma = new PrismaClient()
 const jwt = require('jsonwebtoken')
-const passport = require('passport')
+const {SECRET_KEY, JWT_LIFE_TIME} = require("../../config/consts")
 
 const router = express.Router()
 
-const CLIENT_URL = 'http://localhost:5173/'
 
-router.get('/google',
-    passport.authenticate(
-        'google',
-        { scope: ['profile'] }
-    )
-)
+const users = [
+    {
+        email: 'test@gmail.com',
+        role: 'admin',
+        password: 'test',
+    },
+    {
+        email: 'test2@gmail.com',
+        role: 'admin',
+        password: 'test2'
+    },
+]
 
-router.get('/google/callback',
-    passport.authenticate(
-        'google',
-        {failureRedirect: 'http://localhost:5173/login'}
-    ),
 
-    function (req, res) {
-        // console.log(req.accessToken)
-        res.redirect('http://localhost:5173/')
+router.post("/login", (req, res) => {
+    try {
+        const {email, password} = req.body
+        const user = users.find(el => el.email === email && el.password === password)
+
+        if (!user) {
+            throw new Error('User not found')
+        }
+
+        const data = {
+            email: email,
+            role: user.role
+        }
+        const options = {
+            expiresIn: JWT_LIFE_TIME,
+            algorithm: 'HS256'
+        }
+
+        const token = jwt.sign(data, SECRET_KEY, options)
+        console.log(token)
+        res.status(200).json({token})
+
+    } catch (error) {
+        res.status(403).send(error.message)
     }
-)
 
-router.get("/login/failed", (req, res) => {
-    res.status(401).json({
-        error: true,
-        message: "Login failed"
-    })
 })
-
-router.get("/login/success", (req, res) => {
-    if (req.user) {
-        res.status(200).json({
-            error: false,
-            message: 'Success'
-        })
-    } else {
-        res.status(403).json({
-            error: true,
-            message: 'Not Authorized'
-        })
-    }
-})
-
-router.get('/logout', (req, res) => {
-    req.logout()
-    req.redirect(CLIENT_URL)
-})
-
 
 module.exports = router
