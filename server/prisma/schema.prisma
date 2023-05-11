@@ -62,4 +62,7 @@ model room_records {
 model admin {
   id_admin Int    @id @default(autoincrement())
   email    String @db.VarChar(150)
+  // role     String @db.VarChar(15)
+  // name     String @db.VarChar(30)
+  // surname  String @db.VarChar(30)
 }

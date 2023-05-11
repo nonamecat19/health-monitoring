@@ -8,8 +8,10 @@ import RoomRecords from "../../pages/RoomsRecords"
 import PersonRecords from "../../pages/PersonsRecords"
 import Rooms from "../../pages/RoomsList"
 import RoomsDashboad from "../../pages/RoomsDashboad";
+import Me from "../../pages/Me";
 
 const Router: FC = () => {
+
     return (
         <BrowserRouter>
             <Routes>
@@ -38,10 +40,10 @@ const Router: FC = () => {
                             <Route path={PATH.ID} element={<>PERSONS/DASHBOARD/ID</>}/>
                         </Route>
                     </Route>
-
+                    <Route path={PATH.ME} element={<Me/>}/>
                     <Route path='/*' element={<div>NO ROUTE FOUND</div>}/>
                 </Route>
-                <Route path={PATH.ME} element={<div>Me</div>}/>
+
                 <Route path={PATH.LOGIN} element={<Login/>}/>
                 <Route path='/*' element={<div>NO ROUTE FOUND</div>}/>
             </Routes>

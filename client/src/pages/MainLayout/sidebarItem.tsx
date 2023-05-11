@@ -14,6 +14,7 @@ const items: MenuItem[] = [
     SidebarItem('Список людей', `${PATH.PERSONS}/${PATH.LIST}`, <PieChartOutlined/>),
     SidebarItem('Записи людей', `${PATH.PERSONS}/${PATH.RECORDS}/${PATH.ALL}`, <DesktopOutlined/>),
     SidebarItem('Статистика людей', `${PATH.PERSONS}/${PATH.DASHBOARD}/${PATH.ALL}`, <DesktopOutlined/>),
+    SidebarItem('Мій профіль', `${PATH.ME}`, <DesktopOutlined/>),
     // SidebarItem('User', 'sub1', <UserOutlined/>, [
     //     SidebarItem('Tom', '3'),
     //     SidebarItem('Bill', '4'),

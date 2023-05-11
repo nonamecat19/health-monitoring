@@ -1,9 +1,10 @@
 const express = require("express")
+const auth = require("../../middleware/auth");
 
 const router = express.Router()
 
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
     try {
         const data = [
             {
@@ -254,7 +255,7 @@ router.get("/", async (req, res) => {
     }
 })
 
-router.get('/records', async (req, res) => {
+router.get('/records', auth, async (req, res) => {
     try {
         const data = [
             {
@@ -455,7 +456,7 @@ router.get('/records', async (req, res) => {
 })
 
 
-router.get('/records/:id', async (req, res) => {
+router.get('/records/:id', auth, async (req, res) => {
     try {
         const data =[
             {
@@ -508,7 +509,7 @@ router.get('/records/:id', async (req, res) => {
     }
 })
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", auth, async (req, res) => {
     try {
         const data = [
             {

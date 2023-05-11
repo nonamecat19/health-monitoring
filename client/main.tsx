@@ -8,13 +8,11 @@ import {GoogleOAuthProvider} from "@react-oauth/google";
 
 createRoot(document.getElementById('root') as HTMLElement).render(
     <StrictMode>
-        <GoogleOAuthProvider clientId="261937984929-1d97orbeqrnblqg6k4jdbo71o7jn7587.apps.googleusercontent.com">
-            <AntDesignConfigProvider>
-                <ConfigSWR>
-                    <GlobalStyles/>
-                    <Router/>
-                </ConfigSWR>
-            </AntDesignConfigProvider>
-        </GoogleOAuthProvider>
+        <AntDesignConfigProvider>
+            <ConfigSWR>
+                <GlobalStyles/>
+                <Router/>
+            </ConfigSWR>
+        </AntDesignConfigProvider>
     </StrictMode>
 )

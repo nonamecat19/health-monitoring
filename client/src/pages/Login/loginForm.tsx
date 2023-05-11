@@ -1,10 +1,11 @@
-import {FC, FormEvent, useState} from 'react'
+import {FC, useState} from 'react'
 import {Button, Form, Input} from 'antd'
 import {LockOutlined, UserOutlined} from '@ant-design/icons'
 import COLORS from '../../shared/constants/Colors.ts'
 import {ErrorAlert, StyledForm} from "./styles.ts"
-import {GoogleLogin} from "@react-oauth/google";
-
+import REQUESTS, {POST, TOKEN_NAME} from "../../shared/constants/Requests.ts"
+import Request from "../../shared/utils/Request.ts"
+import {useNavigate} from "react-router-dom"
 interface Props {
 
 }
@@ -12,10 +13,9 @@ interface Props {
 const LoginForm: FC<Props> = ({}) => {
 
     const [loading, setLoading] = useState<boolean>(false)
-    const [isError, setIsError] = useState<boolean>(false);
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault()
-    }
+    const [isError, setIsError] = useState<boolean>(false)
+
+    const navigate = useNavigate()
 
     const formRule = [{
         required: true,
@@ -23,11 +23,24 @@ const LoginForm: FC<Props> = ({}) => {
     }]
 
     const onFinish = (values: any) => {
-        console.log('Success:', values)
+
+        const loginData = {
+            email: values.username,
+            password: values.password
+        }
         setLoading(true)
-        setTimeout(() => {
-            setLoading(false)
-        }, 5000)
+        Request(POST, REQUESTS.LOGIN, loginData)
+            .then((data) => {
+                return data.data.token
+            })
+            .catch(() => {
+
+            })
+            .then((token) => {
+                localStorage.setItem(TOKEN_NAME, token)
+                setLoading(false)
+                navigate('/')
+            })
     }
 
     const onFinishFailed = (errorInfo: any) => {
@@ -37,8 +50,6 @@ const LoginForm: FC<Props> = ({}) => {
     return (
         <>
             <StyledForm
-                //@ts-ignore
-                onSubmit={handleSubmit}
                 className="login-form"
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
@@ -62,17 +73,7 @@ const LoginForm: FC<Props> = ({}) => {
                     />
                 </Form.Item>
 
-                <GoogleLogin
-                    onSuccess={credentialResponse => {
-                        console.log(credentialResponse);
-                        setIsError(false)
 
-                    }}
-                    onError={() => {
-                        setIsError(true)
-                    }}
-
-                />
 
                 <Form.Item>
                     <Button
