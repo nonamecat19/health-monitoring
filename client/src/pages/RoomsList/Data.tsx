@@ -6,7 +6,7 @@ import Container from "./Container.tsx";
 import {IRoomsElement} from "../../shared/types/Rooms.ts";
 
 const Data: FC<IPage> = () => {
-    const {data} = useSWR<IRoomsElement[]>(REQUESTS.ROOMS)
+    const {data} = useSWR<IRoomsElement[]>(REQUESTS.ROOM_LIST)
     if (!data) return null
     return <Container data={data}/>
 }

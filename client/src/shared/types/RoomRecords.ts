@@ -1,6 +1,16 @@
+import {Dispatch, SetStateAction} from "react";
 
 export interface RoomRecordsContainerProps {
     data: RoomRecordType[]
+}
+
+export interface IRoomsRecordsFilter {
+    onlyCritical: boolean
+    setOnlyCritical: Dispatch<SetStateAction<boolean>>
+}
+
+export interface IDataProps {
+    onlyCritical: boolean
 }
 
 export interface RoomRecordsElementProps {

@@ -16,6 +16,6 @@ const usePagination = (max: number = 100): usePaginationReturn => {
         }
     }
 
-    return [page, prev, next] as const
+    return [page, prev, next, setPage] as const
 }
 export default usePagination

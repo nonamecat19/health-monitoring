@@ -11,7 +11,7 @@ export const ContentContainer = styled.div`
   background: ${COLORS.white};
   margin-top: ${SIZES.sm};
   height: calc(100vh - 2 * ${SIZES.sm});
-  overflow-y: auto;
+  overflow-y: scroll;
   border-radius: ${SIZES.lg};
 `
 

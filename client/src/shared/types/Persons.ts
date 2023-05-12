@@ -1,6 +1,26 @@
 import ROLES from "../constants/Roles.ts";
+import {Dispatch, SetStateAction} from "react";
 
 export type RoleType = typeof ROLES[keyof typeof ROLES]
+
+export interface IPersonsRequest {
+    data: IPersonsElement[]
+    maxPage: number
+}
+
+export interface IPersonsContainerProps {
+    data: IPersonsElement[]
+}
+
+export interface IPersonSearch {
+    page: number,
+    prev: () => void,
+    next: () => void,
+    setPage: Dispatch<SetStateAction<number>>
+    search: string
+    maxPage: number
+    setMaxPage: Dispatch<SetStateAction<number>>
+}
 
 export interface IPersonsElement {
     id_person: number,

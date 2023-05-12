@@ -24,6 +24,6 @@
     "nodemon": "^2.0.22"
   },
   "prisma": {
-    "schema": "./server/src/models/schema.prisma"
+    "schema": "./prisma/schema.prisma"
   }
 }

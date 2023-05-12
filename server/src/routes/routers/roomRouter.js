@@ -13,12 +13,7 @@ const PAGE_LIST = 48
 
 router.get("/", async (req, res) => {
     try {
-        const page = req.query.page || 1
-        const skip = (page - 1) * PAGE_LIST;
-        const data = await prisma.room.findMany({
-            skip,
-            take: PAGE_LIST
-        });
+        const data = await prisma.room.findMany()
         res.json(data)
     } catch (error) {
         console.error(error)
@@ -29,15 +24,24 @@ router.get("/", async (req, res) => {
 router.get('/records', async (req, res) => {
     try {
         const page = req.query.page || 1
-        const skip = (page - 1) * PAGE_RECORDS;
+        const skip = (page - 1) * PAGE_RECORDS
+        const onlyCritical = req.query.onlyCritical === 'true' ?? false
+
+        let where = {}
+
+        if (onlyCritical) {
+            where.is_critical_results = true
+        }
 
         const data = await prisma.room_records.findMany({
             skip,
             take: PAGE_RECORDS,
+            where,
             include: {
                 room: true,
             }
-        });
+        })
+
         res.json(data)
     } catch (error) {
         console.error(error)
@@ -50,9 +54,15 @@ router.get('/records', async (req, res) => {
 router.get('/records/:id', async (req, res) => {
     try {
         const page = req.query.page || 1
-        const skip = (page - 1) * PAGE_RECORDS;
-        const where = req.params.id ? { room_number: req.params.id } : {};
-        // якщо передано id то шукати за цим id, а якщо ні, то робити селект всіх даних
+        const skip = (page - 1) * PAGE_RECORDS
+        const onlyCritical = req.query.onlyCritical === 'true' ?? false
+
+        const where = { room_number: req.params.id }
+
+
+        if (onlyCritical) {
+            where.is_critical_results = true
+        }
 
         const data = await prisma.room_records.findMany({
             skip,
@@ -61,7 +71,7 @@ router.get('/records/:id', async (req, res) => {
             include: {
                 room: true
             }
-        });
+        })
         res.json(data)
     } catch (error) {
         console.error(error)
@@ -71,11 +81,10 @@ router.get('/records/:id', async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     try {
-        const where = req.params.id ? { room_number: req.params.id } : {};
-        // якщо передано id то шукати за цим id, а якщо ні, то робити селект всіх даних
+        const where = { room_number: req.params.id }
         const data = await prisma.room.findMany({
             where
-        });
+        })
         res.json(data)
     } catch (error) {
         console.error(error)

@@ -1,4 +1,5 @@
 import {RoleType} from "./Persons.ts";
+import {Dispatch, SetStateAction} from "react";
 
 export type PersonRecordType = {
     id_person_records: number
@@ -20,6 +21,15 @@ export type PersonRecordType = {
         room_number: string,
         room_type: string
     }
+}
+
+export interface IRoomsRecordsFilter {
+    onlyCritical: boolean
+    setOnlyCritical: Dispatch<SetStateAction<boolean>>
+}
+
+export interface IDataProps {
+    onlyCritical: boolean
 }
 
 export interface IPersonRecordsContainerProps {

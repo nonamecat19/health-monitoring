@@ -5,11 +5,14 @@ import COLORS from "../../shared/constants/Colors.ts";
 import RoleIcon from "./RoleIcon.tsx";
 import {BetweenItems, Block} from "../../shared/styles/styles.ts";
 import {DivElement} from "./styles.ts";
+import {useNavigate} from "react-router-dom";
+import PATH from "../../shared/constants/Path.ts";
 
 const Element: FC<IPersonsElementProps> = ({data}) => {
     const {name_person, study_group, role_person, id_person} = data
+    const navigate = useNavigate()
     const clickHandler = (): void => {
-        console.log(id_person)
+        navigate(`/${PATH.PERSONS}/${PATH.RECORDS}/${id_person}`)
     }
 
     return (
