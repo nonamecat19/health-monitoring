@@ -50,7 +50,7 @@ const Element: FC<RoomRecordsElementProps> = ({data}) => {
             <Date>
                 {moment(recorded_time).format('HH:MM')}
                 {' '}
-                {moment(recorded_date).format('L')}
+                {moment(recorded_date).format('DD/MM/YYYY')}
             </Date>
         </DivElement>
     )

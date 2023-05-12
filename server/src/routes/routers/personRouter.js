@@ -149,12 +149,14 @@ router.put('/records', async (req, res) => {
         const id = parseInt(req.query.id);
         const {oxygen, heart_rate, body_temperature} = req.body;
         const is_critical_condition = isCriticalConditionPerson(body_temperature, oxygen, heart_rate);
-        //const where = req.query.id ? { id_person: parseInt(req.query.id) } : {};
 
         const edited_data = await prisma.person_records.update({
             where: {id},
             data: {
-                oxygen, heart_rate, body_temperature, is_critical_condition,
+                oxygen,
+                heart_rate,
+                body_temperature,
+                is_critical_condition,
             },
         });
 
@@ -198,7 +200,6 @@ router.get('/records/:id', async (req, res) => {
 router.get("/:id", async (req, res) => {
     try {
         const where = req.params.id ? {id_person: parseInt(req.params.id)} : {};
-        // якщо передано id то шукати за цим id, а якщо ні, то робити селект всіх даних
         const data = await prisma.person.findMany({
             where
         });

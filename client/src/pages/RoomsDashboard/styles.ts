@@ -13,11 +13,19 @@ export const ChartTitle = styled.h1`
   text-align: center;
 `
 
-export const ChartWrapper = styled.div`
-  border: ${SIZES.xxs} solid ${COLORS.grey3};
+interface ChartWrapperProps {
+    readonly fullscreen: boolean
+}
+export const ChartWrapper = styled.div<ChartWrapperProps>`
+  border: ${props => props.fullscreen ? SIZES.md : SIZES.xxs} solid ${COLORS.grey3};
+  background-color: ${COLORS.white};
   padding: ${SIZES.xs};
-  width: calc(${SIZES.lg} * 2 + 350px);
-  border-radius: ${SIZES.xl};
+  width: ${props => props.fullscreen ? '90vw' : `calc(${SIZES.lg} * 2 + 350px)`};
+  height: ${props => props.fullscreen ? '90vh' : 'auto'};
+  border-radius: ${props => props.fullscreen ? SIZES.xxl : SIZES.xl};
+  position: ${props => props.fullscreen ? 'fixed' : 'block'};
+  left: 5vw;
+  z-index: ${props => props.fullscreen ? 10 : 1};
 `
 
 export const Sidebar = styled.div`
