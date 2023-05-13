@@ -16,9 +16,8 @@ const REQUESTS = {
     ROOM_RECORDS: (page: number, critical: boolean) =>
         `${REQUEST_DOMAIN}/rooms/records?page=${page}&onlyCritical=${critical}`,
 
-    ROOM_DASHBOARD: (day: number, month: number, year: number) =>
-        `${REQUEST_DOMAIN}/rooms/records?day=${day}&month=${month}&year=${year}`,
-
+    ROOM_DASHBOARD: (day: string, month: string, year: string) =>
+        `${REQUEST_DOMAIN}/rooms/dashboard?day=${day}&month=${month}&year=${year}`,
 
     ROOM_RECORDS_ID: (id: string, page: number, critical: boolean) =>
         `${REQUEST_DOMAIN}/rooms/records/${id}?page=${page}&onlyCritical=${critical}`,

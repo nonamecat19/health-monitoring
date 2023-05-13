@@ -1,9 +1,9 @@
 
 
 export interface IRoomDashboardDataProps {
-    day: number
-    month: number
-    year: number
+    day: string
+    month: string
+    year: string
 }
 
 export type RoomDashboardDataRequest = StatElement[]
