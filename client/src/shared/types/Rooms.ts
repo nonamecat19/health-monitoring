@@ -1,6 +1,9 @@
 
 
-
+export interface IRoomsRequest {
+    data: IRoomsElement
+    maxPage: number
+}
 
 export interface IRoomsElement {
     room_number: string,

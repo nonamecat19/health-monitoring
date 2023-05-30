@@ -1,8 +1,9 @@
 
 const PATH = {
-    EMPTY: '',
+    ROOT: '',
     ALL: 'all',
     LOGIN: 'login',
+    LOGOUT: 'logout',
     ME: 'me',
     ROOMS: 'rooms',
     PERSONS: 'persons',
@@ -10,5 +11,6 @@ const PATH = {
     LIST: 'list',
     ID: ':id',
     DASHBOARD: 'dashboard',
+    ANY: '*'
 }
 export default PATH

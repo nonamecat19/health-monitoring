@@ -20,7 +20,7 @@ export const DivContainer = styled.div`
 `
 
 export const FiltersSpace = styled.div`
-  height: ${SIZES.md};
+  height: ${SIZES.lg};
   width: 100%;
 `
 

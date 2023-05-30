@@ -1,11 +1,14 @@
 import {FC} from "react"
-import {IChildren} from "../types/Global.ts"
+import {IPage} from "../types/Global.ts"
 import {SWRConfig} from 'swr'
 import axios from 'axios'
 import {TOKEN_NAME} from "../constants/Requests.ts"
 import { notification } from 'antd'
+import {Outlet, useNavigate} from "react-router-dom"
 
-const ConfigSWR: FC<IChildren> = ({children}) => {
+const ConfigSWR: FC<IPage> = () => {
+
+    const navigate = useNavigate()
 
     const fetcher = (url: string) => {
         const token = localStorage.getItem(TOKEN_NAME)
@@ -21,12 +24,7 @@ const ConfigSWR: FC<IChildren> = ({children}) => {
             .catch(error => {
                 if (error.response.status === 401) {
                     openNotification('Помилка авторизації!')
-                    setTimeout(() => {
-                        alert('Ваш санс завершено. Будь ласка авторизуйтесь ще раз.')
-                        window.history.pushState({}, '', '/login')
-                        window.location.reload()
-                    }, 1000)
-
+                    navigate('/login')
                 } else {
                     openNotification(error.message)
                 }
@@ -40,6 +38,7 @@ const ConfigSWR: FC<IChildren> = ({children}) => {
             message: `Помилка`,
             description: description,
             placement: 'topRight',
+            duration: 2,
         })
     }
 
@@ -53,7 +52,7 @@ const ConfigSWR: FC<IChildren> = ({children}) => {
             }}
         >
             {contextHolder}
-            {children}
+            <Outlet/>
         </SWRConfig>
     )
 }

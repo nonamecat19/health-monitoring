@@ -3,36 +3,27 @@ const {PrismaClient} = require("@prisma/client")
 const prisma = new PrismaClient()
 const jwt = require('jsonwebtoken')
 const {SECRET_KEY, JWT_LIFE_TIME} = require("../../config/consts")
-
+const bcrypt = require('bcrypt')
 const router = express.Router()
 
-
-const users = [
-    {
-        email: 'test@gmail.com',
-        role: 'admin',
-        password: 'test',
-    },
-    {
-        email: 'test2@gmail.com',
-        role: 'admin',
-        password: 'test2'
-    },
-]
-
-
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
     try {
         const {email, password} = req.body
-        const user = users.find(el => el.email === email && el.password === password)
+        const where = {
+            email: email
+        }
+        const user = await prisma.admin.findFirstOrThrow({where})
 
-        if (!user) {
+        const success = await bcrypt.compare(password, user.password)
+
+        if (!success) {
             throw new Error('User not found')
         }
 
         const data = {
             email: email,
-            role: user.role
+            role: 'admin',
+            name: user.name
         }
         const options = {
             expiresIn: JWT_LIFE_TIME,
@@ -40,13 +31,10 @@ router.post("/login", (req, res) => {
         }
 
         const token = jwt.sign(data, SECRET_KEY, options)
-        console.log(token)
         res.status(200).json({token})
-
     } catch (error) {
         res.status(403).send(error.message)
     }
-
 })
 
 module.exports = router

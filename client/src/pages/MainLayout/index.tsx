@@ -20,6 +20,8 @@ const MainLayout: FC<IPage> = ({}) => {
                     collapsed={collapsed}
                     onCollapse={(value) => setCollapsed(value)}
                     theme={'dark'}
+                    breakpoint="md"
+                    collapsedWidth="50"
                 >
                     <Divider/>
                     <Menu

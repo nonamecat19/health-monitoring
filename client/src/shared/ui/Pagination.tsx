@@ -5,19 +5,32 @@ import COLORS from "../constants/Colors.ts";
 import {baseSmallButton} from "../styles/styles.ts";
 import {BsChevronLeft, BsChevronRight} from 'react-icons/bs'
 
+const Pagination: FC<IPaginationProps> = ({page, prev, next, max = 100}) => {
 
-const Pagination: FC<IPaginationProps> = ({page, prev, next}) => {
     return (
         <Container>
-            <Button onClick={prev}>
-                <BsChevronLeft color={COLORS.darkAccent}/>
-            </Button>
+            {
+                page === 1
+                    ? <ButtonInactive>
+                        <BsChevronLeft color={COLORS.darkAccent}/>
+                    </ButtonInactive>
+                    : <Button onClick={prev}>
+                        <BsChevronLeft color={COLORS.darkAccent}/>
+                    </Button>
+            }
             <NumberDisplay>
                 {page}
             </NumberDisplay>
-            <Button onClick={next}>
-                <BsChevronRight color={COLORS.darkAccent}/>
-            </Button>
+            {
+                page === max
+                ? <ButtonInactive>
+                    <BsChevronRight color={COLORS.darkAccent}/>
+                </ButtonInactive>
+                : <Button onClick={next}>
+                    <BsChevronRight color={COLORS.darkAccent}/>
+                </Button>
+            }
+
         </Container>
     )
 }
@@ -32,6 +45,11 @@ const Container = styled.div`
 
 const Button = styled.div`
   background: ${COLORS.green2};
+  ${baseSmallButton}
+`
+
+const ButtonInactive = styled.div`
+  background: ${COLORS.grey2};
   ${baseSmallButton}
 `
 

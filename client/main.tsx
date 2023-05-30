@@ -1,18 +1,15 @@
 import {StrictMode} from 'react'
 import {createRoot} from 'react-dom/client'
-import Router from './src/shared/components/Router'
-import AntDesignConfigProvider from "./src/shared/components/AntDesignConfigProvider";
-import ConfigSWR from "./src/shared/components/ConfigSWR";
-import GlobalStyles from "./src/shared/styles/global.styles";
-import {GoogleOAuthProvider} from "@react-oauth/google";
+import AntDesignConfigProvider from "./src/shared/components/AntDesignConfigProvider"
+import GlobalStyles from "./src/shared/styles/global.styles"
+import {RouterProvider} from "react-router-dom"
+import router from "./src/shared/router/Router"
 
 createRoot(document.getElementById('root') as HTMLElement).render(
     <StrictMode>
         <AntDesignConfigProvider>
-            <ConfigSWR>
-                <GlobalStyles/>
-                <Router/>
-            </ConfigSWR>
+            <GlobalStyles/>
+            <RouterProvider router={router}/>
         </AntDesignConfigProvider>
     </StrictMode>
 )

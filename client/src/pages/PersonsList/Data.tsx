@@ -1,21 +1,29 @@
-import {FC} from "react";
-import {IPage} from "../../shared/types/Global.ts";
+import {FC, useEffect} from "react";
 import useSWR from "swr";
-import {IPersonsElement} from "../../shared/types/Persons.ts";
+import {IPersonSearch, IPersonsRequest} from "../../shared/types/Persons.ts";
 import REQUESTS from "../../shared/constants/Requests.ts";
 import Container from "./Container.tsx";
+import Pagination from "../../shared/ui/Pagination.tsx";
 
-const Data: FC<IPage> = () => {
-    const {data} = useSWR<IPersonsElement[]>(REQUESTS.PERSONS)
+const Data: FC<IPersonSearch> = ({search, page, prev, next, maxPage, setMaxPage}) => {
 
-
-    // const navigate = useNavigate();
-    //
-    // if (error && error.status === 401) {
-    //     navigate('/login');
-    // }
-
+    const {data} = useSWR<IPersonsRequest>(REQUESTS.PERSON_LIST(page, search))
     if (!data) return null
-    return <Container data={data}/>
+
+    useEffect((): void => {
+        setMaxPage(data.maxPage)
+    })
+
+    return (
+        <>
+            <Container data={data.data}/>
+            <Pagination
+                page={page}
+                prev={prev}
+                next={next}
+                max={maxPage}
+            />
+        </>
+    )
 }
 export default Data

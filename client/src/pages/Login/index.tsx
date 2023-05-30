@@ -1,5 +1,5 @@
 import {FC} from 'react'
-import LoginForm from './loginForm.tsx'
+import LoginForm from './LoginForm.tsx'
 import Title from 'antd/es/typography/Title'
 import {ToCenter} from '../../shared/styles/styles.ts'
 import {IPage} from "../../shared/types/Global.ts";
