@@ -31,6 +31,9 @@ const REQUESTS = {
     PERSON_LIST: (page: number, search: string = '') =>
         `${REQUEST_DOMAIN}/persons?page=${page}&search=${search}`,
 
+    PERSON_DASHBOARD: (day: string, month: string, year: string) =>
+        `${REQUEST_DOMAIN}/persons/dashboard?day=${day}&month=${month}&year=${year}`,
+
     ROOM_LIST: `${REQUEST_DOMAIN}/rooms`,
 }
 export default REQUESTS

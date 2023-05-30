@@ -4,7 +4,7 @@ import ChartElement from "./ChartElement.tsx"
 import useSWR from "swr"
 import REQUESTS from "../../shared/constants/Requests.ts"
 import {IRoomDashboardDataProps, RoomDashboardDataRequest, StatElement} from "../../shared/types/RoomDashboard.ts"
-import {AIR_IONS_MAX, AIR_IONS_MIN, CARBON_DIOXIDE_MAX, CARBON_DIOXIDE_MIN, HUMIDITY_MAX, HUMIDITY_MIN, OZONE_MAX, OZONE_MIN, PRESSURE_MAX, PRESSURE_MIN, TEMPERATURE_MAX, TEMPERATURE_MIN} from "../../shared/constants/Indicators.ts"
+import {AIR_IONS_MAX, AIR_IONS_MIN, CARBON_DIOXIDE_MAX, CARBON_DIOXIDE_MIN, HUMIDITY_MAX, HUMIDITY_MIN, OZONE_MAX, OZONE_MIN, PRESSURE_MAX, PRESSURE_MIN, TEMPERATURE_MAX, TEMPERATURE_MIN} from "../../shared/constants/RoomIndicators.ts"
 import moment from "moment"
 
 const Data: FC<IRoomDashboardDataProps> = ({day, month, year}) => {

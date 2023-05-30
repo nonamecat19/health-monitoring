@@ -1,7 +1,7 @@
 import Rooms from "../../pages/RoomsList"
 import RoomRecords from "../../pages/RoomsRecords"
-import RoomsDashboard from "../../pages/RoomsDashboard"
 import PATH from "../constants/Path.ts"
+import RoomsDashboard from "../../pages/RoomsDashboard";
 
 const {LIST, RECORDS, DASHBOARD, ALL, ID} = PATH
 

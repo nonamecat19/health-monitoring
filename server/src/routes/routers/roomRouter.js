@@ -1,6 +1,8 @@
 const express = require("express")
 const cors = require('cors')
 const { PrismaClient } = require("@prisma/client")
+const auth = require("../../middleware/auth");
+const {PAGE_RECORDS} = require("../../config/consts");
 const prisma = new PrismaClient()
 const corsOption = {
     origin: ['http://localhost:5173'],
@@ -8,10 +10,7 @@ const corsOption = {
 const router = express.Router()
 router.use(cors(corsOption))
 
-const PAGE_RECORDS = 24
-const PAGE_LIST = 48
-
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
     try {
         const data = await prisma.room.findMany()
         res.json(data)
@@ -21,7 +20,7 @@ router.get("/", async (req, res) => {
     }
 })
 
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', auth, async (req, res) => {
     try {
         const day = +req.query.day
         const month = +req.query.month
@@ -43,7 +42,29 @@ router.get('/dashboard', async (req, res) => {
     }
 })
 
-router.get('/records', async (req, res) => {
+router.get('/dashboard', auth, async (req, res) => {
+    try {
+        const day = +req.query.day
+        const month = +req.query.month
+        const year = +req.query.year
+
+        const data = await prisma.room_records.findMany({
+            where: {
+                recorded_date: new Date(year, month - 1, day + 1)
+            },
+            include: {
+                room: true,
+            }
+        })
+
+        res.status(200).json(data)
+
+    } catch (error) {
+        res.send(error.message)
+    }
+})
+
+router.get('/records', auth, async (req, res) => {
     try {
         const page = req.query.page || 1
         const skip = (page - 1) * PAGE_RECORDS
@@ -71,28 +92,24 @@ router.get('/records', async (req, res) => {
     }
 })
 
-
-// записи по людині
-router.get('/records/:id', async (req, res) => {
+router.get('/records/:id', auth, async (req, res) => {
     try {
         const page = req.query.page || 1
         const skip = (page - 1) * PAGE_RECORDS
         const onlyCritical = req.query.onlyCritical === 'true' ?? false
-
-        const where = { room_number: req.params.id }
-
-
+        const where = {
+            room_number: req.params.id
+        }
+        const include = {
+            room: true
+        }
+        const take = PAGE_RECORDS
         if (onlyCritical) {
             where.is_critical_results = true
         }
 
         const data = await prisma.room_records.findMany({
-            skip,
-            take: PAGE_RECORDS,
-            where,
-            include: {
-                room: true
-            }
+            skip, take, where, include
         })
         res.json(data)
     } catch (error) {
@@ -101,12 +118,10 @@ router.get('/records/:id', async (req, res) => {
     }
 })
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", auth, async (req, res) => {
     try {
         const where = { room_number: req.params.id }
-        const data = await prisma.room.findMany({
-            where
-        })
+        const data = await prisma.room.findMany({where})
         res.json(data)
     } catch (error) {
         console.error(error)

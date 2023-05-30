@@ -1,6 +1,7 @@
 import Persons from "../../pages/PersonsList"
 import PersonRecords from "../../pages/PersonsRecords"
 import PATH from "../constants/Path.ts"
+import PersonsDashboard from "../../pages/PersonsDashboard";
 
 const {LIST, RECORDS, DASHBOARD, ALL, ID} = PATH
 
@@ -27,7 +28,7 @@ const personsRoutes = [
         children: [
             {
                 path: ALL,
-                element: <>PERSONS/DASHBOARD/ALL</>
+                element: <PersonsDashboard/>
             },
             {
                 path: ID,

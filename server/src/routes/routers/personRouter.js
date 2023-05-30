@@ -2,32 +2,16 @@ const express = require("express")
 const cors = require('cors')
 const {PrismaClient} = require("@prisma/client")
 const prisma = new PrismaClient()
+const auth = require('../../middleware/auth')
+const isCriticalConditionPerson = require("../../utils/isCriticalCondition");
+const {PAGE_LIST, PAGE_RECORDS} = require("../../config/consts");
 const corsOption = {
     origin: ['http://localhost:5173'],
 }
 const router = express.Router()
 router.use(cors(corsOption))
 
-const PAGE_RECORDS = 24
-const PAGE_LIST = 48
-const PAGE_LIMIT = 9
-
-// router.get("/", async (req, res) => {
-//     try {
-//         const page = req.query.page || 1
-//         const skip = (page - 1) * PAGE_LIST;
-//         const data = await prisma.person.findMany({
-//             skip,
-//             take: PAGE_LIST
-//         });
-//         res.json(data)
-//     } catch (error) {
-//         console.error(error)
-//         res.status(500).json(error.message)
-//     }
-// })
-
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
     try {
         const page = req.query.page - 1 || 0
 
@@ -39,7 +23,7 @@ router.get("/", async (req, res) => {
             }
         })
 
-        let cursor = maxId._max.id_person - PAGE_LIMIT * page
+        let cursor = maxId._max.id_person - PAGE_LIST * page
 
         const params = {
             OR: [
@@ -59,12 +43,8 @@ router.get("/", async (req, res) => {
         }
 
         const data = await prisma.person.findMany({
-            // cursor:
-            //     cursor
-            //         ? {id_person: cursor}
-            //         : undefined,
-            skip: page * PAGE_LIMIT,
-            take: PAGE_LIMIT,
+            skip: page * PAGE_LIST,
+            take: PAGE_LIST,
             orderBy: {
                 id_person: "desc"
             },
@@ -75,7 +55,7 @@ router.get("/", async (req, res) => {
             where: params
         })
 
-        let maxPage = Math.ceil(totalCount / PAGE_LIMIT)
+        let maxPage = Math.ceil(totalCount / PAGE_LIST)
 
         res.json({data, maxPage});
     } catch (error) {
@@ -84,7 +64,29 @@ router.get("/", async (req, res) => {
     }
 })
 
-router.get('/records', async (req, res) => {
+router.get('/dashboard', auth, async (req, res) => {
+    try {
+        const day = +req.query.day
+        const month = +req.query.month
+        const year = +req.query.year
+
+        const data = await prisma.person_records.findMany({
+            where: {
+                recorded_date: new Date(year, month - 1, day + 1)
+            },
+            include: {
+                person: true,
+            }
+        })
+
+        res.status(200).json(data)
+
+    } catch (error) {
+        res.send(error.message)
+    }
+})
+
+router.get('/records', auth, async (req, res) => {
     try {
         const page = req.query.page || 1
         const skip = (page - 1) * PAGE_RECORDS
@@ -111,15 +113,8 @@ router.get('/records', async (req, res) => {
     }
 })
 
-function isCriticalConditionPerson(body_temperature, oxygen, heart_rate) {
-    const is_temperature_critical = body_temperature > 37 || body_temperature < 36.3;
-    const is_oxygen_critical = oxygen < 0.5;
-    const is_heart_rate_critical = heart_rate < 40 || heart_rate > 120;
 
-    return is_temperature_critical || is_oxygen_critical || is_heart_rate_critical;
-}
-
-router.post('/records', async (req, res) => {
+router.post('/records', auth, async (req, res) => {
     try {
         const {id_person, id_room, id_date, oxygen, heart_rate, body_temperature} = req.body;
         const is_critical_condition = isCriticalConditionPerson(body_temperature, oxygen, heart_rate);
@@ -144,7 +139,7 @@ router.post('/records', async (req, res) => {
     }
 })
 
-router.put('/records', async (req, res) => {
+router.put('/records',async (req, res) => {
     try {
         const id = parseInt(req.query.id);
         const {oxygen, heart_rate, body_temperature} = req.body;
@@ -169,7 +164,7 @@ router.put('/records', async (req, res) => {
 });
 
 
-router.get('/records/:id', async (req, res) => {
+router.get('/records/:id', auth, async (req, res) => {
     try {
         const page = req.query.page || 1
         const skip = (page - 1) * PAGE_RECORDS
@@ -197,12 +192,10 @@ router.get('/records/:id', async (req, res) => {
     }
 })
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", auth, async (req, res) => {
     try {
         const where = req.params.id ? {id_person: parseInt(req.params.id)} : {};
-        const data = await prisma.person.findMany({
-            where
-        });
+        const data = await prisma.person.findMany({where});
         res.json(data)
     } catch (error) {
         console.error(error)

@@ -8,7 +8,7 @@ import {BetweenItems} from "../../shared/styles/styles.ts"
 import ErrorBoundary from "../../shared/components/ErrorBoundary.tsx"
 import Data from "./Data.tsx"
 
-const RoomsDashboard: FC = () => {
+const PersonsDashboard: FC = () => {
     const onPanelChange = (_: Dayjs, mode: CalendarMode) => {
         setIsMonthSelected(mode === 'month')
     }
@@ -65,4 +65,4 @@ const RoomsDashboard: FC = () => {
     )
 }
 
-export default RoomsDashboard
+export default PersonsDashboard
