@@ -32,7 +32,7 @@ const roomsRoutes = [
             },
             {
                 path: ID,
-                element: <>ROOMS/DASHBOARD/ID</>
+                element: <RoomsDashboard/>
             }
         ]
     }

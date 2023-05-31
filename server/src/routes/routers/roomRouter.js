@@ -25,33 +25,18 @@ router.get('/dashboard', auth, async (req, res) => {
         const day = +req.query.day
         const month = +req.query.month
         const year = +req.query.year
+        const id = req.query.id
+
+        const where = {
+            recorded_date: new Date(year, month - 1, day + 1),
+        }
+
+        if (id) {
+            where.room_number = id
+        }
 
         const data = await prisma.room_records.findMany({
-            where: {
-                recorded_date: new Date(year, month - 1, day + 1)
-            },
-            include: {
-                room: true,
-            }
-        })
-
-        res.status(200).json(data)
-
-    } catch (error) {
-        res.send(error.message)
-    }
-})
-
-router.get('/dashboard', auth, async (req, res) => {
-    try {
-        const day = +req.query.day
-        const month = +req.query.month
-        const year = +req.query.year
-
-        const data = await prisma.room_records.findMany({
-            where: {
-                recorded_date: new Date(year, month - 1, day + 1)
-            },
+            where,
             include: {
                 room: true,
             }

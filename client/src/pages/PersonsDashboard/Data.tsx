@@ -6,10 +6,13 @@ import REQUESTS from "../../shared/constants/Requests"
 import moment from "moment"
 import {HEART_RATE_MAX, HEART_RATE_MIN, OXYGEN_MAX, OXYGEN_MIN, TEMPERATURE_MAX, TEMPERATURE_MIN} from "../../shared/constants/PersonIndicators"
 import {IPersonDashboardDataProps, PersonDashboardDataRequest, StatElement} from "../../shared/types/PersonDashboard"
+import {useParams} from "react-router-dom";
 
 const Data: FC<IPersonDashboardDataProps> = ({day, month, year}) => {
 
-    const {data} = useSWR<PersonDashboardDataRequest>(REQUESTS.PERSON_DASHBOARD(day, month, year))
+    const {id} = useParams()
+
+    const {data} = useSWR<PersonDashboardDataRequest>(REQUESTS.PERSON_DASHBOARD(day, month, year, id))
     if (!data) return null
 
     const label = (element: StatElement): string => {
@@ -47,11 +50,11 @@ const Data: FC<IPersonDashboardDataProps> = ({day, month, year}) => {
     return (
         <Container>
             <StatsTitle>
-                Статистика за {day}/{month}/{year}
+                Статистика за {day}/{month}/{year} {id && `| ID: ${id}`}
             </StatsTitle>
             <ChartElement data={temperature} title={'Температура'}/>
             <ChartElement data={heartRate} title={'Частота серцевих скорочень'}/>
-            <ChartElement data={oxygen} title={'Оксиген'}/>
+            <ChartElement data={oxygen} title={'Сатурація'}/>
         </Container>
     )
 }

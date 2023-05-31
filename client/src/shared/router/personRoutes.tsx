@@ -27,12 +27,12 @@ const personsRoutes = [
         path: DASHBOARD,
         children: [
             {
-                path: ALL,
+                path: ID,
                 element: <PersonsDashboard/>
             },
             {
-                path: ID,
-                element: <>PERSONS/DASHBOARD/ID</>
+                path: ALL,
+                element: <PersonsDashboard/>
             }
         ]
     }

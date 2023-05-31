@@ -16,8 +16,8 @@ const REQUESTS = {
     ROOM_RECORDS: (page: number, critical: boolean) =>
         `${REQUEST_DOMAIN}/rooms/records?page=${page}&onlyCritical=${critical}`,
 
-    ROOM_DASHBOARD: (day: string, month: string, year: string) =>
-        `${REQUEST_DOMAIN}/rooms/dashboard?day=${day}&month=${month}&year=${year}`,
+    ROOM_DASHBOARD: (day: string, month: string, year: string, id: string | undefined) =>
+        `${REQUEST_DOMAIN}/rooms/dashboard?day=${day}&month=${month}&year=${year}${id ? `&id=${id}` : ''}`,
 
     ROOM_RECORDS_ID: (id: string, page: number, critical: boolean) =>
         `${REQUEST_DOMAIN}/rooms/records/${id}?page=${page}&onlyCritical=${critical}`,
@@ -31,8 +31,8 @@ const REQUESTS = {
     PERSON_LIST: (page: number, search: string = '') =>
         `${REQUEST_DOMAIN}/persons?page=${page}&search=${search}`,
 
-    PERSON_DASHBOARD: (day: string, month: string, year: string) =>
-        `${REQUEST_DOMAIN}/persons/dashboard?day=${day}&month=${month}&year=${year}`,
+    PERSON_DASHBOARD: (day: string, month: string, year: string, id: string | undefined) =>
+        `${REQUEST_DOMAIN}/persons/dashboard?day=${day}&month=${month}&year=${year}${id ? `&id=${id}` : ''}`,
 
     ROOM_LIST: `${REQUEST_DOMAIN}/rooms`,
 }

@@ -36,7 +36,6 @@ const PersonsDashboard: FC = () => {
     const [pickedDate, setPickedDate] = useState<string>('')
 
     return (
-
         <BetweenItems>
             <ErrorBoundary fallback={<>Error</>}>
                 <Suspense fallback={<>Loading</>}>
