@@ -38,6 +38,7 @@ const REQUESTS = {
     ROOM_LIST: `${REQUEST_DOMAIN}/rooms`,
 
     STUDENT_ME: `${REQUEST_DOMAIN}/student/me`,
+    STUDENT_RECORDS: `${REQUEST_DOMAIN}/student/records`,
 }
 export default REQUESTS
 

@@ -19,6 +19,7 @@ model person {
   name_person    String           @db.VarChar(150)
   study_group    String?          @db.VarChar(150)
   role_person    String           @db.VarChar(150)
+  email          String           @default("-") @db.VarChar
   fingerprint    fingerprint[]
   person_records person_records[]
 }
@@ -62,6 +63,6 @@ model room_records {
 model admin {
   id_admin Int    @id @default(autoincrement())
   email    String @db.VarChar(150)
-  name     String @db.VarChar
-  password String @db.VarChar
+  name     String @db.VarChar(50)
+  password String @db.VarChar(150)
 }

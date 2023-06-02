@@ -11,15 +11,31 @@ router.use(cors(corsOption))
 
 
 router.get('/me', firebaseAuth, async (req, res) => {
-    const {email} = req.data
-    console.log(req.data)
-    console.log(req.data.firebase)
-    res.send({name, email})
+    try {
+        const {email} = req.data
+        const user = await prisma.person.findFirst({
+            where: {email}
+        })
+        res.send(user)
+    } catch (error) {
+        res.status(404).send('')
+    }
 })
 
 router.get('/records', firebaseAuth, async (req, res) => {
-    const {name, email} = req.data
-    res.send({name, email})
+    try {
+        const {email} = req.data
+        const user = await prisma.person.findFirst({
+            where: {email}
+        })
+        const id_person = user.id_person
+        const records = await prisma.person_records.findMany({
+            where: {id_person}
+        })
+        res.send(records)
+    } catch (error) {
+        res.status(404).send('')
+    }
 })
 
 module.exports = router
