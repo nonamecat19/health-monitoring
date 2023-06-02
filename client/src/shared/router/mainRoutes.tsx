@@ -1,27 +1,17 @@
-import Me from "../../pages/Me"
-import {Navigate} from "react-router-dom"
-import personsRoutes from "./personRoutes.tsx"
 import PATH from "../constants/Path.ts"
-import roomsRoutes from "./roomsRoutes.tsx"
+import adminRoutes from "./adminRoutes.tsx";
+import studentRoutes from "./studentRoutes.tsx";
 
-const {ROOT, ME, PERSONS, ROOMS, DASHBOARD, ALL} = PATH
+const {ADMIN, STUDENT} = PATH
 
 const mainRoutes = [
     {
-        path: ROOMS,
-        children: roomsRoutes
+        path: STUDENT,
+        children: studentRoutes
     },
     {
-        path: PERSONS,
-        children: personsRoutes
-    },
-    {
-        path: ME,
-        element: <Me/>
-    },
-    {
-        path: ROOT,
-        element: <Navigate to={`/${ROOMS}/${DASHBOARD}/${ALL}`}/>
+        path: ADMIN,
+        children: adminRoutes
     }
 ]
 export default mainRoutes

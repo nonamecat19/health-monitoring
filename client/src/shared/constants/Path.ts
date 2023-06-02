@@ -9,6 +9,8 @@ const PATH = {
     PERSONS: 'persons',
     RECORDS: 'records',
     LIST: 'list',
+    ADMIN: 'admin',
+    STUDENT: 'student',
     ID: ':id',
     DASHBOARD: 'dashboard',
     ANY: '*'

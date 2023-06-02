@@ -4,6 +4,7 @@ const { PrismaClient } = require("@prisma/client")
 const auth = require("../../middleware/auth");
 const {PAGE_RECORDS} = require("../../config/consts");
 const prisma = new PrismaClient()
+const firebaseAuth = require('../../middleware/firebaseAuth')
 const corsOption = {
     origin: ['http://localhost:5173'],
 }

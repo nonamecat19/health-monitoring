@@ -11,9 +11,6 @@ import {useParams} from "react-router-dom";
 const Data: FC<IRoomDashboardDataProps> = ({day, month, year}) => {
 
     const {id} = useParams()
-    console.log(id)
-
-    console.log('+++' + REQUESTS.ROOM_DASHBOARD(day, month, year, id))
 
     const {data} = useSWR<RoomDashboardDataRequest>(REQUESTS.ROOM_DASHBOARD(day, month, year, id))
     if (!data) return null

@@ -4,6 +4,7 @@ import AntDesignConfigProvider from "./src/shared/components/AntDesignConfigProv
 import GlobalStyles from "./src/shared/styles/global.styles"
 import {RouterProvider} from "react-router-dom"
 import router from "./src/shared/router/Router"
+import './src/config/firebase'
 
 createRoot(document.getElementById('root') as HTMLElement).render(
     <StrictMode>

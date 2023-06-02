@@ -4,6 +4,7 @@ import Title from 'antd/es/typography/Title'
 import {ToCenter} from '../../shared/styles/styles.ts'
 import {IPage} from "../../shared/types/Global.ts";
 import {Background, LoginWrapper, SidebarLogin} from "./styles.ts";
+import StudentLogin from "./StudentLogin.tsx";
 
 const Login: FC<IPage> = () => {
     return (
@@ -14,6 +15,7 @@ const Login: FC<IPage> = () => {
                         <Title>Вхід</Title>
                     </ToCenter>
                     <LoginForm/>
+                    <StudentLogin/>
                 </LoginWrapper>
             </SidebarLogin>
         </Background>

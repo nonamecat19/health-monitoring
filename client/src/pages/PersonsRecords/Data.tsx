@@ -16,9 +16,6 @@ const Data: FC<IDataProps> = ({onlyCritical}) => {
         : REQUESTS.PERSON_RECORDS(page, onlyCritical)
     const {data} = useSWR<PersonRecordType[]>(request)
 
-
-    console.log(id)
-
     if (!data) return null
 
     return (

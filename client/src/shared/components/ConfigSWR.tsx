@@ -2,7 +2,7 @@ import {FC} from "react"
 import {IPage} from "../types/Global.ts"
 import {SWRConfig} from 'swr'
 import axios from 'axios'
-import {TOKEN_NAME} from "../constants/Requests.ts"
+import {FIREBASE_TOKEN_NAME, TOKEN_NAME} from "../constants/Requests.ts"
 import { notification } from 'antd'
 import {Outlet, useNavigate} from "react-router-dom"
 
@@ -12,11 +12,13 @@ const ConfigSWR: FC<IPage> = () => {
 
     const fetcher = (url: string) => {
         const token = localStorage.getItem(TOKEN_NAME)
+        const firebaseToken = localStorage.getItem(FIREBASE_TOKEN_NAME)
         const options = {
             method: 'get',
             url: url,
             headers: {
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                "AuthorizationFirebase": `Bearer ${firebaseToken}`
             }
         }
         return axios.request(options)

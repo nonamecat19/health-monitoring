@@ -8,13 +8,13 @@ const SidebarItem = (label: ReactNode, key: Key, icon?: ReactNode, children?: Me
 }
 
 const items: MenuItem[] = [
-    SidebarItem('Список кімнат', `${PATH.ROOMS}/${PATH.LIST}`, <DesktopOutlined/>),
-    SidebarItem('Записи кімнат', `${PATH.ROOMS}/${PATH.RECORDS}/${PATH.ALL}`, <PieChartOutlined/>),
-    SidebarItem('Статистика кімнат', `${PATH.ROOMS}/${PATH.DASHBOARD}/${PATH.ALL}`, <DesktopOutlined/>),
-    SidebarItem('Список людей', `${PATH.PERSONS}/${PATH.LIST}`, <PieChartOutlined/>),
-    SidebarItem('Записи людей', `${PATH.PERSONS}/${PATH.RECORDS}/${PATH.ALL}`, <DesktopOutlined/>),
-    SidebarItem('Статистика людей', `${PATH.PERSONS}/${PATH.DASHBOARD}/${PATH.ALL}`, <DesktopOutlined/>),
-    SidebarItem('Мій профіль', `${PATH.ME}`, <DesktopOutlined/>),
+    SidebarItem('Список кімнат', `${PATH.ADMIN}/${PATH.ROOMS}/${PATH.LIST}`, <DesktopOutlined/>),
+    SidebarItem('Записи кімнат', `${PATH.ADMIN}/${PATH.ROOMS}/${PATH.RECORDS}/${PATH.ALL}`, <PieChartOutlined/>),
+    SidebarItem('Статистика кімнат', `${PATH.ADMIN}/${PATH.ROOMS}/${PATH.DASHBOARD}/${PATH.ALL}`, <DesktopOutlined/>),
+    SidebarItem('Список людей', `${PATH.ADMIN}/${PATH.PERSONS}/${PATH.LIST}`, <PieChartOutlined/>),
+    SidebarItem('Записи людей', `${PATH.ADMIN}/${PATH.PERSONS}/${PATH.RECORDS}/${PATH.ALL}`, <DesktopOutlined/>),
+    SidebarItem('Статистика людей', `${PATH.ADMIN}/${PATH.PERSONS}/${PATH.DASHBOARD}/${PATH.ALL}`, <DesktopOutlined/>),
+    SidebarItem('Мій профіль', `${PATH.ADMIN}/${PATH.ME}`, <DesktopOutlined/>),
     // SidebarItem('User', 'sub1', <UserOutlined/>, [
     //     SidebarItem('Tom', '3'),
     //     SidebarItem('Bill', '4'),
