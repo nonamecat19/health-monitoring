@@ -1,15 +1,21 @@
 import MainLayout from "../../pages/MainLayout"
 import Login from "../../pages/Login"
 import PATH from "../constants/Path.ts"
-import mainRoutes from "./mainRoutes.tsx"
+import studentRoutes from "./studentRoutes.tsx";
+import adminRoutes from "./adminRoutes.tsx";
 
-const {ROOT, LOGIN} = PATH
+const {LOGIN, STUDENT, ADMIN} = PATH
 
 const globalRoutes = [
     {
-        path: ROOT,
-        element: <MainLayout/>,
-        children: mainRoutes
+        path: STUDENT,
+        element: <MainLayout type={'student'}/>,
+        children: studentRoutes
+    },
+    {
+        path: ADMIN,
+        element: <MainLayout type={'admin'}/>,
+        children: adminRoutes
     },
     {
         path: LOGIN,

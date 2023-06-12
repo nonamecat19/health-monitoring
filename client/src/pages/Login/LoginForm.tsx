@@ -6,6 +6,7 @@ import {StyledForm} from "./styles.ts"
 import REQUESTS, {POST, TOKEN_NAME} from "../../shared/constants/Requests.ts"
 import Request from "../../shared/utils/Request.ts"
 import {useNavigate} from "react-router-dom"
+import PATH from "../../shared/constants/Path.ts";
 
 interface Props {
 
@@ -31,7 +32,7 @@ const LoginForm: FC<Props> = ({}) => {
         Request(POST, REQUESTS.LOGIN, loginData)
             .then((data) => {
                 localStorage.setItem(TOKEN_NAME, data.data.token)
-                navigate('/')
+                navigate(`/${PATH.ADMIN}`)
             })
             .catch(() => {
                 notification.error({
