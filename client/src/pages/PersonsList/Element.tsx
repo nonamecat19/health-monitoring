@@ -13,11 +13,11 @@ const Element: FC<IPersonsElementProps> = ({data}) => {
     const {name_person, study_group, role_person, id_person} = data
     const navigate = useNavigate()
     const toRecordsHandler = (): void => {
-        navigate(`/${PATH.PERSONS}/${PATH.RECORDS}/${id_person}`)
+        navigate(`/${PATH.ADMIN}/${PATH.PERSONS}/${PATH.RECORDS}/${id_person}`)
     }
 
     const toDashboardHandler = (): void => {
-        navigate(`/${PATH.PERSONS}/${PATH.DASHBOARD}/${id_person}`)
+        navigate(`/${PATH.ADMIN}/${PATH.PERSONS}/${PATH.DASHBOARD}/${id_person}`)
     }
 
     const content = (

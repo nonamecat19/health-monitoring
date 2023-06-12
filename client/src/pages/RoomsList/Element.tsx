@@ -12,10 +12,10 @@ const Element: FC<IRoomsElementProps> = ({data}) => {
     const navigate = useNavigate()
 
     const toRecordsHandler = () => {
-        navigate(`/${PATH.ROOMS}/${PATH.RECORDS}/${room_number}`)
+        navigate(`/${PATH.ADMIN}/${PATH.ROOMS}/${PATH.RECORDS}/${room_number}`)
     }
     const toDashboardHandler = () => {
-        navigate(`/${PATH.ROOMS}/${PATH.DASHBOARD}/${room_number}`)
+        navigate(`/${PATH.ADMIN}/${PATH.ROOMS}/${PATH.DASHBOARD}/${room_number}`)
     }
 
     const content = (

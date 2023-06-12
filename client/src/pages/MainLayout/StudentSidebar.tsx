@@ -1,6 +1,6 @@
 import {Key, ReactNode} from "react"
 import {MenuItem} from "../../shared/types/MainLayout.ts"
-import {DesktopOutlined} from "@ant-design/icons"
+import {ReconciliationOutlined, MenuOutlined} from "@ant-design/icons"
 import PATH from "../../shared/constants/Path.ts"
 
 const AdminSidebar = (label: ReactNode, key: Key, icon?: ReactNode, children?: MenuItem[]): MenuItem => {
@@ -8,8 +8,8 @@ const AdminSidebar = (label: ReactNode, key: Key, icon?: ReactNode, children?: M
 }
 
 const studentSidebar: MenuItem[] = [
-    AdminSidebar('Мої записи', `${PATH.RECORDS}`, <DesktopOutlined/>),
-    AdminSidebar('Мій профіль', `${PATH.ME}`, <DesktopOutlined/>),
+    AdminSidebar('Мої записи', `${PATH.RECORDS}`, <ReconciliationOutlined/>),
+    AdminSidebar('Мій профіль', `${PATH.ME}`, <MenuOutlined/>),
 ]
 
 export default studentSidebar
