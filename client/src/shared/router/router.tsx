@@ -3,7 +3,7 @@ import PATH from "../../shared/constants/Path.ts"
 import ConfigSWR from "../components/ConfigSWR.tsx";
 import globalRoutes from "./globalRoutes.tsx";
 
-const {ROOT, ANY} = PATH
+const {ROOT, ANY, LOGIN} = PATH
 
 const router = createBrowserRouter([
         {
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
         },
         {
             path: ANY,
-            element: <Navigate to={ROOT}/>
+            element: <Navigate to={LOGIN}/>
         }
     ]
 )

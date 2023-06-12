@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import SIZES from "../constants/Sizes.ts";
 import COLORS from "../constants/Colors.ts";
-import {Link} from "react-router-dom";
 
 export const ToCenter = styled.div`
   display: flex;
@@ -50,11 +49,4 @@ export const baseSmallButton = `
   border-radius: ${SIZES.sm};
   color: ${COLORS.darkAccent};
   ${baseCenter};
-`
-
-export const MyLink = styled(Link)`
-  color: ${COLORS.darkAccent};
-  &:hover {
-    color: ${COLORS.darkAccentHover};
-  }
 `
