@@ -59,7 +59,7 @@ router.get("/", auth, async (req, res) => {
 
         res.json({data, maxPage});
     } catch (error) {
-        console.error(error)
+        console.log({error: error.message})
         res.status(500).json(error.message)
     }
 })
@@ -88,6 +88,7 @@ router.get('/dashboard', auth, async (req, res) => {
         res.status(200).json(data)
 
     } catch (error) {
+        console.log({error: error.message})
         res.send(error.message)
     }
 })
@@ -114,7 +115,7 @@ router.get('/records', auth, async (req, res) => {
         })
         res.json(data)
     } catch (error) {
-        console.error(error)
+        console.log({error: error.message})
         res.status(500).json(error.message)
     }
 })
@@ -140,7 +141,7 @@ router.post('/records', auth, async (req, res) => {
         console.log(new_data)
         res.json(new_data);
     } catch (error) {
-        console.error(error)
+        console.log({error: error.message})
         res.status(500).json(error.message)
     }
 })
@@ -164,7 +165,7 @@ router.put('/records',async (req, res) => {
         console.log(edited_data);
         res.json(edited_data);
     } catch (error) {
-        console.error(error);
+        console.log({error: error.message})
         res.status(500).json(error.message);
     }
 });
@@ -193,7 +194,7 @@ router.get('/records/:id', auth, async (req, res) => {
         });
         res.json(data)
     } catch (error) {
-        console.error(error)
+        console.log({error: error.message})
         res.status(500).json(error.message)
     }
 })
@@ -204,7 +205,7 @@ router.get("/:id", auth, async (req, res) => {
         const data = await prisma.person.findMany({where});
         res.json(data)
     } catch (error) {
-        console.error(error)
+        console.log({error: error.message})
         res.status(500).json(error.message)
     }
 })

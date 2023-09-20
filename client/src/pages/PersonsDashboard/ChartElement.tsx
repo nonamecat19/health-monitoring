@@ -8,10 +8,8 @@ const ChartElement: FC<IChartProps> = ({data, title}) => {
 
     const [fullscreen, setFullscreen] = useState(false);
     const chartHandler = (): void => {
-
         setFullscreen(!fullscreen)
     }
-
 
     return (
         <ChartWrapper
