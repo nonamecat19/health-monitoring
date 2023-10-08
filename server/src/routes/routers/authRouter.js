@@ -34,6 +34,7 @@ router.post("/login", async (req, res) => {
         const token = jwt.sign(data, SECRET_KEY, options)
         res.status(200).json({token})
     } catch (error) {
+        console.log({authError: error})
         res.status(403).send(error.message)
     }
 })

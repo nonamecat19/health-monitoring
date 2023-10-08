@@ -1,16 +1,21 @@
 import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import HomeScreen from "../screens/HomeScreen";
-import LoginScreen from "../screens/LoginScreen";
+import {navigationConfig} from "../config/navigation";
 
 export default function Navigation() {
-const Stack = createNativeStackNavigator();
+  const {Screen, Navigator} = createNativeStackNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} />
-      </Stack.Navigator>
+      <Navigator initialRouteName="Login">
+        {navigationConfig.map(({name, component, title}, index) => {
+          return <Screen
+            key={index}
+            name={name}
+            component={component}
+            options={{title}}
+          />
+        })}
+      </Navigator>
     </NavigationContainer>
   )
 }

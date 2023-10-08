@@ -1,5 +1,5 @@
 
-export const REQUEST_DOMAIN: string = 'http://localhost:3000'
+export const REQUEST_DOMAIN: string = 'http://localhost:4000'
 export const TOKEN_NAME: string = 'HealthMonitoringToken'
 export const FIREBASE_TOKEN_NAME: string = 'HealthMonitoringFirebaseToken'
 
