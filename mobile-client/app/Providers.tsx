@@ -5,9 +5,7 @@ import {QueryClient, QueryClientProvider} from "react-query";
 import { IconRegistry } from "@ui-kitten/components/ui/icon/iconRegistry.component";
 import { ApplicationProvider } from "@ui-kitten/components/theme/application/applicationProvider.component";
 
-const client = new QueryClient({
-
-})
+const client = new QueryClient({})
 
 interface IProps {
   children: ReactNode
