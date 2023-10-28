@@ -4,7 +4,7 @@ export interface INavigation {
   title: string
 }
 
-export type Route =
+export type ScreenName =
   'login'
   | 'admin_room_list'
   | 'admin_room_stat'

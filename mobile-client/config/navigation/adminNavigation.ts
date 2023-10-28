@@ -10,31 +10,31 @@ export const adminNavigation: INavigation[] = [
   {
     name: "admin_room_list",
     component: AdminRoomListScreen,
-    title: ""
+    title: "Список кімнат"
   },
   {
     name: "admin_room_stat",
     component: AdminRoomStatScreen,
-    title: ""
+    title: "Статистика кімнат"
   },
   {
     name: "admin_room_records",
     component: AdminRoomRecordsScreen,
-    title: ""
+    title: "Записи кімнат"
   },
   {
     name: "admin_user_list",
     component: AdminUserListScreen,
-    title: ""
+    title: "Список користувачів"
   },
   {
     name: "admin_user_stat",
     component: AdminUserStatScreen,
-    title: ""
+    title: "Статистка користувачів"
   },
   {
     name: "admin_user_records",
     component: AdminUserRecordsScreen,
-    title: ""
+    title: "Записи користувачів"
   }
 ]
