@@ -3,7 +3,7 @@ import LoginScreen from "../../screens/LoginScreen";
 
 export const shareNavigation: INavigation[] = [
   {
-    name: "Login",
+    name: "login",
     component: LoginScreen,
     title: "Авторизаці"
   },

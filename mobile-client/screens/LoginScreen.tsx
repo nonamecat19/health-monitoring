@@ -12,8 +12,7 @@ export default function LoginScreen({navigation}) {
   };
 
   function authHandler() {
-    alert('asdf')
-    navigation.navigate("admin_user_stat")
+    navigation.navigate("admin_room_list")
   }
 
   const renderIcon = (props: any): ReactElement => (
