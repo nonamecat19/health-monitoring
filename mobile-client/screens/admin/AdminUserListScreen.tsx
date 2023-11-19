@@ -1,7 +1,3 @@
 export default function AdminUserListScreen() {
-  return (
-    <>
-
-    </>
-  )
+  return <></>
 }

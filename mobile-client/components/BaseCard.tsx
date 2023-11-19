@@ -1,6 +1,6 @@
-import {StyleSheet, View} from "react-native";
-import {Button, useStyleSheet, Text} from "@ui-kitten/components";
-import { Octicons } from '@expo/vector-icons';
+import { Octicons } from '@expo/vector-icons'
+import { Button, useStyleSheet, Text } from '@ui-kitten/components'
+import { StyleSheet, View } from 'react-native'
 
 interface IProps {
   icon: string
@@ -11,30 +11,29 @@ interface IProps {
   secondButtonHandler: () => void
 }
 
-export default function BaseCard({icon, title, firstButtonName, firstButtonHandler, secondButtonName, secondButtonHandler}: IProps) {
-  const styles = useStyleSheet(themedStyles);
+export default function BaseCard({
+  icon,
+  title,
+  firstButtonName,
+  firstButtonHandler,
+  secondButtonName,
+  secondButtonHandler,
+}: IProps) {
+  const styles = useStyleSheet(themedStyles)
 
   return (
     <View style={styles.card}>
       <View style={styles.titleGroup}>
         <Octicons name={icon as any} size={30} color="white" />
-        <Text category='h5' style={styles.text}>
+        <Text category="h5" style={styles.text}>
           {title}
         </Text>
       </View>
       <View style={styles.buttonGroup}>
-        <Button
-          status='control'
-          style={styles.button}
-          onPress={firstButtonHandler}
-        >
+        <Button status="control" style={styles.button} onPress={firstButtonHandler}>
           {firstButtonName}
         </Button>
-        <Button
-          status='control'
-          style={styles.button}
-          onPress={secondButtonHandler}
-        >
+        <Button status="control" style={styles.button} onPress={secondButtonHandler}>
           {secondButtonName}
         </Button>
       </View>
@@ -44,7 +43,7 @@ export default function BaseCard({icon, title, firstButtonName, firstButtonHandl
 
 const themedStyles = StyleSheet.create({
   text: {
-    color: 'white'
+    color: 'white',
   },
   titleGroup: {
     marginLeft: 15,
@@ -61,14 +60,14 @@ const themedStyles = StyleSheet.create({
     borderRadius: 10,
     display: 'flex',
     justifyContent: 'space-between',
-    paddingBottom: 7
+    paddingBottom: 7,
   },
   buttonGroup: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
   },
   button: {
-    width: "47%"
-  }
+    width: '47%',
+  },
 })

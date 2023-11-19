@@ -1,4 +1,4 @@
-import {apiRequest} from "../axios";
+import { apiRequest } from '../axios'
 
 interface IRoom {
   room_number: string
@@ -6,9 +6,10 @@ interface IRoom {
 }
 
 export async function getRoomList() {
-  return apiRequest.request<IRoom[]>({
-    method: 'GET',
-    url: '/rooms'
-  })
-    .then(({data}) => data)
+  return apiRequest
+    .request<IRoom[]>({
+      method: 'GET',
+      url: '/rooms',
+    })
+    .then(({ data }) => data)
 }

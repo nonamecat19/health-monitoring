@@ -5,7 +5,7 @@ export interface INavigation {
 }
 
 export type ScreenName =
-  'login'
+  | 'login'
   | 'admin_room_list'
   | 'admin_room_stat'
   | 'admin_room_records'

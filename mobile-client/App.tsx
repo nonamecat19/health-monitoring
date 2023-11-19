@@ -1,8 +1,8 @@
-import Providers from "./app/Providers";
-import Navigation from "./app/Navigation";
+import Navigation from './app/Navigation'
+import Providers from './app/Providers'
 
 export default () => (
   <Providers>
-    <Navigation/>
+    <Navigation />
   </Providers>
 )

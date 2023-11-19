@@ -1,7 +1,3 @@
 export default function AdminUserStatScreen() {
-  return (
-    <>
-
-    </>
-  )
+  return <></>
 }

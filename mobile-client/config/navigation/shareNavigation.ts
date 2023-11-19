@@ -1,10 +1,10 @@
-import {INavigation} from "../../shared/types/navigation";
-import LoginScreen from "../../screens/LoginScreen";
+import LoginScreen from '../../screens/LoginScreen'
+import { INavigation } from '../../shared/types/navigation'
 
 export const shareNavigation: INavigation[] = [
   {
-    name: "login",
+    name: 'login',
     component: LoginScreen,
-    title: "Авторизаці"
+    title: 'Авторизаці',
   },
 ]

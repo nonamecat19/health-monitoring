@@ -1,5 +1,3 @@
-import {INavigation} from "../../shared/types/navigation";
+import { INavigation } from '../../shared/types/navigation'
 
-export const studentNavigation: INavigation[] = [
-
-]
+export const studentNavigation: INavigation[] = []

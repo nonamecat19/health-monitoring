@@ -1,14 +1,14 @@
-import {StyleSheet, View} from "react-native";
-import {Button, useStyleSheet, Text} from "@ui-kitten/components";
-import { Octicons } from '@expo/vector-icons';
+import { Octicons } from '@expo/vector-icons'
+import { Button, useStyleSheet, Text } from '@ui-kitten/components'
+import { StyleSheet, View } from 'react-native'
 
 export default function Room() {
-  const styles = useStyleSheet(themedStyles);
+  const styles = useStyleSheet(themedStyles)
 
   const type = 'lecture'
   const iconTypes = {
-    'lecture': 'people',
-    'practice': 'mortar-board'
+    lecture: 'people',
+    practice: 'mortar-board',
   }
   const icon: any = iconTypes[type] ?? ''
 
@@ -16,15 +16,15 @@ export default function Room() {
     <View style={styles.card}>
       <View style={styles.titleGroup}>
         <Octicons name={icon} size={30} color="white" />
-        <Text category='h5' style={styles.text}>
+        <Text category="h5" style={styles.text}>
           Кімната ОЦ 583
         </Text>
       </View>
       <View style={styles.buttonGroup}>
-        <Button status='control' style={styles.button}>
+        <Button status="control" style={styles.button}>
           Записи
         </Button>
-        <Button status='control' style={styles.button}>
+        <Button status="control" style={styles.button}>
           Статистика
         </Button>
       </View>
@@ -34,7 +34,7 @@ export default function Room() {
 
 const themedStyles = StyleSheet.create({
   text: {
-    color: 'white'
+    color: 'white',
   },
   titleGroup: {
     marginLeft: 15,
@@ -51,14 +51,14 @@ const themedStyles = StyleSheet.create({
     borderRadius: 10,
     display: 'flex',
     justifyContent: 'space-between',
-    paddingBottom: 7
+    paddingBottom: 7,
   },
   buttonGroup: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
   },
   button: {
-    width: "47%"
-  }
+    width: '47%',
+  },
 })
