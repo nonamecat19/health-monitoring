@@ -2,6 +2,7 @@ import {apiRequest} from "../axios";
 
 interface IRoom {
   room_number: string
+  room_type: 'lecture' | 'cabinet'
 }
 
 export async function getRoomList() {

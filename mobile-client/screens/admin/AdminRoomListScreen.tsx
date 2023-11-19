@@ -1,15 +1,24 @@
-import {Text, StyleSheet, View, ScrollView} from "react-native";
+import {StyleSheet, ScrollView} from "react-native";
 import {useQuery} from "react-query";
 import {getRoomList} from "../../api/query/getRoomList";
 import {Input, Layout} from "@ui-kitten/components";
-import Room from "../../components/Room";
 import {Fragment, useState} from "react";
 import Gap from "../../components/Gap";
 import AdminLayout from "../../layouts/adminLayout";
+import BaseCard from "../../components/BaseCard";
 
 export default function AdminRoomListScreen({navigation}) {
+
   const {isLoading, error, data} = useQuery('admin_room_list', getRoomList)
   const [search, setSearch] = useState<string>("")
+
+  const type = 'lecture'
+  const iconTypes = {
+    'lecture': 'people',
+    'cabinet': 'mortar-board'
+  }
+  const icon: any = iconTypes[type] ?? ''
+
 
   return (
     <AdminLayout navigation={navigation}>
@@ -21,10 +30,16 @@ export default function AdminRoomListScreen({navigation}) {
       <Layout level="1" style={style.container}>
         <ScrollView style={style.roomContainer}>
           {
-            new Array(20)
-            .fill(null)
-            .map((_, index) => <Fragment key={index}>
-              <Room/>
+            data
+            .map(({room_number, room_type}, index) => <Fragment key={index}>
+              <BaseCard
+                icon={iconTypes[room_type]}
+                title={room_number}
+                firstButtonName={'Записи'}
+                firstButtonHandler={() => {}}
+                secondButtonName={'Статистика'}
+                secondButtonHandler={() => {}}
+              />
               {index < 19 ? <Gap/> : null}
             </Fragment>)
           }

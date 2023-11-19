@@ -12,7 +12,11 @@ router.post("/login", async (req, res) => {
         const where = {
             email: email
         }
-        const user = await prisma.admin.findFirstOrThrow({where})
+        // const user = await prisma.admin.findFirstOrThrow({where})
+        const user = {
+            name: '',
+        }
+
 
         // const success = await bcrypt.compare(password, user.password)
         const success = true
