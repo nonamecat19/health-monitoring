@@ -1,3 +1,5 @@
+import { useQuery } from 'react-query'
+
 import { apiRequest } from '../axios'
 
 interface IRoom {
@@ -12,4 +14,8 @@ export async function getRoomList() {
       url: '/rooms',
     })
     .then(({ data }) => data)
+}
+
+export function useGetRoomList() {
+  return useQuery('admin_room_list', getRoomList)
 }

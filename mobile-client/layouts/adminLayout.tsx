@@ -1,4 +1,4 @@
-import { BottomNavigation, BottomNavigationTab, Icon, IconElement } from '@ui-kitten/components'
+import { BottomNavigation, BottomNavigationTab } from '@ui-kitten/components'
 import { ReactNode, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 

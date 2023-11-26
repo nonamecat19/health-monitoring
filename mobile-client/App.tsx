@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler'
 import Navigation from './app/Navigation'
 import Providers from './app/Providers'
 

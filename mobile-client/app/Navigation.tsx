@@ -1,11 +1,12 @@
+import { createDrawerNavigator } from '@react-navigation/drawer'
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { navigationConfig } from '../config/navigation'
 import { ScreenName } from '../shared/types/navigation'
 
 export default function Navigation() {
-  const { Screen, Navigator } = createNativeStackNavigator()
+  const { Screen, Navigator } = createDrawerNavigator()
+
   const initialRouteName: ScreenName = 'admin_room_list'
   return (
     <NavigationContainer>
