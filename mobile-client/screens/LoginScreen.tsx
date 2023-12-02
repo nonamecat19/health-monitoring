@@ -1,8 +1,30 @@
 import { Button, Icon, Input, Layout } from '@ui-kitten/components'
 import { ReactElement, useState } from 'react'
 import { StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import { GoogleSignin } from '@react-native-google-signin/google-signin'
+import auth from '@react-native-firebase/auth'
+
+
+
 
 export default function LoginScreen({ navigation }) {
+
+  GoogleSignin.configure({
+    webClientId: '1066252695771-od22dj09js7t30th9piaj0tq41le2vs3.apps.googleusercontent.com'
+  })
+
+  async function onGoogleButtonPress() {
+    await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true})
+    const {idToken} = await GoogleSignin.signIn()
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken)
+    const user_sign_in = auth().signInWithCredential(googleCredential)
+    user_sign_in.then((user) => {
+      console.log(user)
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
+
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
   const [secureTextEntry, setSecureTextEntry] = useState(true)
@@ -39,6 +61,9 @@ export default function LoginScreen({ navigation }) {
       />
       <Button style={style.authButton} onPress={authHandler}>
         Авторизуватись
+      </Button>
+      <Button style={style.authButton} onPress={onGoogleButtonPress}>
+        Авторизуватись Google
       </Button>
     </Layout>
   )

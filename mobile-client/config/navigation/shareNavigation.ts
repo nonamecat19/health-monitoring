@@ -5,6 +5,6 @@ export const shareNavigation: INavigation[] = [
   {
     name: 'login',
     component: LoginScreen,
-    title: 'Авторизаці',
+    title: 'Авторизація',
   },
 ]
