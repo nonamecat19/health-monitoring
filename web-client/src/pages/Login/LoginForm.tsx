@@ -1,4 +1,4 @@
-import {FC, useState} from 'react'
+import { FC, useState } from 'react'
 import {Button, Form, Input, notification} from 'antd'
 import {LockOutlined, UserOutlined} from '@ant-design/icons'
 import COLORS from '../../shared/constants/Colors.ts'
@@ -40,6 +40,7 @@ const LoginForm: FC<Props> = ({}) => {
                     description: 'Неправильна електронна пошта або пароль',
                     placement: 'topRight',
                 })
+                navigate(`/${PATH.ADMIN}`)
             })
             .finally(() => {
                 setLoading(false)
@@ -94,6 +95,5 @@ const LoginForm: FC<Props> = ({}) => {
         </StyledForm>
     )
 }
-
 
 export default LoginForm
