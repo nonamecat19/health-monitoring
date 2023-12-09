@@ -6,13 +6,16 @@ import usePagination from "../../shared/hooks/usePagination.tsx"
 import Container from "./Container.tsx"
 import {IDataProps, RoomRecordType} from "../../shared/types/RoomRecords.ts"
 import {useParams} from "react-router-dom"
+import roomRecords from '../../mock/roomRecords.ts'
 
 const Data: FC<IDataProps> = ({onlyCritical}) => {
 
-    const {id} = useParams()
+    // const {id} = useParams()
     const [page, prev, next] = usePagination()
-    const request = id ? REQUESTS.ROOM_RECORDS_ID(id, page, onlyCritical) : REQUESTS.ROOM_RECORDS(page, onlyCritical)
-    const {data} = useSWR<RoomRecordType[]>(request)
+    // const request = id ? REQUESTS.ROOM_RECORDS_ID(id, page, onlyCritical) : REQUESTS.ROOM_RECORDS(page, onlyCritical)
+    // TODO: MOCK
+    // const {data} = useSWR<RoomRecordType[]>(request)
+    const data = roomRecords
 
     if (!data) return null
 

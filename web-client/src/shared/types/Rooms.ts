@@ -6,8 +6,8 @@ export interface IRoomsRequest {
 }
 
 export interface IRoomsElement {
-    room_number: string,
-    room_type: string
+    roomNumber: string,
+    roomType: string
 }
 
 export interface IRoomsListProps {

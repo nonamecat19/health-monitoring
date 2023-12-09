@@ -31,8 +31,8 @@ const Container: FC<IRoomsListProps> = ({data}) => {
             </FiltersSpace>
             {
                 data.map((item: IRoomsElement) => {
-                    if (isSimilar(item.room_number, search)) {
-                        return <Element data={item} key={item.room_number}/>
+                    if (isSimilar(item.roomNumber, search)) {
+                        return <Element data={item} key={item.roomNumber}/>
                     }
                 })
             }

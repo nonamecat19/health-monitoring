@@ -7,15 +7,15 @@ import {Button, Popover} from "antd"
 import {useNavigate} from "react-router-dom"
 
 const Element: FC<IRoomsElementProps> = ({data}) => {
-    const {room_number, room_type} = data
+    const {roomNumber, roomType} = data
 
     const navigate = useNavigate()
 
     const toRecordsHandler = () => {
-        navigate(`/${PATH.ADMIN}/${PATH.ROOMS}/${PATH.RECORDS}/${room_number}`)
+        navigate(`/${PATH.ADMIN}/${PATH.ROOMS}/${PATH.RECORDS}/${roomNumber}`)
     }
     const toDashboardHandler = () => {
-        navigate(`/${PATH.ADMIN}/${PATH.ROOMS}/${PATH.DASHBOARD}/${room_number}`)
+        navigate(`/${PATH.ADMIN}/${PATH.ROOMS}/${PATH.DASHBOARD}/${roomNumber}`)
     }
 
     const content = (
@@ -29,7 +29,7 @@ const Element: FC<IRoomsElementProps> = ({data}) => {
         <Popover content={content}>
             <DivElement>
                 <Data>
-                    {room_number} {room_type}
+                    {roomNumber} {roomType}
                 </Data>
             </DivElement>
         </Popover>

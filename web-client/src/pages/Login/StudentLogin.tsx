@@ -5,7 +5,6 @@ import {getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
 import {FIREBASE_TOKEN_NAME} from "../../shared/constants/Requests.ts";
 import {useNavigate} from "react-router-dom";
 import PATH from "../../shared/constants/Path.ts";
-// import { FirebaseAuthentication } from '@capacitor-firebase/authentication'
 
 const firebaseConfig = {
     apiKey: "AIzaSyC42CCL4g-xwCBXQ7tQbCfSJHRnSMaTRVM",
@@ -25,16 +24,11 @@ type Props = {
 
 const StudentLogin: FC<Props> = ({}) => {
 
-  const signInWithGoogle = async () => {
-    // const result = await FirebaseAuthentication.signInWithGoogle();
-    // return result.user;
-  };
-
     const navigate = useNavigate()
     const {STUDENT, ME} = PATH
 
     const mobileGoogleAuth = () => {
-      signInWithGoogle()
+      navigate(`/${STUDENT}/${ME}`)
     }
 
     const authHandler = () => {

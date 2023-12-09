@@ -1,22 +1,23 @@
 import {FC} from "react"
 import {Container, StatsTitle} from "./styles.ts"
 import ChartElement from "./ChartElement.tsx"
-import useSWR from "swr"
-import REQUESTS from "../../shared/constants/Requests.ts"
-import {IRoomDashboardDataProps, RoomDashboardDataRequest, StatElement} from "../../shared/types/RoomDashboard.ts"
+import {IRoomDashboardDataProps, StatElement} from "../../shared/types/RoomDashboard.ts"
 import {AIR_IONS_MAX, AIR_IONS_MIN, CARBON_DIOXIDE_MAX, CARBON_DIOXIDE_MIN, HUMIDITY_MAX, HUMIDITY_MIN, OZONE_MAX, OZONE_MIN, PRESSURE_MAX, PRESSURE_MIN, TEMPERATURE_MAX, TEMPERATURE_MIN} from "../../shared/constants/RoomIndicators.ts"
 import moment from "moment"
 import {useParams} from "react-router-dom";
+import roomDashboard from '../../mock/roomDashboard.ts'
 
 const Data: FC<IRoomDashboardDataProps> = ({day, month, year}) => {
 
     const {id} = useParams()
 
-    const {data} = useSWR<RoomDashboardDataRequest>(REQUESTS.ROOM_DASHBOARD(day, month, year, id))
+    // TODO: MOCK
+    // const {data} = useSWR<RoomDashboardDataRequest>(REQUESTS.ROOM_DASHBOARD(day, month, year, id))
+    const data = roomDashboard
     if (!data) return null
 
     const label = (element: StatElement): string => {
-        return `${id ? '' : element.room.room_number} ${moment(element.recorded_time).format('HH:MM')}`
+        return `${id ? '' : element.roomNumber} ${moment(element.recordedDate).format('HH:MM')}`
     }
 
     const temperature = data.map((element: StatElement) => {
@@ -58,7 +59,7 @@ const Data: FC<IRoomDashboardDataProps> = ({day, month, year}) => {
     const airIons = data.map((element: StatElement) => {
         return {
             min: AIR_IONS_MIN,
-            value: element.air_ions,
+            value: element.airIons,
             max: AIR_IONS_MAX,
             name: label(element)
         }
@@ -67,7 +68,7 @@ const Data: FC<IRoomDashboardDataProps> = ({day, month, year}) => {
     const carbonDioxide = data.map((element: StatElement) => {
         return {
             min: CARBON_DIOXIDE_MIN,
-            value: element.carbon_dioxide,
+            value: element.carbonDioxide,
             max: CARBON_DIOXIDE_MAX,
             name: label(element)
         }
