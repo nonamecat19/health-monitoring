@@ -23,11 +23,11 @@ const LoginForm: FC<Props> = ({}) => {
         message: 'Заповніть це поле!'
     }]
 
-    const onFinish = (values: any) => {
+    const onFinish = ({username, password}: any) => {
         setLoading(true)
         const loginData = {
-            email: values.username,
-            password: values.password
+            username,
+            password
         }
         Request(POST, REQUESTS.LOGIN, loginData)
             .then((data) => {
@@ -40,7 +40,6 @@ const LoginForm: FC<Props> = ({}) => {
                     description: 'Неправильна електронна пошта або пароль',
                     placement: 'topRight',
                 })
-                navigate(`/${PATH.ADMIN}`)
             })
             .finally(() => {
                 setLoading(false)

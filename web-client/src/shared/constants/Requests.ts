@@ -13,7 +13,7 @@ export type RequestMethod = 'get' | 'post' | 'patch' | 'delete'
 export type RequestPath = string
 
 const REQUESTS = {
-    LOGIN: `${REQUEST_DOMAIN}/auth/login`,
+    LOGIN: `${REQUEST_DOMAIN}/authenticate/login`,
 
     ROOM_RECORDS: (page: number, critical: boolean) =>
         `${REQUEST_DOMAIN}/roomRecords?pageNumber=${page}&isOutputOnlyCritical=${critical}`,

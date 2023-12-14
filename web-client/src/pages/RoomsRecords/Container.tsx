@@ -5,7 +5,6 @@ import {DetailsContainer} from "../../shared/styles/styles.ts";
 
 const Container: FC<RoomRecordsContainerProps> = ({data}) => {
 
-
     return (
         <>
             <DetailsContainer>

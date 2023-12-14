@@ -14,7 +14,7 @@ const Request = async (method: RequestMethod, path: RequestPath, params: any = {
     if (params && method === GET) {
         myPath += '?' + new URLSearchParams(params).toString()
     }
-    const token = await localStorage.getItem(TOKEN_NAME) ?? ''
+    const token = localStorage.getItem(TOKEN_NAME) ?? ''
     const options = {
         method: method,
         url: myPath,
