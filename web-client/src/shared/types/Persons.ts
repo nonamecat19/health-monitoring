@@ -23,10 +23,13 @@ export interface IPersonSearch {
 }
 
 export interface IPersonsElement {
-    id_person: number,
-    name_person: string,
-    study_group: string,
-    role_person: RoleType
+    personId: number
+    studentID: number
+    name: string
+    studyGroup: string
+    role: string
+    // role: RoleType
+    email: string
 }
 
 export interface IPersonsElementProps {
@@ -38,7 +41,8 @@ export interface IPersonsListProps {
 }
 
 export interface IRoleIconProps {
-    role: RoleType
+    role: string
+    // role: RoleType
     color?: string
     size?: string | number
     style?: any

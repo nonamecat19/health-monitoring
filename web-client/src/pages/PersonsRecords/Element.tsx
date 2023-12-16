@@ -12,17 +12,17 @@ import {DivElement} from "./styles.ts";
 
 const Element: FC<IPersonRecordsElementProps> = ({data}) => {
 
-    const date = moment(data.recorded_date).format('D/M/YYYY');
+    const date = moment(data.recordedDate).format('D/M/YYYY');
 
     return (
-        <DivElement color={data.is_critical_results ? COLORS.red : COLORS.green2}>
-            <Name>{data.person.name_person}</Name>
-            <CriticalIcon critical={data.is_critical_results}/>
-            <ParamElement label={'Група'} value={data.person.study_group}/>
-            <ParamElement label={'Кисень'} value={data.oxygen} units={''}/>
-            <ParamElement label={'Частота серцебиття'} value={data.heart_rate} units={'уд./хв.'}/>
+        <DivElement color={data.isCriticalResults ? COLORS.red : COLORS.green2}>
+            <Name>{data.person.name}</Name>
+            <CriticalIcon critical={data.isCriticalResults}/>
+            <ParamElement label={'Група'} value={data.person.studyGroup}/>
+            <ParamElement label={'Кисень'} value={data.saturation} units={''}/>
+            <ParamElement label={'Частота серцебиття'} value={data.heartRate} units={'уд./хв.'}/>
             <ParamElement label={'Температура тіла'} value={data.temperature} units={'°С'}/>
-            <ParamElement label={'Кімната'} value={data.room.room_number}/>
+            <ParamElement label={'Кімната'} value={data.room.roomNumber}/>
             <Date>{date}</Date>
         </DivElement>
     )

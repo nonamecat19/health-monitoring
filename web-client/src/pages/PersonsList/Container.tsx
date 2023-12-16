@@ -6,7 +6,7 @@ import {DivContainer} from "./styles.ts"
 const Container: FC<IPersonsContainerProps> = ({data}) => {
     return (
         <DivContainer>
-            {data.map((item: IPersonsElement) => <Element data={item} key={item.id_person}/>)}
+            {data.map((item: IPersonsElement) => <Element data={item} key={item.personId}/>)}
         </DivContainer>
     )
 }

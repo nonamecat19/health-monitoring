@@ -19,6 +19,7 @@ const Skeleton: FC = () => {
                         backgroundColor={COLORS.green3}
                         foregroundColor={COLORS.green2}
                     >
+                        {/*TODO: map*/}
                         <rect x="0" y="0"   rx="3" ry="3" width="300" height="6"/>
                         <rect x="0" y="20"  rx="3" ry="3" width="300" height="6"/>
                         <rect x="0" y="40"  rx="3" ry="3" width="300" height="6"/>

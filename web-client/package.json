@@ -10,7 +10,7 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "capacitor-ios": "npx cap sync && npx cap open ios",
-    "capacitor-android": "npx cap sync && npx cap open android"
+    "capacitor-android": "npm run build && npx cap sync && npx cap open android"
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",

@@ -31,6 +31,7 @@ const StudentLogin: FC<Props> = ({}) => {
       navigate(`/${STUDENT}/${ME}`)
     }
 
+    // @ts-ignore
     const authHandler = () => {
         signInWithPopup(auth, provider)
             .then((result) => {

@@ -15,7 +15,7 @@ const Element: FC<RoomRecordsElementProps> = ({ data }) => {
     humidity,
     temperature,
     pressure,
-    roomNumber,
+    room,
     ozone,
     recordedDate,
     airIons,
@@ -37,7 +37,7 @@ const Element: FC<RoomRecordsElementProps> = ({ data }) => {
       <CriticalIcon critical={isCriticalResults} />
 
       <Title>
-        Кімната {roomNumber}
+        Кімната {room.roomNumber}
       </Title>
 
       <ParamElement label={'Температура повітря'} value={temperature} units={'°С'} />

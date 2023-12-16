@@ -19,6 +19,12 @@ export interface RoomRecordsElementProps {
 
 export type RoomRecordType = {
     roomRecordId: number
+    roomId: number
+    room: {
+        roomId: number
+        roomNumber: string
+        roomType: string
+    }
     humidity: number
     temperature: number
     pressure: number
@@ -27,9 +33,6 @@ export type RoomRecordType = {
     ozone: number
     isCriticalResults: boolean
     recordedDate: Date | string
-    roomId: number
-    roomNumber: string
-    roomType: string
 }
 
 export interface ParamProps {

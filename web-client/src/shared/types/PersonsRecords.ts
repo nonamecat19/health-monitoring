@@ -1,26 +1,27 @@
-import {RoleType} from "./Persons.ts";
 import {Dispatch, SetStateAction} from "react";
 
 export type PersonRecordType = {
-    id_person_records: number
-    id_person: number
-    room_number: string,
-    oxygen: string,
-    heart_rate: string,
-    temperature: string,
-    is_critical_results: true,
-    recorded_time: Date,
-    recorded_date: Date,
+    personRecordId: number
+    personId: number
     person: {
-        id_person: 1,
-        name_person: string,
-        study_group: string,
-        role_person: RoleType
-    },
-    room: {
-        room_number: string,
-        room_type: string
+        personId: number
+        studentID: number
+        name: string
+        studyGroup: string
+        role: string
+        email: string
     }
+    roomId: number
+    room: {
+        roomId: number
+        roomNumber: string
+        roomType: string
+    }
+    saturation: number
+    heartRate: number
+    temperature: number
+    isCriticalResults: boolean
+    recordedDate: string
 }
 
 export interface IRoomsRecordsFilter {

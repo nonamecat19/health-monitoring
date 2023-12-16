@@ -10,14 +10,14 @@ import PATH from "../../shared/constants/Path.ts";
 import {Button, Popover} from "antd";
 
 const Element: FC<IPersonsElementProps> = ({data}) => {
-    const {name_person, study_group, role_person, id_person} = data
+    const {personId, name, role, studyGroup} = data
     const navigate = useNavigate()
     const toRecordsHandler = (): void => {
-        navigate(`/${PATH.ADMIN}/${PATH.PERSONS}/${PATH.RECORDS}/${id_person}`)
+        navigate(`/${PATH.ADMIN}/${PATH.PERSONS}/${PATH.RECORDS}/${personId}`)
     }
 
     const toDashboardHandler = (): void => {
-        navigate(`/${PATH.ADMIN}/${PATH.PERSONS}/${PATH.DASHBOARD}/${id_person}`)
+        navigate(`/${PATH.ADMIN}/${PATH.PERSONS}/${PATH.DASHBOARD}/${personId}`)
     }
 
     const content = (
@@ -32,12 +32,12 @@ const Element: FC<IPersonsElementProps> = ({data}) => {
             <DivElement >
                 <BetweenItems>
                     <DataBlock>
-                        <Block>{name_person}</Block>
-                        <Block>{study_group}</Block>
+                        <Block>{name}</Block>
+                        <Block>{studyGroup}</Block>
                     </DataBlock>
 
                     <RoleIcon
-                        role={role_person}
+                        role={role}
                         size={60}
                         color={COLORS.darkAccent}
                     />

@@ -13,7 +13,7 @@ const Container: FC<IPersonRecordsContainerProps> = ({data}) => {
                         return (
                             <Element
                                 data={item}
-                                key={item.id_person_records}
+                                key={item.personRecordId}
                             />
                         )
                     })

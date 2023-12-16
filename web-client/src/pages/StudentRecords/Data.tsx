@@ -1,5 +1,7 @@
 import {FC} from "react"
+// @ts-ignore
 import useSWR from "swr";
+// @ts-ignore
 import REQUESTS from "../../shared/constants/Requests.ts";
 import {DetailsContainer} from "../../shared/styles/styles.ts";
 import styled from "styled-components";
@@ -12,14 +14,13 @@ type Props = {
  
 }
 const Data: FC<Props> = ({}) => {
-
     // const {data} = useSWR(REQUESTS.STUDENT_RECORDS)
     const data = personRecords
     if (!data) return null
 
     return (
         <DetailsContainer>
-            {data.map((element: any) => <Element data={element}/>)}
+            {data.data.map((element: any) => <Element data={element}/>)}
         </DetailsContainer>
     )
 }

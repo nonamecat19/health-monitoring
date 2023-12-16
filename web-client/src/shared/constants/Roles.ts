@@ -1,7 +1,7 @@
 const ROLES = {
-    STUDENT: 'Студент',
-    NURSE: 'Медсестра',
-    ADMIN: 'Адміністратор',
-    TEACHER: 'Викладач'
+    STUDENT: 'student',
+    // NURSE: 'Медсестра',
+    // ADMIN: 'Адміністратор',
+    // TEACHER: 'Викладач'
 } as const
 export default ROLES
