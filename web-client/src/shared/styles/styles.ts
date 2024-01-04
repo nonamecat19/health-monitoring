@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import SIZES from "../constants/Sizes.ts";
 import COLORS from "../constants/Colors.ts";
+import { SCREEN } from './screen.ts'
 
 export const ToCenter = styled.div`
   display: flex;
@@ -11,10 +12,8 @@ export const BetweenItems = styled.div`
   justify-content: space-between;
 `
 
-export const ColumnItems = styled.div`
-  display: flex;
+export const ColumnItems = styled(BetweenItems)`
   flex-direction: column;
-  justify-content: space-between;
 `
 
 export const Block = styled.div`
@@ -30,23 +29,26 @@ export const DetailsContainer = styled.div`
   gap: ${SIZES.md};
 `
 
-export const baseDetailsElement = `
+export const BaseDetailsElement = styled.div`
   padding: ${SIZES.md};
-  border-radius: ${SIZES.md};
+  border-radius: ${SIZES.sm};
   position: relative;
   color: ${COLORS.darkAccent};
+    
+  ${SCREEN.MOBILE} {
+      
+  }
 `
 
-export const baseCenter = `  
+export const BaseCenter = styled.div`  
   display: flex;
   justify-content: center;
   align-items: center;
 `
 
-export const baseSmallButton = `
-  height: 40px;
-  width: 40px;
+export const BaseSmallButton = styled(BaseCenter)`
+  height: ${SIZES.lg};
+  width: ${SIZES.lg};
   border-radius: ${SIZES.sm};
   color: ${COLORS.darkAccent};
-  ${baseCenter};
 `

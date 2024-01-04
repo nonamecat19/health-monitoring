@@ -4,7 +4,6 @@ import COLORS from "../../shared/constants/Colors.ts";
 import {Layout} from "antd";
 import {Content} from "antd/es/layout/layout";
 
-
 export const ContentContainer = styled.div`
   padding: ${SIZES.md};
   min-height: 360px;
@@ -12,7 +11,7 @@ export const ContentContainer = styled.div`
   margin-top: ${SIZES.sm};
   height: calc(100vh - 2 * ${SIZES.sm});
   overflow-y: scroll;
-  border-radius: ${SIZES.lg};
+  border-radius: ${SIZES.sm};
 `
 
 export const Divider = styled.div`
@@ -31,7 +30,7 @@ export const MyLayout = styled(Layout)`
 `
 
 export const ContentLayout = styled(Layout)`
-  border-radius: ${SIZES.lg};
+  border-radius: ${SIZES.md};
   height: calc(100vh - 2 * ${SIZES.sm});
   margin-top: ${SIZES.sm};
 `

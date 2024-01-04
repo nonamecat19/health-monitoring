@@ -2,7 +2,7 @@ import {FC} from "react";
 import styled from "styled-components";
 import {IPaginationProps} from "../types/Pagination.ts";
 import COLORS from "../constants/Colors.ts";
-import {baseSmallButton} from "../styles/styles.ts";
+import {BaseSmallButton} from "../styles/styles.ts";
 import {BsChevronLeft, BsChevronRight} from 'react-icons/bs'
 
 const Pagination: FC<IPaginationProps> = ({page, prev, next, max = 100}) => {
@@ -43,20 +43,17 @@ const Container = styled.div`
   margin-top: 20px;
 `
 
-const Button = styled.div`
+const Button = styled(BaseSmallButton)`
   background: ${COLORS.green2};
-  ${baseSmallButton}
 `
 
-const ButtonInactive = styled.div`
+const ButtonInactive = styled(BaseSmallButton)`
   background: ${COLORS.grey2};
-  ${baseSmallButton}
 `
 
-const NumberDisplay = styled.div`
+const NumberDisplay = styled(BaseSmallButton)`
   background: ${COLORS.grey2};
   font-weight: bold;
-  ${baseSmallButton}
 `
 
 export default Pagination

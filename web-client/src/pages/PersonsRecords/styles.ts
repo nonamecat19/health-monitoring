@@ -1,11 +1,10 @@
 import SIZES from "../../shared/constants/Sizes.ts";
-import {baseDetailsElement} from "../../shared/styles/styles.ts";
+import {BaseDetailsElement} from "../../shared/styles/styles.ts";
 import styled from "styled-components";
 
-export const DivElement = styled.div`
-  ${baseDetailsElement};
+export const DivElement = styled(BaseDetailsElement)`
   width: 370px;
   padding: ${SIZES.lg};
   height: 210px;
-  background: ${props => props.color};
+  background: ${({color}) => color};
 `

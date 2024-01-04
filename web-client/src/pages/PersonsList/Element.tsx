@@ -29,7 +29,7 @@ const Element: FC<IPersonsElementProps> = ({data}) => {
 
     return (
         <Popover content={content}>
-            <DivElement >
+            <DivElement>
                 <BetweenItems>
                     <DataBlock>
                         <Block>{name}</Block>

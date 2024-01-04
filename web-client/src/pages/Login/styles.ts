@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {Form} from "antd";
 import SIZES from "../../shared/constants/Sizes.ts";
 import COLORS from "../../shared/constants/Colors.ts";
+import { SCREEN } from '../../shared/styles/screen.ts'
 
 export const StyledForm = styled(Form)`
   .ant-form-item {
@@ -28,8 +29,8 @@ export const SidebarLogin = styled.aside`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
-  @media (max-width: 1152px) {
+
+  ${SCREEN.TABLET2} {
     width: 100%;
     background: url(${backgroundImage});
   }
@@ -37,8 +38,8 @@ export const SidebarLogin = styled.aside`
 
 export const LoginWrapper = styled.div`
   width: 500px;
-
-  @media (max-width: 1152px) {
+  
+  ${SCREEN.TABLET2} {
     width: 50%;
     padding: ${SIZES.lg};
     background: ${COLORS.white};
@@ -46,7 +47,7 @@ export const LoginWrapper = styled.div`
     border: ${SIZES.xxs} solid ${COLORS.green2};
   }
 
-  @media (max-width: 720px) {
+  ${SCREEN.TABLET1} {
     width: 70%;
   }
 `

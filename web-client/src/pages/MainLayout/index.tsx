@@ -23,8 +23,6 @@ const MainLayout: FC<MainLayoutProps> = ({type}) => {
             break
     }
 
-
-
     return (
         <MainContainer>
             <MyLayout>

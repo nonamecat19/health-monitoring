@@ -1,5 +1,6 @@
 import {createGlobalStyle} from "styled-components";
 import COLORS from "../constants/Colors.ts";
+import { SCREEN } from './screen.ts'
 
 const GlobalStyles = createGlobalStyle`
   
@@ -12,7 +13,10 @@ const GlobalStyles = createGlobalStyle`
    }
 
    ::-webkit-scrollbar {
-     width: 20px;
+     width: 20px; 
+     ${SCREEN.MOBILE} {
+         width: 2px;
+     }
    }
 
   ::-webkit-scrollbar-track {
@@ -22,6 +26,10 @@ const GlobalStyles = createGlobalStyle`
   ::-webkit-scrollbar-thumb {
     background-color: ${COLORS.darkAccent};
     border-radius: 10px;
+      
+    ${SCREEN.MOBILE} {
+        background-color: ${COLORS.green3};
+    }
   }
 
   ::-webkit-scrollbar-thumb:hover {
