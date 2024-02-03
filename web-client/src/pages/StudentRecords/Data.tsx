@@ -9,13 +9,12 @@ import ParamElement from "../../shared/ui/ParamElement.tsx";
 import moment from "moment/moment";
 import COLORS from "../../shared/constants/Colors.ts";
 import SIZES from "../../shared/constants/Sizes.ts";
-import personRecords from '../../mock/personRecords.ts'
 type Props = {
  
 }
 const Data: FC<Props> = ({}) => {
-    // const {data} = useSWR(REQUESTS.STUDENT_RECORDS)
-    const data = personRecords
+    const {data} = useSWR(REQUESTS.STUDENT_RECORDS)
+    // const data = personRecords
     if (!data) return null
 
     return (

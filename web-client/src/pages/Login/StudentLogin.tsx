@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import {Button} from "antd"
 // @ts-ignore
 import {initializeApp} from "firebase/app";
@@ -8,7 +8,6 @@ import {getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
 // import {useNavigate} from "react-router-dom";
 // import PATH from "../../shared/constants/Path.ts";
 
-import {GoogleAuth, User} from '@codetrix-studio/capacitor-google-auth';
 
 // const firebaseConfig = {
 //     apiKey: "AIzaSyC42CCL4g-xwCBXQ7tQbCfSJHRnSMaTRVM",
@@ -31,17 +30,6 @@ const StudentLogin: FC<Props> = ({}) => {
     // const navigate = useNavigate()
     // const {STUDENT, ME} = PATH
 
-    const mobileGoogleAuth = async () => {
-      // navigate(`/${STUDENT}/${ME}`)
-
-      const user: User = await GoogleAuth.signIn();
-      console.log(user)
-    }
-
-    useEffect(() => {
-      GoogleAuth.initialize();
-    }, [])
-
 
     // @ts-ignore
     // const authHandler = () => {
@@ -58,7 +46,7 @@ const StudentLogin: FC<Props> = ({}) => {
     //             // const errorCode = error.code;
     //             // const errorMessage = error.message;
     //             // const email = error.customData.email;
-    //             // const credential = GoogleAuthProvider.credentialFromError(error);
+    //             // const credential = GoogleAuthProvider credentialFromError(error);
     //         })
     // }
 
@@ -67,7 +55,7 @@ const StudentLogin: FC<Props> = ({}) => {
             <Button
                 type="primary"
                 // onClick={authHandler}
-                onClick={mobileGoogleAuth}
+                // onClick={mobileGoogleAuth}
             >Увійти як студент</Button>
         </div>
     )

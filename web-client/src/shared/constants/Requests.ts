@@ -1,6 +1,7 @@
 
 // export const REQUEST_DOMAIN: string = 'http://localhost:4000'
-export const REQUEST_DOMAIN: string = 'https://health-monitoring.azurewebsites.net'
+// export const REQUEST_DOMAIN: string = 'https://health-monitoring.azurewebsites.net'
+export const REQUEST_DOMAIN: string = 'http://localhost:5088'
 export const TOKEN_NAME: string = 'HealthMonitoringToken'
 export const FIREBASE_TOKEN_NAME: string = 'HealthMonitoringFirebaseToken'
 
