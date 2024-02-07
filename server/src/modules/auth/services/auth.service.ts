@@ -10,8 +10,8 @@ import {verify} from 'jsonwebtoken';
 import {InjectRedis} from '@nestjs-modules/ioredis';
 import Redis from 'ioredis';
 import {User} from '../../user/entities/user.entity';
-import {ErrorStatuses} from '../../../shared/enums/error.enum';
-import {JwtData} from '../../../shared/types/jwt.types';
+import {ErrorStatuses} from '@shared/enums/error.enum';
+import {JwtData} from '@shared/types/jwt.types';
 
 @Injectable()
 export class AuthService {

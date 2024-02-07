@@ -2,7 +2,7 @@ import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Person} from '../entities/person.entity';
 import {DeleteResult, Repository} from 'typeorm';
-import {CrudOperations} from '../../../shared/interfaces/crud-operations.interface';
+import {CrudOperations} from '@shared/interfaces/crud-operations.interface';
 
 @Injectable()
 export class PersonService implements CrudOperations<Person> {

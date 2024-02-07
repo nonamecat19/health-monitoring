@@ -1,5 +1,5 @@
 import {Injectable} from '@nestjs/common';
-import {CrudOperations} from '../../../shared/interfaces/crud-operations.interface';
+import {CrudOperations} from '@shared/interfaces/crud-operations.interface';
 import {RoomRecord} from '../entities/roomRecord.entity';
 import {InjectRepository} from '@nestjs/typeorm';
 import {DeleteResult, Repository} from 'typeorm';
