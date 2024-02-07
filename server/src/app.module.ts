@@ -1,32 +1,40 @@
 import {Module} from '@nestjs/common';
-import {AuthModule} from './modules/auth/auth.module';
 import {ConfigModule, ConfigService} from '@nestjs/config';
 import {TypeOrmModule} from '@nestjs/typeorm';
-import {User} from '../db/entities/user.entity';
 import {JwtModule} from '@nestjs/jwt';
-import {ChatMessage} from '../db/entities/chatMessage.entity';
 import {ScheduleModule} from '@nestjs/schedule';
-import {RedisModule} from '@nestjs-modules/ioredis';
-import {AppConfigs} from './modules/shared/config';
 import {ThrottlerGuard, ThrottlerModule} from '@nestjs/throttler';
 import {APP_GUARD} from '@nestjs/core';
+import {PersonModule} from './modules/person/person.module';
+import {PersonRecordsModule} from './modules/person-records/person-records.module';
+import {RoomModule} from './modules/room/room.module';
+import {RoomRecordsModule} from './modules/room-records/room-records.module';
+import {RolesModule} from './modules/role/roles.module';
+import {AppConfigs} from './shared/config';
+import {User} from './modules/user/entities/user.entity';
+import {Person} from './modules/person/entities/person.entity';
+import {PersonRecord} from './modules/person-records/entities/personRecord.entity';
+import {Room} from './modules/room/entities/room.entity';
+import {RoomRecord} from './modules/room-records/entities/roomRecord.entity';
+import {Role} from './modules/role/entities/role.entity';
+import {UserModule} from './modules/user/user.module';
 
 @Module({
   imports: [
     ThrottlerModule.forRoot([
       {
         ttl: 60_000,
-        limit: 20,
+        limit: 10,
       },
     ]),
-    AuthModule,
-    RedisModule.forRootAsync({
-      useFactory: (configService: ConfigService) => ({
-        type: 'single',
-        url: configService.getOrThrow<string>('redis.url'),
-      }),
-      inject: [ConfigService],
-    }),
+    // AuthModule,
+    // RedisModule.forRootAsync({
+    //   useFactory: (configService: ConfigService) => ({
+    //     type: 'single',
+    //     url: configService.getOrThrow<string>('redis.url'),
+    //   }),
+    //   inject: [ConfigService],
+    // }),
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
@@ -39,7 +47,7 @@ import {APP_GUARD} from '@nestjs/core';
       }),
       inject: [ConfigService],
     }),
-    TypeOrmModule.forFeature([User, ChatMessage]),
+    TypeOrmModule.forFeature([User, Person, PersonRecord, Room, RoomRecord, Role]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
@@ -48,6 +56,12 @@ import {APP_GUARD} from '@nestjs/core';
       inject: [ConfigService],
     }),
     ScheduleModule.forRoot(),
+    PersonModule,
+    PersonRecordsModule,
+    RoomModule,
+    RoomRecordsModule,
+    RolesModule,
+    UserModule,
   ],
   controllers: [],
   providers: [

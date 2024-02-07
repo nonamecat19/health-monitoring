@@ -10,7 +10,7 @@ async function bootstrap() {
   app.enableCors({
     credentials: true,
     origin: configService.getOrThrow<string>('app.origin'),
-    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization, x-csrf-token',
     optionsSuccessStatus: 200,
     methods: '*',
     maxAge: 1000 * 60 * 60 * 24 * 14,
