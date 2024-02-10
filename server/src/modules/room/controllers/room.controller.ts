@@ -7,8 +7,6 @@ import {
   Param,
   Patch,
   Post,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
 import {RoomService} from '../services';
 import {CreateRoomRequest} from '../dto';

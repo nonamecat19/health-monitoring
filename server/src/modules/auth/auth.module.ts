@@ -1,19 +1,19 @@
 import {Module} from '@nestjs/common';
-import {AuthController} from './controllers/auth.controller';
-import {AuthService} from './services/auth.service';
+import {AuthController, UserController} from './controllers';
+import {AuthService} from './services';
 import {JwtService} from '@nestjs/jwt';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {JwtStrategy} from '@shared/strategies/jwt.strategy';
-import {Person} from '../person/entities/person.entity';
-import {User} from '../user/entities/user.entity';
-import {PersonRecord} from '../person-records/entities/personRecord.entity';
-import {Room} from '../room/entities/room.entity';
-import {RoomRecord} from '../room-records/entities/roomRecord.entity';
-import {Role} from '../role/entities/role.entity';
+import {User} from '../user/entities';
+import {Person} from '../person/entities';
+import {PersonRecord} from '../person-records/entities';
+import {Room} from '../room/entities';
+import {RoomRecord} from '../room-records/entities';
+import {Role} from '../role/entities';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User, Person, PersonRecord, Room, RoomRecord, Role])],
-  controllers: [AuthController],
+  controllers: [AuthController, UserController],
   providers: [AuthService, JwtStrategy, JwtService],
 })
 export class AuthModule {}

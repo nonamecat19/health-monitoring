@@ -2,19 +2,23 @@ import {
   BadRequestException,
   Body,
   Controller,
+  Get,
   HttpCode,
   Post,
   Res,
   UnauthorizedException,
 } from '@nestjs/common';
-import {AuthService} from '../services/auth.service';
-import {LoginDto} from '../dto/login.dto';
+import {AuthService} from '../services';
+import {LoginDto} from '../dto';
 import {JwtService} from '@nestjs/jwt';
 import {ConfigService} from '@nestjs/config';
 import {FastifyReply} from 'fastify';
 import {ErrorMessages, ErrorStatuses} from '@shared/enums/error.enum';
 
-@Controller('auth')
+@Controller({
+  path: 'auth',
+  version: '1',
+})
 export class AuthController {
   refreshToken: string;
   constructor(
@@ -25,8 +29,13 @@ export class AuthController {
     this.refreshToken = this.configService.get<string>('cookie.refreshToken');
   }
 
+  @Get()
+  public async a() {
+    return 2;
+  }
+
   @HttpCode(200)
-  @Post('/login')
+  @Post('login')
   public async login(@Body() loginDto: LoginDto, @Res() reply: FastifyReply) {
     const userOrError = await this.authService.getUserOrErrorByCredentials(loginDto);
     if (typeof userOrError !== 'number') {
@@ -42,7 +51,7 @@ export class AuthController {
     }
   }
 
-  // @Post('/refresh')
+  // @Post('refresh')
   // async refresh(@Res() res: Response, @Req() req: Request) {
   //   const oldRefreshToken = req.cookies[this.REFRESH_TOKEN];
   //   const user = this.jwtService.verify(oldRefreshToken);

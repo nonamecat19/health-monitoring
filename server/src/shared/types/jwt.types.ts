@@ -1,4 +1,4 @@
-import {RoleEnum} from '../../modules/user/entities/user.entity';
+import {RoleEnum} from '../../modules/user/entities';
 
 export type JwtData = {
   user: TokenData;

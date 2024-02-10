@@ -2,7 +2,7 @@ import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Room} from '../entities';
 import {DeleteResult, Repository} from 'typeorm';
-import {CrudOperations} from '@shared/interfaces/crud-operations.interface';
+import {CrudOperations} from '@shared/interfaces';
 import {CreateRoomRequest} from '../dto';
 
 @Injectable()

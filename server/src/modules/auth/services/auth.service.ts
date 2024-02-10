@@ -1,25 +1,24 @@
 import {Injectable, Logger} from '@nestjs/common';
 import {JwtService} from '@nestjs/jwt';
 import {ConfigService} from '@nestjs/config';
-import {LoginDto} from '../dto/login.dto';
+import {LoginDto, TokensResponseDto} from '../dto';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import {TokensResponseDto} from '../dto/tokens.response.dto';
 import {verify} from 'jsonwebtoken';
 import {InjectRedis} from '@nestjs-modules/ioredis';
 import Redis from 'ioredis';
-import {User} from '../../user/entities/user.entity';
 import {ErrorStatuses} from '@shared/enums/error.enum';
+import {User} from '../../user/entities';
 import {JwtData} from '@shared/types/jwt.types';
 
 @Injectable()
 export class AuthService {
+  private readonly logger: Logger = new Logger(AuthService.name);
+
   private readonly jwtSecret: string;
   private readonly jwtAccessExpire: string;
   private readonly jwtRefreshExpire: string;
-  private readonly crlfTokenTtl: string;
-  private readonly logger: Logger = new Logger(AuthService.name);
 
   constructor(
     private readonly jwtService: JwtService,
@@ -32,7 +31,6 @@ export class AuthService {
     this.jwtSecret = configService.getOrThrow('jwt.jwtSecret');
     this.jwtAccessExpire = configService.getOrThrow('jwt.jwtAccessExpire');
     this.jwtRefreshExpire = configService.getOrThrow('jwt.jwtRefreshExpire');
-    this.crlfTokenTtl = configService.getOrThrow('redis.crlfTokenTtl');
   }
 
   public async generateAccessJwtToken(user: any) {
