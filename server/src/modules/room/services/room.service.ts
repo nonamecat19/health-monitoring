@@ -1,8 +1,9 @@
 import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
-import {Room} from '../entities/room.entity';
+import {Room} from '../entities';
 import {DeleteResult, Repository} from 'typeorm';
 import {CrudOperations} from '@shared/interfaces/crud-operations.interface';
+import {CreateRoomRequest} from '../dto';
 
 @Injectable()
 export class RoomService implements CrudOperations<Room> {
@@ -11,8 +12,9 @@ export class RoomService implements CrudOperations<Room> {
     private readonly roomRepository: Repository<Room>
   ) {}
 
-  public async create(fields: Omit<Room, 'id'>): Promise<Room> {
-    throw new Error('Method not implemented.');
+  public async create(fields: CreateRoomRequest): Promise<Room> {
+    const newRoom = this.roomRepository.create(fields);
+    return await this.roomRepository.save(newRoom);
   }
 
   public async getAll(): Promise<Room[]> {
@@ -23,7 +25,7 @@ export class RoomService implements CrudOperations<Room> {
     return this.roomRepository.findOneBy({id});
   }
 
-  public async edit(id: number, fields: Partial<Room>): Promise<void> {
+  public async edit(fields: Partial<Room>): Promise<void> {
     throw new Error('Method not implemented.');
   }
 

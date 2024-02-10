@@ -1,6 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm';
-import {RoomRecord} from '../../room-records/entities/roomRecord.entity';
-import {PersonRecord} from '../../person-records/entities/personRecord.entity';
+import {RoomRecord} from '../../room-records/entities';
+import {PersonRecord} from '../../person-records/entities';
 
 @Entity()
 export class Room {

@@ -1,6 +1,6 @@
 import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
-import {PersonRecord} from '../entities/personRecord.entity';
+import {PersonRecord} from '../entities';
 import {DeleteResult, Repository} from 'typeorm';
 import {CrudOperations} from '@shared/interfaces/crud-operations.interface';
 
@@ -23,7 +23,7 @@ export class PersonRecordsService implements CrudOperations<PersonRecord> {
     return this.personRecordsRepository.find();
   }
 
-  public async edit(id: number, fields: Partial<PersonRecord>): Promise<void> {
+  public async edit(fields: Partial<PersonRecord>): Promise<void> {
     throw new Error('Method not implemented.');
   }
 

@@ -1,7 +1,10 @@
 import {Controller, Get, Param} from '@nestjs/common';
-import {PersonRecordsService} from '../services/person-records.service';
+import {PersonRecordsService} from '../services';
 
-@Controller('person-records')
+@Controller({
+  path: 'person-records',
+  version: '1',
+})
 export class PersonRecordsController {
   constructor(private readonly personRecordsService: PersonRecordsService) {}
 

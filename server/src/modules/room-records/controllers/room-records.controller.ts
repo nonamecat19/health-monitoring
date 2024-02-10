@@ -1,4 +1,7 @@
 import {Controller} from '@nestjs/common';
 
-@Controller('room-records')
+@Controller({
+  path: 'room-records',
+  version: '1',
+})
 export class RoomRecordsController {}

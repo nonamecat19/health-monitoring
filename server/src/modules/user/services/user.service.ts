@@ -12,7 +12,7 @@ export class UserService implements CrudOperations<User> {
   ) {}
 
   public async create(fields: Omit<User, 'id'>): Promise<User> {
-    throw new Error('Method not implemented.');
+    return this.userRepository.save(fields);
   }
 
   public async getAll(): Promise<User[]> {
@@ -23,7 +23,7 @@ export class UserService implements CrudOperations<User> {
     return this.userRepository.findOneBy({id});
   }
 
-  public async edit(id: number, fields: Partial<User>): Promise<void> {
+  public async edit(fields: Partial<User>): Promise<void> {
     throw new Error('Method not implemented.');
   }
 

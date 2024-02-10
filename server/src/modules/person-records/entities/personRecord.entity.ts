@@ -1,6 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from 'typeorm';
-import {Person} from '../../person/entities/person.entity';
-import {Room} from '../../room/entities/room.entity';
+import {Person} from '../../person/entities';
+import {Room} from '../../room/entities';
 
 @Entity()
 export class PersonRecord {
