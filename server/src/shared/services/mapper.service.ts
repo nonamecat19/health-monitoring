@@ -1,5 +1,5 @@
 import {Injectable} from '@nestjs/common';
-import {clone, map, mapKeys} from 'lodash';
+import {cloneDeep, map, mapKeys} from 'lodash';
 
 type MappingObject = Record<string, any>;
 type ConfigObject = Record<string, string>;
@@ -7,13 +7,26 @@ type ConfigObject = Record<string, string>;
 @Injectable()
 export class MapperService {
   public map<T extends MappingObject>(object: T, config: ConfigObject) {
-    const newObject = clone(object);
-    return mapKeys(newObject, (value, key) => {
-      return config[key] || key;
-    });
+    const newObject: T = cloneDeep(object);
+    for (let [key, value] of Object.entries(config)) {
+      const keys = key.split('.');
+      this.replaceKeyRecursion(newObject, keys, value);
+    }
+    return newObject;
   }
 
   public mapArray<T extends MappingObject>(array: T[], config: ConfigObject) {
     return map(array, item => this.map(item, config));
+  }
+
+  public replaceKeyRecursion(object: Record<string, any>, keys: string[], targetKey: string) {
+    if (keys.length > 1) {
+      const [first, ...rest] = keys;
+      return this.replaceKeyRecursion(object[first], rest, targetKey);
+    }
+    const key = keys[0];
+    const value = cloneDeep(object[key]);
+    delete object[key];
+    object[targetKey] = value;
   }
 }
