@@ -3,6 +3,9 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
+  NotFoundException,
   NotImplementedException,
   Param,
   Patch,
@@ -46,6 +49,9 @@ export class RoomController {
 
   @Delete(':id')
   public async deleteRoom(@Param('id') id: number) {
-    return this.roomService.delete(id);
+    const deleteResult = await this.roomService.delete(id);
+    if (!deleteResult.affected) {
+      throw new NotFoundException();
+    }
   }
 }

@@ -13,10 +13,10 @@ export const appGlobalProviders = [
     provide: APP_INTERCEPTOR,
     useClass: ResponseInterceptor,
   },
-  // {
-  //   provide: APP_FILTER,
-  //   useClass: ResponseTransformFilter,
-  // },
+  {
+    provide: APP_FILTER,
+    useClass: ResponseTransformFilter,
+  },
   {
     provide: APP_PIPE,
     useClass: ValidationPipe,
