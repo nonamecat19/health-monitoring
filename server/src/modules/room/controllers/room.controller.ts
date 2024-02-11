@@ -1,18 +1,6 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  HttpCode,
-  HttpStatus,
-  NotFoundException,
-  NotImplementedException,
-  Param,
-  Patch,
-  Post,
-} from '@nestjs/common';
+import {Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post} from '@nestjs/common';
 import {RoomService} from '../services';
-import {CreateRoomRequest} from '../dto';
+import {CreateRoomRequest, EditRoomRequest} from '../dto';
 import {MapperService} from '@shared/services';
 
 @Controller({
@@ -37,14 +25,13 @@ export class RoomController {
   }
 
   @Post()
-  public async addRoom(@Body() addRoomDto: CreateRoomRequest) {
-    console.log(addRoomDto);
-    return this.roomService.create(addRoomDto);
+  public async addRoom(@Body() body: CreateRoomRequest) {
+    return this.roomService.create(body);
   }
 
   @Patch()
-  public async editRoom() {
-    throw new NotImplementedException();
+  public async editRoom(@Body() body: EditRoomRequest) {
+    return this.roomService.edit(body);
   }
 
   @Delete(':id')

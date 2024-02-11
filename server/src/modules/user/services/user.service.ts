@@ -23,7 +23,7 @@ export class UserService implements CrudOperations<User> {
     return this.userRepository.findOneBy({id});
   }
 
-  public async edit(fields: Partial<User>): Promise<void> {
+  public async edit(fields: Partial<User>): Promise<User> {
     throw new Error('Method not implemented.');
   }
 

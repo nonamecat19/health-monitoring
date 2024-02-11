@@ -23,7 +23,7 @@ export class RoleService implements CrudOperations<Role> {
     return this.roleRepository.findOneBy({id});
   }
 
-  public async edit(fields: Partial<Role>): Promise<void> {
+  public async edit(fields: Partial<Role>): Promise<Role> {
     throw new Error('Method not implemented.');
   }
 

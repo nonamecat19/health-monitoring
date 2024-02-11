@@ -23,7 +23,7 @@ export class PersonService implements CrudOperations<Person> {
     return this.personRepository.findOneBy({id});
   }
 
-  public async edit(fields: Partial<Person>): Promise<void> {
+  public async edit(fields: Partial<Person>): Promise<Person> {
     throw new Error('Method not implemented.');
   }
 

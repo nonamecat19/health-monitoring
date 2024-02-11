@@ -23,7 +23,7 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
     return this.roomRecordRepository.findOneBy({id});
   }
 
-  public async edit(fields: Partial<RoomRecord>): Promise<void> {
+  public async edit(fields: Partial<RoomRecord>): Promise<RoomRecord> {
     throw new Error('Method not implemented.');
   }
 
