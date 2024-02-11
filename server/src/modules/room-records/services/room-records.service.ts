@@ -3,6 +3,7 @@ import {CrudOperations} from '@shared/interfaces';
 import {RoomRecord} from '../entities';
 import {InjectRepository} from '@nestjs/typeorm';
 import {DeleteResult, Repository} from 'typeorm';
+import {CreateRoomRecordDto} from '../dto/create-room-record.dto';
 
 @Injectable()
 export class RoomRecordsService implements CrudOperations<RoomRecord> {
@@ -11,8 +12,9 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
     private readonly roomRecordRepository: Repository<RoomRecord>
   ) {}
 
-  public async create(fields: Omit<RoomRecord, 'id'>): Promise<RoomRecord> {
-    throw new Error('Method not implemented.');
+  public async create(fields: CreateRoomRecordDto): Promise<RoomRecord> {
+    const record = this.roomRecordRepository.create(fields);
+    return this.roomRecordRepository.save(record);
   }
 
   public async getAll(): Promise<RoomRecord[]> {
@@ -20,11 +22,24 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
   }
 
   public async getOne(id: number): Promise<RoomRecord> {
-    return this.roomRecordRepository.findOneBy({id});
+    return this.roomRecordRepository.findOne({
+      where: {id},
+      relations: {
+        room: true,
+      },
+    });
   }
 
   public async edit(fields: Partial<RoomRecord>): Promise<RoomRecord> {
-    throw new Error('Method not implemented.');
+    await this.roomRecordRepository.update({id: fields.id}, fields);
+    return this.roomRecordRepository.findOne({
+      where: {
+        id: fields.id,
+      },
+      relations: {
+        room: true,
+      },
+    });
   }
 
   public async delete(id: number): Promise<DeleteResult> {

@@ -1,13 +1,10 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn} from 'typeorm';
 import {Room} from '../../room/entities';
 
 @Entity()
 export class RoomRecord {
   @PrimaryGeneratedColumn()
   id: number;
-
-  @Column()
-  roomId: number;
 
   @ManyToOne(() => Room, room => room.id)
   room: Room;
@@ -34,6 +31,7 @@ export class RoomRecord {
   isCriticalResults: boolean;
 
   @Column()
+  @CreateDateColumn()
   recordedDate: Date;
 
   constructor(item: Partial<RoomRecord>) {
