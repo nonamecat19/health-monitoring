@@ -10,17 +10,22 @@ import {
 } from '@nestjs/common';
 import {RoomService} from '../services';
 import {CreateRoomRequest} from '../dto';
+import {MapperService} from '@shared/services';
 
 @Controller({
   path: 'rooms',
   version: '1',
 })
 export class RoomController {
-  constructor(private readonly roomService: RoomService) {}
+  constructor(
+    private readonly roomService: RoomService,
+    private readonly mapper: MapperService
+  ) {}
 
   @Get()
   public async getAllRooms() {
-    return this.roomService.getAll();
+    const rooms = await this.roomService.getAll();
+    return this.mapper.mapArray(rooms, {id: 'roomId'});
   }
 
   @Get(':id')
