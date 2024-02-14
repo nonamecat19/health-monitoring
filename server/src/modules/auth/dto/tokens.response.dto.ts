@@ -1,4 +1,4 @@
-import {TokenData} from '@shared/types/jwt.types';
+import {TokenData} from '@shared/types';
 
 export class TokensResponseDto {
   token: string;

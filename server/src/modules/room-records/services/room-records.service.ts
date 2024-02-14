@@ -3,7 +3,7 @@ import {CrudOperations} from '@shared/interfaces';
 import {RoomRecord} from '../entities';
 import {InjectRepository} from '@nestjs/typeorm';
 import {DeleteResult, Repository} from 'typeorm';
-import {CreateRoomRecordDto} from '../dto/create-room-record.dto';
+import {CreateRoomRecordDto} from '../dto';
 
 @Injectable()
 export class RoomRecordsService implements CrudOperations<RoomRecord> {

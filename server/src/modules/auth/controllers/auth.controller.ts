@@ -13,7 +13,7 @@ import {LoginDto} from '../dto';
 import {JwtService} from '@nestjs/jwt';
 import {ConfigService} from '@nestjs/config';
 import {FastifyReply} from 'fastify';
-import {ErrorMessages, ErrorStatuses} from '@shared/enums/error.enum';
+import {ErrorMessages, ErrorStatuses} from '@shared/enums';
 
 @Controller({
   path: 'auth',

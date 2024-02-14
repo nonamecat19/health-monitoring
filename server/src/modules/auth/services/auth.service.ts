@@ -8,9 +8,9 @@ import * as bcrypt from 'bcrypt';
 import {verify} from 'jsonwebtoken';
 import {InjectRedis} from '@nestjs-modules/ioredis';
 import Redis from 'ioredis';
-import {ErrorStatuses} from '@shared/enums/error.enum';
+import {ErrorStatuses} from '@shared/enums';
 import {User} from '../../user/entities';
-import {JwtData} from '@shared/types/jwt.types';
+import {JwtData} from '@shared/types';
 
 @Injectable()
 export class AuthService {
