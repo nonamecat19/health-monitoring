@@ -16,7 +16,7 @@ export class RoomController {
   @Get()
   public async getAllRooms() {
     const rooms = await this.roomService.getAll();
-    return this.mapper.mapArray(rooms, {id: 'roomId'});
+    return this.mapper.mapArray(rooms.data, {id: 'roomId'});
   }
 
   @Get(':id')

@@ -3,6 +3,7 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {PersonRecord} from '../entities';
 import {DeleteResult, Repository} from 'typeorm';
 import {CrudOperations} from '@shared/interfaces';
+import {GetAll} from '@shared/interfaces/services.types';
 
 @Injectable()
 export class PersonRecordsService implements CrudOperations<PersonRecord> {
@@ -19,8 +20,12 @@ export class PersonRecordsService implements CrudOperations<PersonRecord> {
     return this.personRecordsRepository.findOneBy({id});
   }
 
-  public async getAll(): Promise<PersonRecord[]> {
-    return this.personRecordsRepository.find();
+  public async getAll(): Promise<GetAll<PersonRecord>> {
+    const [personRecords, count] = await this.personRecordsRepository.findAndCount();
+    return {
+      data: personRecords,
+      maxPage: count,
+    };
   }
 
   public async edit(fields: Partial<PersonRecord>): Promise<PersonRecord> {

@@ -4,6 +4,7 @@ import {RoomRecord} from '../entities';
 import {InjectRepository} from '@nestjs/typeorm';
 import {DeleteResult, Repository} from 'typeorm';
 import {CreateRoomRecordDto} from '../dto';
+import {GetAll} from '@shared/interfaces/services.types';
 
 @Injectable()
 export class RoomRecordsService implements CrudOperations<RoomRecord> {
@@ -17,8 +18,12 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
     return this.roomRecordRepository.save(record);
   }
 
-  public async getAll(params: any): Promise<RoomRecord[]> {
-    return this.roomRecordRepository.find();
+  public async getAll(params: any): Promise<GetAll<RoomRecord>> {
+    const [roomRecords, count] = await this.roomRecordRepository.findAndCount();
+    return {
+      data: roomRecords,
+      maxPage: count,
+    };
   }
 
   public async getOne(id: number): Promise<RoomRecord> {

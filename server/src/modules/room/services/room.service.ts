@@ -4,6 +4,7 @@ import {Room} from '../entities';
 import {DeleteResult, Repository} from 'typeorm';
 import {CrudOperations} from '@shared/interfaces';
 import {CreateRoomRequest, EditRoomRequest} from '../dto';
+import {GetAll} from '@shared/interfaces/services.types';
 
 @Injectable()
 export class RoomService implements CrudOperations<Room> {
@@ -17,8 +18,12 @@ export class RoomService implements CrudOperations<Room> {
     return await this.roomRepository.save(newRoom);
   }
 
-  public async getAll(): Promise<Room[]> {
-    return this.roomRepository.find();
+  public async getAll(): Promise<GetAll<Room>> {
+    const [rooms, count] = await this.roomRepository.findAndCount();
+    return {
+      data: rooms,
+      maxPage: count,
+    };
   }
 
   public async getOne(id: number): Promise<Room> {
