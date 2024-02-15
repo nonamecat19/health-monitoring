@@ -7,7 +7,7 @@ export class Person {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({nullable: true})
+  @Column({nullable: true, unique: true})
   studentID: number;
 
   @Column()
@@ -19,7 +19,7 @@ export class Person {
   @Column({default: PersonRole.Student})
   role: string;
 
-  @Column()
+  @Column({nullable: true, unique: true})
   email: string;
 
   @OneToMany(() => PersonRecord, personRecord => personRecord.id)
