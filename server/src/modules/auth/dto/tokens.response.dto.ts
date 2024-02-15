@@ -1,4 +1,4 @@
-import {TokenData} from '@shared/types';
+import {TokenData} from '../types';
 
 export class TokensResponseDto {
   token: string;

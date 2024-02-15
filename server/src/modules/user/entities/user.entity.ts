@@ -1,25 +1,13 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-import {Role} from '../../role/entities';
-
-export enum RoleEnum {
-  ADMIN = 'ADMIN',
-  USER = 'USER',
-}
+import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
+import {PersonRole} from '../../person/constants';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Role, role => role.id)
-  role: Role;
+  @Column({default: PersonRole.Student})
+  role: string;
 
   @Column({unique: true, length: 30})
   email: string;

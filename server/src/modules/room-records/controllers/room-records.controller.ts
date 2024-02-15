@@ -1,5 +1,5 @@
 import {Body, Controller, Get, Param, Post, Query} from '@nestjs/common';
-import {CreateRoomRecordDto} from '../dto/create-room-record.dto';
+import {CreateRoomRecordDto} from '../dto';
 import {RoomRecordsService} from '../services';
 
 @Controller({
@@ -10,12 +10,12 @@ export class RoomRecordsController {
   constructor(private readonly roomRecordsService: RoomRecordsService) {}
 
   @Get()
-  public async getAllRoomRecords() {
-    return this.roomRecordsService.getAll();
+  public async getAllRoomRecords(@Query() query: any) {
+    return this.roomRecordsService.getAll(query);
   }
 
   @Get(':id')
-  public async getRoomRecordById(@Param('id') id: number, @Query() query: any) {
+  public async getRoomRecordById(@Param('id') id: number) {
     return this.roomRecordsService.getOne(id);
   }
 

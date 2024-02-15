@@ -10,7 +10,7 @@ import {InjectRedis} from '@nestjs-modules/ioredis';
 import Redis from 'ioredis';
 import {ErrorStatuses} from '@shared/enums';
 import {User} from '../../user/entities';
-import {JwtData} from '@shared/types';
+import {JwtData} from '../types';
 
 @Injectable()
 export class AuthService {

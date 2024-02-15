@@ -9,10 +9,9 @@ import {Person} from '../person/entities';
 import {PersonRecord} from '../person-records/entities';
 import {Room} from '../room/entities';
 import {RoomRecord} from '../room-records/entities';
-import {Role} from '../role/entities';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Person, PersonRecord, Room, RoomRecord, Role])],
+  imports: [TypeOrmModule.forFeature([User, Person, PersonRecord, Room, RoomRecord])],
   controllers: [AuthController, UserController],
   providers: [AuthService, JwtStrategy, JwtService],
 })

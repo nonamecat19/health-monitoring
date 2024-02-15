@@ -17,7 +17,7 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
     return this.roomRecordRepository.save(record);
   }
 
-  public async getAll(): Promise<RoomRecord[]> {
+  public async getAll(params: any): Promise<RoomRecord[]> {
     return this.roomRecordRepository.find();
   }
 

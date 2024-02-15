@@ -1,6 +1,6 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne} from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm';
 import {PersonRecord} from '../../person-records/entities';
-import {Role} from '../../role/entities';
+import {PersonRole} from '../constants';
 
 @Entity()
 export class Person {
@@ -16,7 +16,7 @@ export class Person {
   @Column({nullable: true})
   studyGroup: string;
 
-  @ManyToOne(() => Role, role => role.name)
+  @Column({default: PersonRole.Student})
   role: string;
 
   @Column()
