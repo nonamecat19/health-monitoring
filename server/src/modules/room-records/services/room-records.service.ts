@@ -5,6 +5,7 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {DeleteResult, Repository} from 'typeorm';
 import {CreateRoomRecordDto} from '../dto';
 import {GetAll} from '@shared/interfaces/services.types';
+import {every, inRange} from 'lodash';
 
 @Injectable()
 export class RoomRecordsService implements CrudOperations<RoomRecord> {
@@ -14,7 +15,20 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
   ) {}
 
   public async create(fields: CreateRoomRecordDto): Promise<RoomRecord> {
-    const record = this.roomRecordRepository.create(fields);
+    const {airIons, carbonDioxide, humidity, ozone, pressure, roomId, temperature} = fields;
+    const isCriticalResult = this.isCriticalResults(fields);
+    const record = this.roomRecordRepository.create({
+      room: {
+        id: roomId,
+      },
+      humidity,
+      temperature,
+      pressure,
+      carbonDioxide,
+      airIons,
+      ozone,
+      isCriticalResult,
+    });
     return this.roomRecordRepository.save(record);
   }
 
@@ -49,5 +63,18 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
 
   public async delete(id: number): Promise<DeleteResult> {
     return this.roomRecordRepository.delete({id});
+  }
+
+  public isCriticalResults(record: CreateRoomRecordDto) {
+    const {airIons, carbonDioxide, humidity, ozone, pressure, temperature} = record;
+
+    return !every([
+      inRange(humidity, 40, 61),
+      inRange(temperature, 19, 25),
+      inRange(pressure, 750, 771),
+      inRange(carbonDioxide, 400, 601),
+      inRange(airIons, 400, 601),
+      inRange(ozone, 0.1, 0.17),
+    ]);
   }
 }

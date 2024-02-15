@@ -13,10 +13,10 @@ export class Room {
   @Column()
   roomType: string;
 
-  @OneToMany(() => RoomRecord, roomRecord => roomRecord.room)
+  @OneToMany(() => RoomRecord, ({room}) => room)
   roomRecords: RoomRecord[];
 
-  @OneToMany(() => PersonRecord, personRecord => personRecord.room)
+  @OneToMany(() => PersonRecord, ({room}) => room)
   personRecords: PersonRecord[];
 
   constructor(item: Partial<Room>) {

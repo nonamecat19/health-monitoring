@@ -6,7 +6,7 @@ export class RoomRecord {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Room, room => room.id)
+  @ManyToOne(() => Room, ({id}) => id)
   room: Room;
 
   @Column()
@@ -28,9 +28,8 @@ export class RoomRecord {
   ozone: number;
 
   @Column()
-  isCriticalResults: boolean;
+  isCriticalResult: boolean;
 
-  @Column()
   @CreateDateColumn()
   recordedDate: Date;
 
