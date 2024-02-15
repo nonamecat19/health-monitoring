@@ -16,7 +16,7 @@ export class PersonController {
   @Get()
   public async getAllPersons(@Query() query: any) {
     const persons = await this.personService.getAll(query);
-    return this.mapper.mapArray(persons.data, {id: 'personId'});
+    return this.mapper.mapArrayWithPrefix(persons, {id: 'personId'}, 'data');
   }
 
   @Get('id')
