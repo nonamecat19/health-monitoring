@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn} from 'typeorm';
 import {Person} from '../../person/entities';
 import {Room} from '../../room/entities';
 
@@ -7,10 +7,10 @@ export class PersonRecord {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Person, person => person.id)
+  @ManyToOne(() => Person, ({id}) => id)
   person: Person;
 
-  @ManyToOne(() => Room, room => room.id)
+  @ManyToOne(() => Room, ({id}) => id)
   room: Room;
 
   @Column()
@@ -23,9 +23,9 @@ export class PersonRecord {
   temperature: number;
 
   @Column()
-  isCriticalResults: boolean;
+  isCriticalResult: boolean;
 
-  @Column()
+  @CreateDateColumn()
   recordedDate: Date;
 
   constructor(item: Partial<PersonRecord>) {

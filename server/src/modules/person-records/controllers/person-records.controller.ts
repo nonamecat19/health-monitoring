@@ -1,5 +1,6 @@
-import {Controller, Get, Param} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Patch, Post} from '@nestjs/common';
 import {PersonRecordsService} from '../services';
+import {CreatePersonRecordRequest} from '../dto/create-person-record.request';
 
 @Controller({
   path: 'person-records',
@@ -16,5 +17,20 @@ export class PersonRecordsController {
   @Get('id')
   public async getPersonRecordById(@Param('id') id: number) {
     return this.personRecordsService.getOne(id);
+  }
+
+  @Post()
+  public async createPersonRecord(@Body() body: CreatePersonRecordRequest) {
+    return this.personRecordsService.create(body);
+  }
+
+  @Patch()
+  public async editPersonRecord(@Body() body: any) {
+    return this.personRecordsService.edit(body);
+  }
+
+  @Delete(':id')
+  public async deletePersonRecordById(@Param('id') id: number) {
+    return this.personRecordsService.delete(id);
   }
 }

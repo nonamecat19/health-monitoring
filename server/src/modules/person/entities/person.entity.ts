@@ -22,7 +22,7 @@ export class Person {
   @Column({nullable: true, unique: true})
   email: string;
 
-  @OneToMany(() => PersonRecord, personRecord => personRecord.id)
+  @OneToMany(() => PersonRecord, ({id}) => id)
   personRecord: PersonRecord[];
 
   constructor(item: Partial<Person>) {
