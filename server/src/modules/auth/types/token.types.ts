@@ -1,4 +1,4 @@
-import {RoleEnum} from '../../user/constants';
+import {PersonRole} from '@shared/constants';
 
 export type JwtData = {
   user: TokenData;
@@ -8,7 +8,7 @@ export type JwtData = {
 
 export type TokenData = {
   id: number;
-  role: keyof typeof RoleEnum;
+  role: keyof typeof PersonRole;
   nickname: string;
   isMuted: boolean;
 };

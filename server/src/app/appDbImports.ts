@@ -6,7 +6,6 @@ import {User} from '../modules/user/entities';
 import {Person} from '../modules/person/entities';
 import {PersonRecord} from '../modules/person-records/entities';
 import {Room} from '../modules/room/entities';
-import {Role} from '../modules/role/entities';
 import {RoomRecord} from '../modules/room-records/entities';
 
 export const AppDbImports: DynamicModule[] = [
@@ -24,5 +23,5 @@ export const AppDbImports: DynamicModule[] = [
     }),
     inject: [ConfigService],
   }),
-  TypeOrmModule.forFeature([User, Person, PersonRecord, Room, RoomRecord, Role]),
+  TypeOrmModule.forFeature([User, Person, PersonRecord, Room, RoomRecord]),
 ];

@@ -1,5 +1,5 @@
 import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
-import {PersonRole} from '../../person/constants';
+import {PersonRole} from '@shared/constants';
 
 @Entity()
 export class User {
