@@ -43,4 +43,17 @@ describe('MapperServiceService', () => {
     const result = service.map(object, config);
     expect(result).toStrictEqual({people: {user: {userId: 2}}});
   });
+
+  it('mapArrayWithPrefix1', () => {
+    const object = {
+      id: 1,
+      array: [{id: 1}, {id: 2}],
+    };
+    const config = {id: 'userId'};
+    const result = service.mapArrayWithPrefix(object, config, 'array');
+    expect(result).toStrictEqual({
+      id: 1,
+      array: [{userId: 1}, {userId: 2}],
+    });
+  });
 });

@@ -19,6 +19,22 @@ export class MapperService {
     return map(array, item => this.map(item, config));
   }
 
+  public mapArrayWithPrefix<T extends MappingObject>(
+    object: T,
+    config: ConfigObject,
+    prefix?: string
+  ) {
+    const target = prefix ? object[prefix] : object;
+    const mappedObject = this.mapArray(target, config);
+    if (!prefix) {
+      return mappedObject;
+    }
+    return {
+      ...object,
+      [prefix]: mappedObject,
+    };
+  }
+
   public replaceKeyRecursion(object: Record<string, any>, keys: string[], targetKey: string) {
     if (keys.length > 1) {
       const [first, ...rest] = keys;
