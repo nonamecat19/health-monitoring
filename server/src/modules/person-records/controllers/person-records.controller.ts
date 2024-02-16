@@ -1,6 +1,6 @@
 import {Body, Controller, Delete, Get, Param, Patch, Post} from '@nestjs/common';
 import {PersonRecordsService} from '../services';
-import {CreatePersonRecordRequest} from '../dto/create-person-record.request';
+import {CreatePersonRecordRequest} from '../requests';
 
 @Controller({
   path: 'person-records',

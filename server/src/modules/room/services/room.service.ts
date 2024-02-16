@@ -3,7 +3,7 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {Room} from '../entities';
 import {DeleteResult, Repository} from 'typeorm';
 import {CrudOperations} from '@shared/interfaces';
-import {CreateRoomRequest, EditRoomRequest} from '../dto';
+import {CreateRoomRequest, EditRoomRequest} from '../requests';
 import {GetAll} from '@shared/interfaces/services.types';
 
 @Injectable()

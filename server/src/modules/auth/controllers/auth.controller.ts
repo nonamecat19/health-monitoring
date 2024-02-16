@@ -9,7 +9,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import {AuthService} from '../services';
-import {LoginDto} from '../dto';
+import {LoginRequest} from '../requests';
 import {JwtService} from '@nestjs/jwt';
 import {ConfigService} from '@nestjs/config';
 import {FastifyReply} from 'fastify';
@@ -36,7 +36,7 @@ export class AuthController {
 
   @HttpCode(200)
   @Post('login')
-  public async login(@Body() loginDto: LoginDto, @Res() reply: FastifyReply) {
+  public async login(@Body() loginDto: LoginRequest, @Res() reply: FastifyReply) {
     const userOrError = await this.authService.getUserOrErrorByCredentials(loginDto);
     if (typeof userOrError !== 'number') {
       const {tokensDto} = await this.authService.getTokensByUser(userOrError);

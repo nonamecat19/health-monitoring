@@ -1,6 +1,6 @@
 import {Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post} from '@nestjs/common';
 import {RoomService} from '../services';
-import {CreateRoomRequest, EditRoomRequest} from '../dto';
+import {CreateRoomRequest, EditRoomRequest} from '../requests';
 import {MapperService} from '@shared/services';
 
 @Controller({

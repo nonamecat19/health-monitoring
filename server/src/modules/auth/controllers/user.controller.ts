@@ -1,5 +1,5 @@
 import {Body, Controller, Logger, Post} from '@nestjs/common';
-import {UserRegisterRequest} from '../dto';
+import {UserRegisterRequest} from '../requests';
 import {AuthService} from '../services';
 import {createLogger} from '@shared/utils';
 

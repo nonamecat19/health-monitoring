@@ -1,6 +1,6 @@
 import {Body, Controller, Delete, Get, Param, Patch, Post, Query} from '@nestjs/common';
 import {PersonService} from '../services';
-import {CreatePersonRequest} from '../dto';
+import {CreatePersonRequest} from '../requests';
 import {MapperService} from '@shared/services';
 
 @Controller({

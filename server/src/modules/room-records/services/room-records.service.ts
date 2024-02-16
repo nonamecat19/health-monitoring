@@ -3,7 +3,7 @@ import {CrudOperations} from '@shared/interfaces';
 import {RoomRecord} from '../entities';
 import {InjectRepository} from '@nestjs/typeorm';
 import {DeleteResult, Repository} from 'typeorm';
-import {CreateRoomRecordDto} from '../dto';
+import {CreateRoomRecordRequest} from '../requests';
 import {GetAll} from '@shared/interfaces/services.types';
 import {every, inRange} from 'lodash';
 
@@ -14,7 +14,7 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
     private readonly roomRecordRepository: Repository<RoomRecord>
   ) {}
 
-  public async create(fields: CreateRoomRecordDto): Promise<RoomRecord> {
+  public async create(fields: CreateRoomRecordRequest): Promise<RoomRecord> {
     const {airIons, carbonDioxide, humidity, ozone, pressure, roomId, temperature} = fields;
     const isCriticalResult = this.isCriticalResults(fields);
     const record = this.roomRecordRepository.create({
@@ -65,7 +65,7 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
     return this.roomRecordRepository.delete({id});
   }
 
-  public isCriticalResults(record: CreateRoomRecordDto) {
+  public isCriticalResults(record: CreateRoomRecordRequest) {
     const {airIons, carbonDioxide, humidity, ozone, pressure, temperature} = record;
 
     return !every([

@@ -3,8 +3,8 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {PersonRecord} from '../entities';
 import {DeleteResult, Repository} from 'typeorm';
 import {CrudOperations} from '@shared/interfaces';
-import {GetAll} from '@shared/interfaces/services.types';
-import {CreatePersonRecordRequest} from '../dto';
+import {GetAll} from '@shared/interfaces';
+import {CreatePersonRecordRequest} from '../requests';
 import {every, inRange} from 'lodash';
 
 @Injectable()

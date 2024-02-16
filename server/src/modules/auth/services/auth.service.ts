@@ -1,7 +1,7 @@
 import {Injectable, Logger} from '@nestjs/common';
 import {JwtService} from '@nestjs/jwt';
 import {ConfigService} from '@nestjs/config';
-import {LoginDto, TokensResponseDto} from '../dto';
+import {LoginRequest} from '../requests';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import * as bcrypt from 'bcrypt';
@@ -49,7 +49,7 @@ export class AuthService {
     });
   }
 
-  public async getUserOrErrorByCredentials(loginDto: LoginDto): Promise<User | ErrorStatuses> {
+  public async getUserOrErrorByCredentials(loginDto: LoginRequest): Promise<User | ErrorStatuses> {
     const user = await this.usersRepository.findOne({
       where: {
         email: loginDto.email,
@@ -69,14 +69,15 @@ export class AuthService {
 
   public async getTokensByUser(
     user: User
-  ): Promise<{tokensDto: TokensResponseDto; refreshToken: string}> {
+  ): Promise<{tokensDto: {token: string}; refreshToken: string}> {
     const data = {
       id: user.id,
       role: user.role,
     };
 
-    const tokensDto = new TokensResponseDto();
-    tokensDto.token = await this.generateAccessJwtToken(data);
+    const tokensDto = {
+      token: await this.generateAccessJwtToken(data),
+    };
     const refreshToken = await this.generateRefreshJwtToken(data);
     return {tokensDto, refreshToken};
   }

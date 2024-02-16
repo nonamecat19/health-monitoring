@@ -1,5 +1,5 @@
 import {Body, Controller, Delete, Get, Param, Patch, Post, Query} from '@nestjs/common';
-import {CreateRoomRecordDto, EditRoomRecordDto} from '../dto';
+import {CreateRoomRecordRequest, EditRoomRecordRequest} from '../requests';
 import {RoomRecordsService} from '../services';
 
 @Controller({
@@ -20,12 +20,12 @@ export class RoomRecordsController {
   }
 
   @Post()
-  public async createRoomRecord(@Body() body: CreateRoomRecordDto) {
+  public async createRoomRecord(@Body() body: CreateRoomRecordRequest) {
     return this.roomRecordsService.create(body);
   }
 
   @Patch()
-  public async editRoomRecord(@Body() body: EditRoomRecordDto) {
+  public async editRoomRecord(@Body() body: EditRoomRecordRequest) {
     return this.roomRecordsService.edit(body);
   }
 

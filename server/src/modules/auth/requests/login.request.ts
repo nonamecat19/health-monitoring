@@ -1,6 +1,6 @@
 import {IsEmail, IsString, MinLength} from 'class-validator';
 
-export class LoginDto {
+export class LoginRequest {
   @MinLength(3, {message: 'Nickname should be at least 3 characters'})
   @IsEmail()
   @IsString({message: 'Nickname must be a string'})
