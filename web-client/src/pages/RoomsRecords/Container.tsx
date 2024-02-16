@@ -1,22 +1,16 @@
 import {FC} from "react";
 import {RoomRecordsContainerProps, RoomRecordType} from "../../shared/types/RoomRecords.ts";
-import Element from "./Element.tsx";
-import {DetailsContainer} from "../../shared/styles/styles.ts";
+import {Element} from "./Element.tsx";
+import {DetailsContainer} from "../../shared/styles";
 
-const Container: FC<RoomRecordsContainerProps> = ({data}) => {
-
-    return (
-        <>
-            <DetailsContainer>
-                {
-                    data.map((item: RoomRecordType) => {
-                        return <Element data={item} key={item.roomRecordId}/>
-                    })
-                }
-            </DetailsContainer>
-        </>
-
-    )
+export const Container: FC<RoomRecordsContainerProps> = ({data}) => {
+  return (
+    <DetailsContainer>
+      {
+        data.map((item: RoomRecordType) => {
+          return <Element data={item} key={item.roomRecordId}/>
+        })
+      }
+    </DetailsContainer>
+  )
 }
-
-export default Container

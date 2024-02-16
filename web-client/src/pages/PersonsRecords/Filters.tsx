@@ -1,64 +1,58 @@
 import {FC, useState} from "react";
 import {IRoomsRecordsFilter} from "../../shared/types/PersonsRecords.ts";
-import {IoSettingsOutline} from "react-icons/all";
 import {Button, Checkbox, Drawer} from "antd";
 import styled from "styled-components";
-import SIZES from "../../shared/constants/Sizes.ts";
+import {SIZES} from "../../shared/constants";
+import {IoSettingsOutline} from "react-icons/io5";
 
+export const Filters: FC<IRoomsRecordsFilter> = ({onlyCritical, setOnlyCritical}) => {
+  const [open, setOpen] = useState(false)
 
-const Filters: FC<IRoomsRecordsFilter> = ({onlyCritical, setOnlyCritical}) => {
+  const showDrawer = (): void => {
+    setOpen(true)
+  }
 
-    const [open, setOpen] = useState(false)
+  const onClose = (): void => {
+    setOpen(false)
+  }
 
-    const showDrawer = (): void => {
-        setOpen(true)
-    }
+  const onChangeCritical = (): void => {
+    setOnlyCritical(!onlyCritical)
+  }
 
-    const onClose = (): void => {
-        setOpen(false)
-    }
+  return (
+    <DrawerContainer>
+      <MyButton type="default" onClick={showDrawer}>
+        <IoSettingsOutline size={35}/>
+        <div>Фільтри</div>
+      </MyButton>
 
-    const onChangeCritical = (): void => {
-        setOnlyCritical(!onlyCritical)
-    }
-
-    return (
-        <DrawerContainer>
-            <MyButton type="default" onClick={showDrawer}>
-                <IoSettingsOutline size={35}/>
-                <div>Фільтри</div>
-
-            </MyButton>
-
-            <Drawer
-                title="Фільтри"
-                width={300}
-                onClose={onClose}
-                open={open}
-            >
-
-                <Checkbox checked={onlyCritical} onChange={onChangeCritical}>
-                    Тільки критичні
-                </Checkbox>
-            </Drawer>
-        </DrawerContainer>
-    )
+      <Drawer
+        title="Фільтри"
+        width={300}
+        onClose={onClose}
+        open={open}
+      >
+        <Checkbox checked={onlyCritical} onChange={onChangeCritical}>
+          Тільки критичні
+        </Checkbox>
+      </Drawer>
+    </DrawerContainer>
+  )
 }
 
 const DrawerContainer = styled.div`
-  position: relative;
+    position: relative;
 `
 
 const MyButton = styled(Button)`
-  position: absolute;
-  right: 0;
-  top: 10px;
-  z-index: 10;
-  height: 50px;
-  padding: 5px;
-  font-size: 1.5rem;
-  display: flex;
-  gap: ${SIZES.xs};
+    position: absolute;
+    right: 0;
+    top: 10px;
+    z-index: 10;
+    height: 50px;
+    padding: 5px;
+    font-size: 1.5rem;
+    display: flex;
+    gap: ${SIZES.xs};
 `
-
-export default Filters

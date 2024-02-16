@@ -1,92 +1,102 @@
 import {FC} from "react"
 import {Container, StatsTitle} from "./styles.ts"
-import ChartElement from "./ChartElement.tsx"
+import {ChartElement} from "./ChartElement.tsx"
 import {IRoomDashboardDataProps, RoomDashboardDataRequest, StatElement} from "../../shared/types/RoomDashboard.ts"
-import {AIR_IONS_MAX, AIR_IONS_MIN, CARBON_DIOXIDE_MAX, CARBON_DIOXIDE_MIN, HUMIDITY_MAX, HUMIDITY_MIN, OZONE_MAX, OZONE_MIN, PRESSURE_MAX, PRESSURE_MIN, TEMPERATURE_MAX, TEMPERATURE_MIN} from "../../shared/constants/RoomIndicators.ts"
+import {
+  ROOM_AIR_IONS_MAX,
+  ROOM_AIR_IONS_MIN,
+  ROOM_CARBON_DIOXIDE_MAX,
+  ROOM_CARBON_DIOXIDE_MIN,
+  ROOM_HUMIDITY_MAX,
+  ROOM_HUMIDITY_MIN,
+  ROOM_OZONE_MAX,
+  ROOM_OZONE_MIN,
+  ROOM_PRESSURE_MAX,
+  ROOM_PRESSURE_MIN,
+  ROOM_TEMPERATURE_MAX,
+  ROOM_TEMPERATURE_MIN
+} from "../../shared/constants"
 import moment from "moment"
 import {useParams} from "react-router-dom";
 import useSWR from "swr";
-import REQUESTS from "../../shared/constants/Requests.ts";
+import {REQUESTS} from "../../shared/constants";
 
-const Data: FC<IRoomDashboardDataProps> = ({day, month, year}) => {
+export const Data: FC<IRoomDashboardDataProps> = ({day, month, year}) => {
+  const {id} = useParams()
 
-    const {id} = useParams()
+  const {data} = useSWR<RoomDashboardDataRequest>(REQUESTS.ROOM_DASHBOARD(day, month, year, id))
+  if (!data) return null
 
-    const {data} = useSWR<RoomDashboardDataRequest>(REQUESTS.ROOM_DASHBOARD(day, month, year, id))
-    // const data = roomDashboard
-    if (!data) return null
+  const label = (element: StatElement): string => {
+    return `${id ? '' : element.roomNumber} ${moment(element.recordedDate).format('HH:MM')}`
+  }
 
-    const label = (element: StatElement): string => {
-        return `${id ? '' : element.roomNumber} ${moment(element.recordedDate).format('HH:MM')}`
+  const temperature = data.map((element: StatElement) => {
+    return {
+      min: ROOM_TEMPERATURE_MIN,
+      value: element.temperature,
+      max: ROOM_TEMPERATURE_MAX,
+      name: label(element)
     }
+  })
 
-    const temperature = data.map((element: StatElement) => {
-        return {
-            min: TEMPERATURE_MIN,
-            value: element.temperature,
-            max: TEMPERATURE_MAX,
-            name: label(element)
-        }
-    })
+  const humidity = data.map((element: StatElement) => {
+    return {
+      min: ROOM_HUMIDITY_MIN,
+      value: element.humidity,
+      max: ROOM_HUMIDITY_MAX,
+      name: label(element)
+    }
+  })
 
-    const humidity = data.map((element: StatElement) => {
-        return {
-            min: HUMIDITY_MIN,
-            value: element.humidity,
-            max: HUMIDITY_MAX,
-            name: label(element)
-        }
-    })
+  const ozone = data.map((element: StatElement) => {
+    return {
+      min: ROOM_OZONE_MIN,
+      value: element.ozone,
+      max: ROOM_OZONE_MAX,
+      name: label(element)
+    }
+  })
 
-    const ozone = data.map((element: StatElement) => {
-        return {
-            min: OZONE_MIN,
-            value: element.ozone,
-            max: OZONE_MAX,
-            name: label(element)
-        }
-    })
+  const pressure = data.map((element: StatElement) => {
+    return {
+      min: ROOM_PRESSURE_MIN,
+      value: element.pressure,
+      max: ROOM_PRESSURE_MAX,
+      name: label(element)
+    }
+  })
 
-    const pressure = data.map((element: StatElement) => {
-        return {
-            min: PRESSURE_MIN,
-            value: element.pressure,
-            max: PRESSURE_MAX,
-            name: label(element)
-        }
-    })
+  const airIons = data.map((element: StatElement) => {
+    return {
+      min: ROOM_AIR_IONS_MIN,
+      value: element.airIons,
+      max: ROOM_AIR_IONS_MAX,
+      name: label(element)
+    }
+  })
 
-    const airIons = data.map((element: StatElement) => {
-        return {
-            min: AIR_IONS_MIN,
-            value: element.airIons,
-            max: AIR_IONS_MAX,
-            name: label(element)
-        }
-    })
+  const carbonDioxide = data.map((element: StatElement) => {
+    return {
+      min: ROOM_CARBON_DIOXIDE_MIN,
+      value: element.carbonDioxide,
+      max: ROOM_CARBON_DIOXIDE_MAX,
+      name: label(element)
+    }
+  })
 
-    const carbonDioxide = data.map((element: StatElement) => {
-        return {
-            min: CARBON_DIOXIDE_MIN,
-            value: element.carbonDioxide,
-            max: CARBON_DIOXIDE_MAX,
-            name: label(element)
-        }
-    })
+  return (
+    <Container>
+      <StatsTitle>
+        Статистика за {day}/{month}/{year} {id && `| Кімната ${id}`}
+      </StatsTitle>
+      <ChartElement data={temperature} title={'Температура'}/>
+      <ChartElement data={humidity} title={'Вологість повітря'}/>
+      <ChartElement data={ozone} title={'Озон'}/>
+      <ChartElement data={pressure} title={'Тиск'}/>
+      <ChartElement data={airIons} title={'К-сть іонів'}/>
+      <ChartElement data={carbonDioxide} title={'Вуглекислий газ'}/>
+    </Container>
 
-    return (
-        <Container>
-            <StatsTitle>
-                Статистика за {day}/{month}/{year} {id && `| Кімната ${id}`}
-            </StatsTitle>
-            <ChartElement data={temperature} title={'Температура'}/>
-            <ChartElement data={humidity} title={'Вологість повітря'}/>
-            <ChartElement data={ozone} title={'Озон'}/>
-            <ChartElement data={pressure} title={'Тиск'}/>
-            <ChartElement data={airIons} title={'К-сть іонів'}/>
-            <ChartElement data={carbonDioxide} title={'Вуглекислий газ'}/>
-        </Container>
-
-    )
+  )
 }
-export default Data

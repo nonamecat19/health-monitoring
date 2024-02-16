@@ -1,16 +1,13 @@
-import { FC } from 'react'
-import { RoomRecordsElementProps } from '../../shared/types/RoomRecords.ts'
-import CriticalIcon from '../../shared/ui/CriticalIcon.tsx'
-import ParamElement from '../../shared/ui/ParamElement.tsx'
+import {FC} from 'react'
+import {RoomRecordsElementProps} from '../../shared/types/RoomRecords.ts'
+import {CriticalIcon, ParamElement} from '../../shared/ui'
 import moment from 'moment'
-import COLORS from '../../shared/constants/Colors.ts'
-import { Title, DivElement } from './styles.ts'
+import {COLORS, SIZES} from '../../shared/constants'
+import {DivElement, Title} from './styles.ts'
 import styled from 'styled-components'
-import SIZES from '../../shared/constants/Sizes.ts'
 
-const Element: FC<RoomRecordsElementProps> = ({ data }) => {
-
-  let {
+export const Element: FC<RoomRecordsElementProps> = ({data}) => {
+  const {
     roomRecordId,
     humidity,
     temperature,
@@ -34,18 +31,18 @@ const Element: FC<RoomRecordsElementProps> = ({ data }) => {
       color={isCriticalResults ? COLORS.red : COLORS.green2}
     >
 
-      <CriticalIcon critical={isCriticalResults} />
+      <CriticalIcon critical={isCriticalResults}/>
 
       <Title>
         Кімната {room.roomNumber}
       </Title>
 
-      <ParamElement label={'Температура повітря'} value={temperature} units={'°С'} />
-      <ParamElement label={'Вологість повітря'} value={humidity} units={'%'} />
-      <ParamElement label={'Тиск повітря'} value={pressure} units={'мм рт. ст.'} />
-      <ParamElement label={'Вуглекислий газ'} value={carbonDioxide} units={'ррm'} />
-      <ParamElement label={'Аероіони'} value={airIons} units={'іон/см³'} />
-      <ParamElement label={'Озон'} value={ozone} units={'мг/м³'} />
+      <ParamElement label={'Температура повітря'} value={temperature} units={'°С'}/>
+      <ParamElement label={'Вологість повітря'} value={humidity} units={'%'}/>
+      <ParamElement label={'Тиск повітря'} value={pressure} units={'мм рт. ст.'}/>
+      <ParamElement label={'Вуглекислий газ'} value={carbonDioxide} units={'ррm'}/>
+      <ParamElement label={'Аероіони'} value={airIons} units={'іон/см³'}/>
+      <ParamElement label={'Озон'} value={ozone} units={'мг/м³'}/>
       <Date>
         {moment(recordedDate).format('HH:MM')}
         {' '}
@@ -62,5 +59,3 @@ const Date = styled.div`
     font-size: 1.3rem;
     font-weight: bold;
 `
-
-export default Element

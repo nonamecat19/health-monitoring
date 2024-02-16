@@ -2,44 +2,42 @@ import {FC} from "react"
 import styled from "styled-components"
 import {DivElement} from "./styles"
 import {IRoomsElementProps} from "../../shared/types/Rooms"
-import PATH from "../../shared/constants/Path"
+import {PATH} from "../../shared/constants"
 import {Button, Popover} from "antd"
 import {useNavigate} from "react-router-dom"
 
-const Element: FC<IRoomsElementProps> = ({data}) => {
-    const {roomNumber, roomType} = data
+export const Element: FC<IRoomsElementProps> = ({data}) => {
+  const {roomNumber, roomType} = data
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
-    const toRecordsHandler = () => {
-        navigate(`/${PATH.ADMIN}/${PATH.ROOMS}/${PATH.RECORDS}/${roomNumber}`)
-    }
-    const toDashboardHandler = () => {
-        navigate(`/${PATH.ADMIN}/${PATH.ROOMS}/${PATH.DASHBOARD}/${roomNumber}`)
-    }
+  const toRecordsHandler = () => {
+    navigate(`/${PATH.ADMIN}/${PATH.ROOMS}/${PATH.RECORDS}/${roomNumber}`)
+  }
 
-    const content = (
-        <>
-            <Button onClick={toRecordsHandler}>Перейти до записів</Button>
-            <Button onClick={toDashboardHandler}>Перейти до статистики</Button>
-        </>
-    )
+  const toDashboardHandler = () => {
+    navigate(`/${PATH.ADMIN}/${PATH.ROOMS}/${PATH.DASHBOARD}/${roomNumber}`)
+  }
 
-    return (
-        <Popover content={content}>
-            <DivElement>
-                <Data>
-                    {roomNumber} {roomType}
-                </Data>
-            </DivElement>
-        </Popover>
-    )
+  const content = (
+    <>
+      <Button onClick={toRecordsHandler}>Перейти до записів</Button>
+      <Button onClick={toDashboardHandler}>Перейти до статистики</Button>
+    </>
+  )
+
+  return (
+    <Popover content={content}>
+      <DivElement>
+        <Data>
+          {roomNumber} {roomType}
+        </Data>
+      </DivElement>
+    </Popover>
+  )
 }
 
 
-
 const Data = styled.div`
-  font-size: 1.1rem;
+    font-size: 1.1rem;
 `
-
-export default Element

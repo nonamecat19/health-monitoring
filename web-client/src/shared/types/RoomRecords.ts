@@ -1,42 +1,42 @@
 import {Dispatch, SetStateAction} from "react";
 
 export interface RoomRecordsContainerProps {
-    data: RoomRecordType[]
+  data: RoomRecordType[]
 }
 
 export interface IRoomsRecordsFilter {
-    onlyCritical: boolean
-    setOnlyCritical: Dispatch<SetStateAction<boolean>>
+  onlyCritical: boolean
+  setOnlyCritical: Dispatch<SetStateAction<boolean>>
 }
 
 export interface IDataProps {
-    onlyCritical: boolean
+  onlyCritical: boolean
 }
 
 export interface RoomRecordsElementProps {
-    data: RoomRecordType
+  data: RoomRecordType
 }
 
 export type RoomRecordType = {
-    roomRecordId: number
+  roomRecordId: number
+  roomId: number
+  room: {
     roomId: number
-    room: {
-        roomId: number
-        roomNumber: string
-        roomType: string
-    }
-    humidity: number
-    temperature: number
-    pressure: number
-    carbonDioxide: number
-    airIons: number
-    ozone: number
-    isCriticalResults: boolean
-    recordedDate: Date | string
+    roomNumber: string
+    roomType: string
+  }
+  humidity: number
+  temperature: number
+  pressure: number
+  carbonDioxide: number
+  airIons: number
+  ozone: number
+  isCriticalResults: boolean
+  recordedDate: Date | string
 }
 
 export interface ParamProps {
-    label: string
-    value: string | number
-    units?: string
+  label: string
+  value: string | number
+  units?: string
 }

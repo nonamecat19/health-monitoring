@@ -1,5 +1,3 @@
-
-
 export interface ChartElementProps {
     data: ChartElementData[]
     title: string

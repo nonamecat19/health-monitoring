@@ -1,9 +1,8 @@
 import {FC} from "react";
-import {ParamProps} from "../../shared/types/RoomRecords.ts";
+import {ParamProps} from "../types/RoomRecords.ts";
 import styled from "styled-components";
 
-const ParamElement: FC<ParamProps> = ({label, value, units}) => {
-
+export const ParamElement: FC<ParamProps> = ({label, value, units}) => {
     return (
         <Param>
             {label} - {value}{units}
@@ -14,4 +13,3 @@ const ParamElement: FC<ParamProps> = ({label, value, units}) => {
 const Param = styled.div`
   font-size: 1rem;
 `
-export default ParamElement
