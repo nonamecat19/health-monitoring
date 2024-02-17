@@ -1,8 +1,7 @@
-import {APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE} from '@nestjs/core';
+import {APP_FILTER, APP_GUARD, APP_INTERCEPTOR} from '@nestjs/core';
 import {ThrottlerGuard} from '@nestjs/throttler';
 import {ResponseInterceptor} from '@shared/interceptors';
 import {ResponseTransformFilter} from '@shared/filters';
-import {ValidationPipe} from '@nestjs/common';
 
 export const appGlobalProviders = [
   {
@@ -16,9 +15,5 @@ export const appGlobalProviders = [
   {
     provide: APP_FILTER,
     useClass: ResponseTransformFilter,
-  },
-  {
-    provide: APP_PIPE,
-    useClass: ValidationPipe,
   },
 ];

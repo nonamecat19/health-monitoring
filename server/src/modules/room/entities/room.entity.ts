@@ -4,7 +4,7 @@ import {BaseEntity} from '@shared/clases/baseEntity';
 
 @Entity()
 export class Room extends BaseEntity {
-  @Column()
+  @Column({unique: true})
   roomNumber: string;
 
   @Column()

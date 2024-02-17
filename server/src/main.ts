@@ -1,6 +1,6 @@
 import {NestFactory} from '@nestjs/core';
 import {AppModule} from './app/app.module';
-import {VersioningType} from '@nestjs/common';
+import {ValidationPipe, VersioningType} from '@nestjs/common';
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify';
 import {ConfigService} from '@nestjs/config';
 import {enableCors} from './app/appCors';
@@ -14,6 +14,11 @@ async function bootstrap() {
   app.enableVersioning({
     type: VersioningType.URI,
   });
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+    })
+  );
   await app.listen(configService.getOrThrow<number>('app.port'));
 }
 

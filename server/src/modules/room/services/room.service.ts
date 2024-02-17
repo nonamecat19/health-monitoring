@@ -15,7 +15,7 @@ export class RoomService implements CrudOperations<Room> {
 
   public async create(fields: CreateRoomRequest): Promise<Room> {
     const newRoom = this.roomRepository.create(fields);
-    return await this.roomRepository.save(newRoom);
+    return this.roomRepository.save(newRoom);
   }
 
   public async getAll(): Promise<GetAll<Room>> {
