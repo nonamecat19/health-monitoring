@@ -1,11 +1,9 @@
-import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
+import {Column, Entity} from 'typeorm';
 import {PersonRole} from '@shared/constants';
+import {BaseEntity} from '@shared/clases/baseEntity';
 
 @Entity()
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class User extends BaseEntity {
   @Column({default: PersonRole.Student})
   role: string;
 
@@ -15,13 +13,8 @@ export class User {
   @Column({select: false})
   password: string;
 
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
   constructor(item: Partial<User>) {
+    super();
     Object.assign(this, item);
   }
 }

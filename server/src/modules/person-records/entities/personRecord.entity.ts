@@ -1,12 +1,10 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn} from 'typeorm';
+import {Entity, Column, ManyToOne} from 'typeorm';
 import {Person} from '../../person/entities';
 import {Room} from '../../room/entities';
+import {BaseEntity} from '@shared/clases/baseEntity';
 
 @Entity()
-export class PersonRecord {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class PersonRecord extends BaseEntity {
   @ManyToOne(() => Person, ({id}) => id)
   person: Person;
 
@@ -25,10 +23,8 @@ export class PersonRecord {
   @Column()
   isCriticalResult: boolean;
 
-  @CreateDateColumn()
-  recordedDate: Date;
-
   constructor(item: Partial<PersonRecord>) {
+    super();
     Object.assign(this, item);
   }
 }

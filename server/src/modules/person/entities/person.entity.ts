@@ -1,12 +1,10 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm';
+import {Entity, Column, OneToMany} from 'typeorm';
 import {PersonRecord} from '../../person-records/entities';
 import {PersonRole} from '@shared/constants';
+import {BaseEntity} from '@shared/clases/baseEntity';
 
 @Entity()
-export class Person {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Person extends BaseEntity {
   @Column({nullable: true, unique: true})
   studentID: number;
 
@@ -26,6 +24,7 @@ export class Person {
   personRecord: PersonRecord[];
 
   constructor(item: Partial<Person>) {
+    super();
     Object.assign(this, item);
   }
 }

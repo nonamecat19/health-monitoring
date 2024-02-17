@@ -1,11 +1,9 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn} from 'typeorm';
 import {Room} from '../../room/entities';
+import {BaseEntity} from '@shared/clases/baseEntity';
 
 @Entity()
-export class RoomRecord {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class RoomRecord extends BaseEntity {
   @ManyToOne(() => Room, ({id}) => id)
   room: Room;
 
@@ -30,10 +28,8 @@ export class RoomRecord {
   @Column()
   isCriticalResult: boolean;
 
-  @CreateDateColumn()
-  recordedDate: Date;
-
   constructor(item: Partial<RoomRecord>) {
+    super();
     Object.assign(this, item);
   }
 }

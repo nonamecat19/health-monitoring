@@ -1,12 +1,9 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm';
+import {Entity, Column, OneToMany} from 'typeorm';
 import {RoomRecord} from '../../room-records/entities';
-import {PersonRecord} from '../../person-records/entities';
+import {BaseEntity} from '@shared/clases/baseEntity';
 
 @Entity()
-export class Room {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Room extends BaseEntity {
   @Column()
   roomNumber: string;
 
@@ -16,10 +13,8 @@ export class Room {
   @OneToMany(() => RoomRecord, ({room}) => room)
   roomRecords: RoomRecord[];
 
-  @OneToMany(() => PersonRecord, ({room}) => room)
-  personRecords: PersonRecord[];
-
   constructor(item: Partial<Room>) {
+    super();
     Object.assign(this, item);
   }
 }
