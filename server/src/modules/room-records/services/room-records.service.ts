@@ -6,6 +6,8 @@ import {DeleteResult, Repository} from 'typeorm';
 import {CreateRoomRecordRequest} from '../requests';
 import {GetAll} from '@shared/interfaces/services.types';
 import {every, inRange} from 'lodash';
+import {RoomDashboardRequest} from '../requests/room-dashboard.request';
+import {addDays} from 'date-fns';
 
 @Injectable()
 export class RoomRecordsService implements CrudOperations<RoomRecord> {
@@ -15,12 +17,13 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
   ) {}
 
   public async create(fields: CreateRoomRecordRequest): Promise<RoomRecord> {
+    console.log(fields);
     const {airIons, carbonDioxide, humidity, ozone, pressure, roomId, temperature} = fields;
     const isCriticalResult = this.isCriticalResults(fields);
     const record = this.roomRecordRepository.create({
-      room: {
-        id: roomId,
-      },
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      room: roomId,
       humidity,
       temperature,
       pressure,
@@ -29,6 +32,9 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
       ozone,
       isCriticalResult,
     });
+    console.log(record);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     return this.roomRecordRepository.save(record);
   }
 
@@ -76,5 +82,20 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
       inRange(airIons, 400, 601),
       inRange(ozone, 0.1, 0.17),
     ]);
+  }
+
+  public async roomDashboard(params: RoomDashboardRequest): Promise<RoomRecord[]> {
+    const {day, id, month, year} = params;
+    const startDate = new Date(year, month - 1, day);
+    const finishDate = addDays(startDate, 1);
+
+    const qb = this.roomRecordRepository
+      .createQueryBuilder('record')
+      .where('record.createdAt BETWEEN :startDate AND :finishDate', {startDate, finishDate});
+
+    if (id) {
+      qb.leftJoin('record.room', 'room').andWhere('room.id = :id', {id});
+    }
+    return qb.getMany();
   }
 }
