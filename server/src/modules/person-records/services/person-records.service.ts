@@ -6,6 +6,7 @@ import {CrudOperations} from '@shared/interfaces';
 import {GetAll} from '@shared/interfaces';
 import {CreatePersonRecordRequest} from '../requests';
 import {every, inRange} from 'lodash';
+import {addDays} from 'date-fns';
 
 @Injectable()
 export class PersonRecordsService implements CrudOperations<PersonRecord> {
@@ -19,17 +20,15 @@ export class PersonRecordsService implements CrudOperations<PersonRecord> {
 
     const isCriticalResult = this.isCriticalResults(entity);
     const newRecord = this.personRecordsRepository.create({
-      person: {
-        id: personId,
-      },
-      room: {
-        id: roomId,
-      },
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      person: personId,
+      room: roomId,
       saturation,
       heartRate,
       temperature,
       isCriticalResult,
-    });
+    }) as PersonRecord;
     return this.personRecordsRepository.save(newRecord);
   }
 
@@ -61,5 +60,20 @@ export class PersonRecordsService implements CrudOperations<PersonRecord> {
       inRange(heartRate, 60, 70),
       inRange(temperature, 36.4, 36.8),
     ]);
+  }
+
+  public async personDashboard(params: any): Promise<PersonRecord[]> {
+    const {day, id, month, year} = params;
+    const startDate = new Date(year, month - 1, day);
+    const finishDate = addDays(startDate, 1);
+
+    const qb = this.personRecordsRepository
+      .createQueryBuilder('record')
+      .where('record.createdAt BETWEEN :startDate AND :finishDate', {startDate, finishDate});
+
+    if (id) {
+      qb.leftJoin('record.room', 'room').andWhere('room.id = :id', {id});
+    }
+    return qb.getMany();
   }
 }

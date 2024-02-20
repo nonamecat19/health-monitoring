@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, Patch, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Patch, Post, Query} from '@nestjs/common';
 import {PersonRecordsService} from '../services';
 import {CreatePersonRecordRequest} from '../requests';
 
@@ -12,6 +12,11 @@ export class PersonRecordsController {
   @Get()
   public async getAllPersonRecords() {
     return this.personRecordsService.getAll();
+  }
+
+  @Get('dashboard')
+  public async personDashboard(@Query() params: any) {
+    return this.personRecordsService.personDashboard(params);
   }
 
   @Get('id')
