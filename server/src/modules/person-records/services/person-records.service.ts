@@ -29,6 +29,7 @@ export class PersonRecordsService implements CrudOperations<PersonRecord> {
       temperature,
       isCriticalResult,
     }) as PersonRecord;
+
     return this.personRecordsRepository.save(newRecord);
   }
 
