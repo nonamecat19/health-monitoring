@@ -16,7 +16,7 @@ export const REQUESTS = {
     `${REQUEST_DOMAIN}/room-records?pageNumber=${page}&isOutputOnlyCritical=${critical}`,
 
   ROOM_DASHBOARD: (day: string, month: string, year: string, id: string | undefined) =>
-    `${REQUEST_DOMAIN}/room-records/Dashboard?day=${day}&month=${month}&year=${year}${id ? `&id=${id}` : ''}`,
+    `${REQUEST_DOMAIN}/room-records/dashboard?day=${day}&month=${month}&year=${year}${id ? `&id=${id}` : ''}`,
 
   ROOM_RECORDS_ID: (id: string, page: number, critical: boolean) =>
     `${REQUEST_DOMAIN}/room-records/${id}?pageNumber=${page}&isOutputOnlyCritical=${critical}`,
@@ -31,7 +31,7 @@ export const REQUESTS = {
     `${REQUEST_DOMAIN}/persons?page=${page}&search=${search}`,
 
   PERSON_DASHBOARD: (day: string, month: string, year: string, id: string | undefined) =>
-    `${REQUEST_DOMAIN}/persons/dashboard?day=${day}&month=${month}&year=${year}${id ? `&id=${id}` : ''}`,
+    `${REQUEST_DOMAIN}/person-records/dashboard?day=${day}&month=${month}&year=${year}${id ? `&id=${id}` : ''}`,
 
   ROOM_LIST: `${REQUEST_DOMAIN}/rooms`,
 

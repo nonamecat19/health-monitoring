@@ -10,12 +10,13 @@ export const Data: FC<IDataProps> = ({onlyCritical}) => {
   const [page, prev, next] = usePagination()
   const {id} = useParams()
   const {data} = usePersonsRecordList(page, onlyCritical, id)
+  console.log({data})
 
   if (!data) return null
 
   return (
     <>
-      <Container data={data}/>
+      <Container data={data.data}/>
       <Pagination page={page} prev={prev} next={next}/>
     </>
   )
