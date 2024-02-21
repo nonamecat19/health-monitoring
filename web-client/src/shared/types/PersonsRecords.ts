@@ -20,7 +20,7 @@ export type PersonRecordType = {
   saturation: number
   heartRate: number
   temperature: number
-  isCriticalResults: boolean
+  isCriticalResult: boolean
   recordedDate: string
 }
 

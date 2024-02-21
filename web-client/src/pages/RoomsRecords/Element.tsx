@@ -8,7 +8,7 @@ import styled from 'styled-components'
 
 export const Element: FC<RoomRecordsElementProps> = ({data}) => {
   const {
-    roomRecordId,
+    id,
     humidity,
     temperature,
     pressure,
@@ -16,22 +16,22 @@ export const Element: FC<RoomRecordsElementProps> = ({data}) => {
     ozone,
     recordedDate,
     airIons,
-    isCriticalResults,
+    isCriticalResult,
     carbonDioxide,
   } = data
 
 
   const clickHandler = (): void => {
-    console.log(roomRecordId)
+    console.log(id)
   }
 
   return (
     <DivElement
       onClick={clickHandler}
-      color={isCriticalResults ? COLORS.red : COLORS.green2}
+      color={isCriticalResult ? COLORS.red : COLORS.green2}
     >
 
-      <CriticalIcon critical={isCriticalResults}/>
+      <CriticalIcon critical={isCriticalResult}/>
 
       <Title>
         Кімната {room.roomNumber}

@@ -31,7 +31,7 @@ export type RoomRecordType = {
   carbonDioxide: number
   airIons: number
   ozone: number
-  isCriticalResults: boolean
+  isCriticalResult: boolean
   recordedDate: Date | string
 }
 

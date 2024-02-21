@@ -13,13 +13,13 @@ export const REQUESTS = {
   LOGIN: `${REQUEST_DOMAIN}/auth/login`,
 
   ROOM_RECORDS: (page: number, critical: boolean) =>
-    `${REQUEST_DOMAIN}/room-records?pageNumber=${page}&isOutputOnlyCritical=${critical}`,
+    `${REQUEST_DOMAIN}/room-records?page=${page}&onlyCritical=${critical}`,
 
   ROOM_DASHBOARD: (day: string, month: string, year: string, id: string | undefined) =>
     `${REQUEST_DOMAIN}/room-records/dashboard?day=${day}&month=${month}&year=${year}${id ? `&id=${id}` : ''}`,
 
   ROOM_RECORDS_ID: (id: string, page: number, critical: boolean) =>
-    `${REQUEST_DOMAIN}/room-records/${id}?pageNumber=${page}&isOutputOnlyCritical=${critical}`,
+    `${REQUEST_DOMAIN}/room-records/${id}?page=${page}&onlyCritical=${critical}`,
 
   PERSON_RECORDS: (page: number, critical: boolean) =>
     `${REQUEST_DOMAIN}/person-records?page=${page}&onlyCritical=${critical}`,

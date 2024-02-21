@@ -1,7 +1,11 @@
 import {Body, Controller, Delete, Get, Param, Patch, Post, Query} from '@nestjs/common';
-import {CreateRoomRecordRequest, EditRoomRecordRequest} from '../requests';
+import {
+  CreateRoomRecordRequest,
+  EditRoomRecordRequest,
+  GetRoomRecords,
+  RoomDashboardRequest,
+} from '../requests';
 import {RoomRecordsService} from '../services';
-import {RoomDashboardRequest} from '../requests/room-dashboard.request';
 
 @Controller({
   path: 'room-records',
@@ -11,7 +15,7 @@ export class RoomRecordsController {
   constructor(private readonly roomRecordsService: RoomRecordsService) {}
 
   @Get()
-  public async getAllRoomRecords(@Query() query: any) {
+  public async getAllRoomRecords(@Query() query: GetRoomRecords) {
     return this.roomRecordsService.getAll(query);
   }
 

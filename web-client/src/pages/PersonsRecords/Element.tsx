@@ -10,9 +10,9 @@ export const Element: FC<IPersonRecordsElementProps> = ({data}) => {
   const date = moment(data.recordedDate).format('D/M/YYYY');
 
   return (
-    <DivElement color={data.isCriticalResults ? COLORS.red : COLORS.green2}>
+    <DivElement color={data.isCriticalResult ? COLORS.red : COLORS.green2}>
       <Name>{data.person.name}</Name>
-      <CriticalIcon critical={data.isCriticalResults}/>
+      <CriticalIcon critical={data.isCriticalResult}/>
       <ParamElement label={'Група'} value={data.person.studyGroup}/>
       <ParamElement label={'Кисень'} value={data.saturation} units={''}/>
       <ParamElement label={'Частота серцебиття'} value={data.heartRate} units={'уд./хв.'}/>

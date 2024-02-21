@@ -7,6 +7,8 @@ import {GetAll} from '@shared/interfaces';
 import {CreatePersonRecordRequest} from '../requests';
 import {every, inRange} from 'lodash';
 import {addDays} from 'date-fns';
+import {GetRoomRecords} from '../../room-records/requests';
+import {FindOptionsWhere} from 'typeorm/find-options/FindOptionsWhere';
 
 @Injectable()
 export class PersonRecordsService implements CrudOperations<PersonRecord> {
@@ -37,12 +39,17 @@ export class PersonRecordsService implements CrudOperations<PersonRecord> {
     return this.personRecordsRepository.findOneBy({id});
   }
 
-  public async getAll(): Promise<GetAll<PersonRecord>> {
+  public async getAll(params: GetRoomRecords): Promise<GetAll<PersonRecord>> {
+    const where: FindOptionsWhere<PersonRecord> = {};
+    if (params.onlyCritical) {
+      where.isCriticalResult = true;
+    }
     const [personRecords, count] = await this.personRecordsRepository.findAndCount({
       relations: {
         person: true,
         room: true,
       },
+      where,
     });
     return {
       data: personRecords,

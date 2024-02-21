@@ -3,11 +3,11 @@ import {CrudOperations} from '@shared/interfaces';
 import {RoomRecord} from '../entities';
 import {InjectRepository} from '@nestjs/typeorm';
 import {DeleteResult, Repository} from 'typeorm';
-import {CreateRoomRecordRequest} from '../requests';
+import {CreateRoomRecordRequest, GetRoomRecords, RoomDashboardRequest} from '../requests';
 import {GetAll} from '@shared/interfaces/services.types';
 import {every, inRange} from 'lodash';
-import {RoomDashboardRequest} from '../requests/room-dashboard.request';
 import {addDays} from 'date-fns';
+import {FindOptionsWhere} from 'typeorm/find-options/FindOptionsWhere';
 
 @Injectable()
 export class RoomRecordsService implements CrudOperations<RoomRecord> {
@@ -17,10 +17,11 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
   ) {}
 
   public async create(fields: CreateRoomRecordRequest): Promise<RoomRecord> {
-    console.log(fields);
     const {airIons, carbonDioxide, humidity, ozone, pressure, roomId, temperature} = fields;
     const isCriticalResult = this.isCriticalResults(fields);
     const record = this.roomRecordRepository.create({
+      //TODO
+
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
       room: roomId,
@@ -32,17 +33,22 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
       ozone,
       isCriticalResult,
     });
-    console.log(record);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     return this.roomRecordRepository.save(record);
   }
 
-  public async getAll(params: any): Promise<GetAll<RoomRecord>> {
+  public async getAll(params: GetRoomRecords): Promise<GetAll<RoomRecord>> {
+    const where: FindOptionsWhere<RoomRecord> = {};
+    if (params.onlyCritical) {
+      where.isCriticalResult = true;
+    }
+    console.log({where});
     const [roomRecords, count] = await this.roomRecordRepository.findAndCount({
       relations: {
         room: true,
       },
+      where,
     });
     return {
       data: roomRecords,

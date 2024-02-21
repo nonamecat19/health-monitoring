@@ -1,6 +1,7 @@
 import {Body, Controller, Delete, Get, Param, Patch, Post, Query} from '@nestjs/common';
 import {PersonRecordsService} from '../services';
 import {CreatePersonRecordRequest} from '../requests';
+import {GetRoomRecords} from '../../room-records/requests';
 
 @Controller({
   path: 'person-records',
@@ -10,8 +11,8 @@ export class PersonRecordsController {
   constructor(private readonly personRecordsService: PersonRecordsService) {}
 
   @Get()
-  public async getAllPersonRecords() {
-    return this.personRecordsService.getAll();
+  public async getAllPersonRecords(@Query() params: GetRoomRecords) {
+    return this.personRecordsService.getAll(params);
   }
 
   @Get('dashboard')
