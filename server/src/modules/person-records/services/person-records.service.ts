@@ -38,7 +38,12 @@ export class PersonRecordsService implements CrudOperations<PersonRecord> {
   }
 
   public async getAll(): Promise<GetAll<PersonRecord>> {
-    const [personRecords, count] = await this.personRecordsRepository.findAndCount();
+    const [personRecords, count] = await this.personRecordsRepository.findAndCount({
+      relations: {
+        person: true,
+        room: true,
+      },
+    });
     return {
       data: personRecords,
       maxPage: count,

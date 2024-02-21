@@ -39,7 +39,11 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
   }
 
   public async getAll(params: any): Promise<GetAll<RoomRecord>> {
-    const [roomRecords, count] = await this.roomRecordRepository.findAndCount();
+    const [roomRecords, count] = await this.roomRecordRepository.findAndCount({
+      relations: {
+        room: true,
+      },
+    });
     return {
       data: roomRecords,
       maxPage: count,
