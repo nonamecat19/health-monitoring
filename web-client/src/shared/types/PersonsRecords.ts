@@ -1,7 +1,7 @@
 import {Dispatch, SetStateAction} from "react";
 
 export type PersonRecordType = {
-  personRecordId: number
+  id: number
   personId: number
   person: {
     personId: number

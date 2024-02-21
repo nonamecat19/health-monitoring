@@ -18,7 +18,7 @@ export interface RoomRecordsElementProps {
 }
 
 export type RoomRecordType = {
-  roomRecordId: number
+  id: number
   roomId: number
   room: {
     roomId: number

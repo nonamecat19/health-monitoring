@@ -8,7 +8,7 @@ export const Container: FC<RoomRecordsContainerProps> = ({data}) => {
     <DetailsContainer>
       {
         data.map((item: RoomRecordType) => {
-          return <Element data={item} key={item.roomRecordId}/>
+          return <Element data={item} key={item.id}/>
         })
       }
     </DetailsContainer>
