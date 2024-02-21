@@ -1,7 +1,7 @@
 import {FC} from "react"
 import {Container, StatsTitle} from "./styles.ts"
 import {ChartElement} from "./ChartElement.tsx"
-import {IRoomDashboardDataProps, RoomDashboardDataRequest, StatElement} from "../../shared/types/RoomDashboard.ts"
+import {IRoomDashboardDataProps, StatElement} from "../../shared/types/RoomDashboard.ts"
 import {
   ROOM_AIR_IONS_MAX,
   ROOM_AIR_IONS_MIN,
@@ -18,17 +18,17 @@ import {
 } from "../../shared/constants"
 import moment from "moment"
 import {useParams} from "react-router-dom";
-import useSWR from "swr";
-import {REQUESTS} from "../../shared/constants";
+import {useRoomDashboard} from "../../shared/api";
 
 export const Data: FC<IRoomDashboardDataProps> = ({day, month, year}) => {
   const {id} = useParams()
 
-  const {data} = useSWR<RoomDashboardDataRequest>(REQUESTS.ROOM_DASHBOARD(day, month, year, id))
+  const {data} = useRoomDashboard(day, month, year, id)
+  console.log({data})
   if (!data) return null
 
   const label = (element: StatElement): string => {
-    return `${id ? '' : element.roomNumber} ${moment(element.recordedDate).format('HH:MM')}`
+    return `${element.room.roomNumber} ${moment(element.createdAt).format('HH:mm')}`
   }
 
   const temperature = data.map((element: StatElement) => {

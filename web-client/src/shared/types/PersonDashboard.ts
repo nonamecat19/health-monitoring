@@ -9,19 +9,28 @@ export interface IPersonDashboardDataProps {
 export type PersonDashboardDataRequest = StatElement[]
 
 export type StatElement = {
-  id_person_records: number
-  id_person: number
-  room_number: string
-  oxygen: string
-  heart_rate: string
-  temperature: string
-  is_critical_results: boolean
-  recorded_time: Date
-  recorded_date: Date
+  id: number
+  createdAt: string
+  updatedAt: string
+  saturation: number
+  heartRate: number
+  temperature: number
+  isCriticalResult: boolean
+  room: {
+    id: number
+    createdAt: string
+    updatedAt: string
+    roomNumber: string
+    roomType: string
+  }
   person: {
-    id_person: number
-    name_person: string
-    study_group: string
-    role_person: RoleType
+    id: number
+    createdAt: Date
+    updatedAt: Date
+    studentID: number
+    name: string
+    studyGroup: string
+    role: RoleType
+    email: string
   }
 }

@@ -95,10 +95,11 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
 
     const qb = this.roomRecordRepository
       .createQueryBuilder('record')
+      .leftJoinAndSelect('record.room', 'room')
       .where('record.createdAt BETWEEN :startDate AND :finishDate', {startDate, finishDate});
 
     if (id) {
-      qb.leftJoin('record.room', 'room').andWhere('room.id = :id', {id});
+      qb.andWhere('room.id = :id', {id});
     }
     return qb.getMany();
   }

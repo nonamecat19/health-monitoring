@@ -75,10 +75,12 @@ export class PersonRecordsService implements CrudOperations<PersonRecord> {
 
     const qb = this.personRecordsRepository
       .createQueryBuilder('record')
+      .leftJoinAndSelect('record.room', 'room')
+      .leftJoinAndSelect('record.person', 'person')
       .where('record.createdAt BETWEEN :startDate AND :finishDate', {startDate, finishDate});
 
     if (id) {
-      qb.leftJoin('record.room', 'room').andWhere('room.id = :id', {id});
+      qb.andWhere('room.id = :id', {id});
     }
     return qb.getMany();
   }

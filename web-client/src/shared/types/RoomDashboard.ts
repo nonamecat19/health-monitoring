@@ -19,16 +19,19 @@ export type ChartElement = {
 }
 
 export type StatElement = {
-  roomRecordId: number
-  humidity: number
-  temperature: number
-  pressure: number
-  carbonDioxide: number
   airIons: number
+  carbonDioxide: number
+  createdAt: Date
+  humidity: number
+  id: number
+  isCriticalResult: true
   ozone: number
-  isCriticalResults: boolean
-  recordedDate: Date | string
-  roomId: number
-  roomNumber: string
-  roomType: string
+  pressure: number
+  temperature: number
+  room: {
+    id: number
+    roomNumber: string
+    createdAt: Date
+    updatedAt: Date
+  }
 }
