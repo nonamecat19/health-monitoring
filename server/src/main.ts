@@ -4,6 +4,7 @@ import {ValidationPipe, VersioningType} from '@nestjs/common';
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify';
 import {ConfigService} from '@nestjs/config';
 import {enableCors} from './app/appCors';
+import * as morgan from 'morgan';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
@@ -19,6 +20,7 @@ async function bootstrap() {
       transform: true,
     })
   );
+  app.use(morgan('tiny'));
   await app.listen(configService.getOrThrow<number>('app.port'));
 }
 
