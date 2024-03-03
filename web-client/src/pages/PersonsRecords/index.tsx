@@ -1,10 +1,9 @@
-import {IPage} from "../../shared/types/Global.ts";
 import {FC, Suspense, useState} from "react";
 import {Data} from "./Data.tsx";
 import {Skeleton} from "./Skeleton.tsx";
 import {Filters} from "./Filters.tsx";
 
-export const PersonRecords: FC<IPage> = () => {
+export const PersonRecords: FC = () => {
   const [onlyCritical, setOnlyCritical] = useState<boolean>(false)
 
   return (

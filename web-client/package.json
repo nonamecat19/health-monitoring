@@ -9,7 +9,7 @@
     "build": "tsc && vite build",
     "lint": "eslint --fix --ext *.ts *.tsx",
     "preview": "vite preview",
-    "capacitor-ios": "npx cap sync && npx cap open ios",
+    "capacitor-ios": "npm run build && npx cap sync && npx cap open ios",
     "capacitor-android": "npm run build && npx cap sync && npx cap open android"
   },
   "dependencies": {

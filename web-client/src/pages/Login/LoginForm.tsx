@@ -15,12 +15,14 @@ export const LoginForm: FC = () => {
     message: 'Заповніть це поле!'
   }]
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
   const onFinish = ({username, password}: any) => {
     setLoading(true)
-    const loginData = {
-      username,
-      password
-    }
+    // const loginData = {
+    //   username,
+    //   password
+    // }
     // Request(POST, REQUESTS.LOGIN, loginData)
     //     .then((data) => {
     //         localStorage.setItem(TOKEN_NAME, data.data.token)
