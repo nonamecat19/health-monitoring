@@ -9,5 +9,6 @@ import {MapperService} from '@shared/services';
   imports: [TypeOrmModule.forFeature([Person])],
   controllers: [PersonController],
   providers: [PersonService, MapperService],
+  exports: [PersonService],
 })
 export class PersonModule {}

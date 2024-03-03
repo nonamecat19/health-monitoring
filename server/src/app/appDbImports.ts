@@ -2,7 +2,6 @@ import {ConfigService} from '@nestjs/config';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {RedisModule} from '@nestjs-modules/ioredis';
 import {DynamicModule} from '@nestjs/common';
-import {User} from '../modules/user/entities';
 import {Person} from '../modules/person/entities';
 import {PersonRecord} from '../modules/person-records/entities';
 import {Room} from '../modules/room/entities';
@@ -23,5 +22,5 @@ export const AppDbImports: DynamicModule[] = [
     }),
     inject: [ConfigService],
   }),
-  TypeOrmModule.forFeature([User, Person, PersonRecord, Room, RoomRecord]),
+  TypeOrmModule.forFeature([Person, PersonRecord, Room, RoomRecord]),
 ];

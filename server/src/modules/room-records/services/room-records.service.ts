@@ -2,7 +2,7 @@ import {Injectable} from '@nestjs/common';
 import {CrudOperations} from '@shared/interfaces';
 import {RoomRecord} from '../entities';
 import {InjectRepository} from '@nestjs/typeorm';
-import {DeleteResult, Repository} from 'typeorm';
+import {DeleteResult, Repository, UpdateResult} from 'typeorm';
 import {CreateRoomRecordRequest, GetRoomRecords, RoomDashboardRequest} from '../requests';
 import {GetAll} from '@shared/interfaces/services.types';
 import {every, inRange} from 'lodash';
@@ -65,16 +65,16 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
     });
   }
 
-  public async edit(fields: Partial<RoomRecord>): Promise<RoomRecord> {
-    await this.roomRecordRepository.update({id: fields.id}, fields);
-    return this.roomRecordRepository.findOne({
-      where: {
-        id: fields.id,
-      },
-      relations: {
-        room: true,
-      },
-    });
+  public async edit(fields: Partial<RoomRecord>): Promise<UpdateResult> {
+    return this.roomRecordRepository.update({id: fields.id}, fields);
+    // return this.roomRecordRepository.findOne({
+    //   where: {
+    //     id: fields.id,
+    //   },
+    //   relations: {
+    //     room: true,
+    //   },
+    // });
   }
 
   public async delete(id: number): Promise<DeleteResult> {

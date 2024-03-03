@@ -4,6 +4,7 @@ import DatabaseConfig from './database.config';
 import JwtConfig from './jwt.config';
 import RedisConfig from './redis.config';
 import ChatConfig from './chat.config';
+import MailConfig from './mail.config';
 
 export const AppConfigs = [
   AppConfig,
@@ -12,4 +13,5 @@ export const AppConfigs = [
   RedisConfig,
   CookieConfig,
   ChatConfig,
+  MailConfig,
 ];

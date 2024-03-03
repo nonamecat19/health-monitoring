@@ -8,17 +8,33 @@ export class Person extends BaseEntity {
   @Column({nullable: true, unique: true})
   studentID: number;
 
-  @Column()
+  @Column({nullable: true})
   name: string;
 
+  @Column({nullable: true})
+  surname: string;
+
+  @Column({nullable: true})
+  patronymic: string;
+
+  //TODO: to table
   @Column({nullable: true})
   studyGroup: string;
 
   @Column({default: PersonRole.Student})
   role: string;
 
-  @Column({nullable: true, unique: true})
+  @Column({unique: true})
   email: string;
+
+  @Column({nullable: true, select: false})
+  password: string;
+
+  @Column({nullable: true, select: false})
+  confirmCode: string;
+
+  @Column({default: false})
+  confirmed: boolean;
 
   @OneToMany(() => PersonRecord, ({id}) => id)
   personRecord: PersonRecord[];

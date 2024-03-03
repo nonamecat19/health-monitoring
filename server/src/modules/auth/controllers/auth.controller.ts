@@ -2,8 +2,8 @@ import {
   BadRequestException,
   Body,
   Controller,
-  Get,
   HttpCode,
+  HttpStatus,
   Post,
   Res,
   UnauthorizedException,
@@ -29,12 +29,7 @@ export class AuthController {
     this.refreshToken = this.configService.get<string>('cookie.refreshToken');
   }
 
-  @Get()
-  public async a() {
-    return 2;
-  }
-
-  @HttpCode(200)
+  @HttpCode(HttpStatus.OK)
   @Post('login')
   public async login(@Body() loginDto: LoginRequest, @Res() reply: FastifyReply) {
     const userOrError = await this.authService.getUserOrErrorByCredentials(loginDto);

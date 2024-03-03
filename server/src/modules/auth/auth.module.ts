@@ -1,18 +1,14 @@
 import {Module} from '@nestjs/common';
-import {AuthController, UserController} from './controllers';
+import {AuthController, UserAuthController} from './controllers';
 import {AuthService} from './services';
 import {JwtService} from '@nestjs/jwt';
-import {TypeOrmModule} from '@nestjs/typeorm';
 import {JwtStrategy} from '@shared/strategies';
-import {User} from '../user/entities';
-import {Person} from '../person/entities';
-import {PersonRecord} from '../person-records/entities';
-import {Room} from '../room/entities';
-import {RoomRecord} from '../room-records/entities';
+import {MailModule} from '../mail/mail.module';
+import {PersonModule} from '../person/person.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Person, PersonRecord, Room, RoomRecord])],
-  controllers: [AuthController, UserController],
+  imports: [MailModule, PersonModule],
+  controllers: [AuthController, UserAuthController],
   providers: [AuthService, JwtStrategy, JwtService],
 })
 export class AuthModule {}

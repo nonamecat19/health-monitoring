@@ -1,10 +1,11 @@
 import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Person} from '../entities';
-import {DeleteResult, Repository} from 'typeorm';
+import {DeleteResult, Repository, UpdateResult} from 'typeorm';
 import {CrudOperations} from '@shared/interfaces';
 import {CreatePersonRequest} from '../requests';
 import {GetAll} from '@shared/interfaces/services.types';
+import {FindOptionsWhere} from 'typeorm/find-options/FindOptionsWhere';
 
 @Injectable()
 export class PersonService implements CrudOperations<Person> {
@@ -30,8 +31,12 @@ export class PersonService implements CrudOperations<Person> {
     return this.personRepository.findOneBy({id});
   }
 
-  public async edit(fields: Partial<Person>): Promise<Person> {
-    throw new Error('Method not implemented.');
+  public async getOneBy(where: FindOptionsWhere<Person>): Promise<Person> {
+    return this.personRepository.findOneBy(where);
+  }
+
+  public async edit(fields: Partial<Person>): Promise<UpdateResult> {
+    return this.personRepository.update({id: fields.id}, fields);
   }
 
   public async delete(id: number): Promise<DeleteResult> {
