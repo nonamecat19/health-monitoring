@@ -33,6 +33,7 @@ export const Request = async (method: RequestMethod, path: RequestPath, params: 
       status: response.status
     }
   } catch (error: any) {
+    console.log(JSON.stringify(error))
     return {
       isError: true,
       data: null,
