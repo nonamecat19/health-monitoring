@@ -7,16 +7,16 @@ import {Button, Popover} from "antd"
 import {useNavigate} from "react-router-dom"
 
 export const Element: FC<IRoomsElementProps> = ({data}) => {
-  const {roomNumber, roomType} = data
+  const {roomNumber, roomType, roomId} = data
 
   const navigate = useNavigate()
 
   const toRecordsHandler = () => {
-    navigate(`/${PATH.ADMIN}/${PATH.ROOMS}/${PATH.RECORDS}/${roomNumber}`)
+    navigate(`/${PATH.ADMIN}/${PATH.ROOMS}/${PATH.RECORDS}/${roomId}`)
   }
 
   const toDashboardHandler = () => {
-    navigate(`/${PATH.ADMIN}/${PATH.ROOMS}/${PATH.DASHBOARD}/${roomNumber}`)
+    navigate(`/${PATH.ADMIN}/${PATH.ROOMS}/${PATH.DASHBOARD}/${roomId}`)
   }
 
   const content = (

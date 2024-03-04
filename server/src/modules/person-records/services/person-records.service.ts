@@ -39,6 +39,21 @@ export class PersonRecordsService implements CrudOperations<PersonRecord> {
     return this.personRecordsRepository.findOneBy({id});
   }
 
+  public async getByPersonId(id: number): Promise<GetAll<PersonRecord>> {
+    const where: FindOptionsWhere<PersonRecord> = {person: {id}};
+    const [personRecords, count] = await this.personRecordsRepository.findAndCount({
+      relations: {
+        person: true,
+        room: true,
+      },
+      where,
+    });
+    return {
+      data: personRecords,
+      maxPage: count,
+    };
+  }
+
   public async getAll(params: GetRoomRecords): Promise<GetAll<PersonRecord>> {
     const where: FindOptionsWhere<PersonRecord> = {};
     if (params.onlyCritical) {

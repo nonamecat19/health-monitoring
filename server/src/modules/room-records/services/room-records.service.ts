@@ -65,6 +65,23 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
     });
   }
 
+  public async getByRoomId(id: number): Promise<GetAll<RoomRecord>> {
+    const [roomRecords, count] = await this.roomRecordRepository.findAndCount({
+      where: {
+        room: {
+          id,
+        },
+      },
+      relations: {
+        room: true,
+      },
+    });
+    return {
+      data: roomRecords,
+      maxPage: count,
+    };
+  }
+
   public async edit(fields: Partial<RoomRecord>): Promise<UpdateResult> {
     return this.roomRecordRepository.update({id: fields.id}, fields);
     // return this.roomRecordRepository.findOne({

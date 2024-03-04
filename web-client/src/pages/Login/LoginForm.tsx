@@ -10,10 +10,10 @@ export const LoginForm: FC = () => {
 
   const navigate = useNavigate()
 
-  const formRule = [{
-    required: true,
-    message: 'Заповніть це поле!'
-  }]
+  // const formRule = [{
+  //   required: true,
+  //   message: 'Заповніть це поле!'
+  // }]
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-ignore
@@ -57,7 +57,7 @@ export const LoginForm: FC = () => {
     >
       <Form.Item
         name="username"
-        rules={formRule}
+        // rules={formRule}
       >
         <Input
           prefix={<UserOutlined/>}
@@ -66,7 +66,7 @@ export const LoginForm: FC = () => {
       </Form.Item>
       <Form.Item
         name="password"
-        rules={formRule}
+        // rules={formRule}
       >
         <Input.Password
           prefix={<LockOutlined/>}

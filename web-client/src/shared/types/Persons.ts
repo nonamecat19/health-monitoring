@@ -26,9 +26,10 @@ export interface IPersonsElement {
   personId: number
   studentID: number
   name: string
+  surname: string
+  patronymic: string
   studyGroup: string
   role: string
-  // role: RoleType
   email: string
 }
 

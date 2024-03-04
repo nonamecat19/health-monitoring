@@ -1,5 +1,5 @@
 import {SIZES} from "../../shared/constants";
-import {BaseDetailsElement} from "../../shared/styles";
+import {BaseDetailsElement, SCREEN} from "../../shared/styles";
 import styled from "styled-components";
 
 export const DivElement = styled(BaseDetailsElement)`
@@ -7,4 +7,10 @@ export const DivElement = styled(BaseDetailsElement)`
     padding: ${SIZES.lg};
     height: 210px;
     background: ${({color}) => color};
+
+    ${SCREEN.MOBILE} {
+        width: 100%;
+        height: 100%;
+        font-size: 0.5rem;
+    }
 `

@@ -26,7 +26,7 @@ export class RoomRecordsController {
 
   @Get(':id')
   public async getRoomRecordById(@Param('id') id: number) {
-    return this.roomRecordsService.getOne(id);
+    return this.roomRecordsService.getByRoomId(id);
   }
 
   @Post()

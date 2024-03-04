@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {COLORS, SIZES} from "../../shared/constants";
 import {Input} from "antd";
+import {SCREEN} from "../../shared/styles";
 
 export const DivElement = styled.div`
     background: ${COLORS.green2};
@@ -8,6 +9,11 @@ export const DivElement = styled.div`
     height: 100px;
     padding: ${SIZES.md};
     border-radius: ${SIZES.sm};
+
+    ${SCREEN.MOBILE} {
+        width: 100%;
+        font-size: 0.7rem;
+    }
 `
 
 export const DivContainer = styled.div`
@@ -15,7 +21,7 @@ export const DivContainer = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     padding: ${SIZES.sm};
-    gap: 20px
+    gap: 20px;
 `
 
 export const FiltersSpace = styled.div`

@@ -1,16 +1,10 @@
 import {Dispatch, SetStateAction} from "react";
+import {IPersonsElement} from "./Persons.ts";
 
 export type PersonRecordType = {
   id: number
   personId: number
-  person: {
-    personId: number
-    studentID: number
-    name: string
-    studyGroup: string
-    role: string
-    email: string
-  }
+  person: IPersonsElement
   roomId: number
   room: {
     roomId: number

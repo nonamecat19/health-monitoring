@@ -4,8 +4,11 @@ export interface IRoomsRequest {
 }
 
 export interface IRoomsElement {
-  roomNumber: string,
+  roomNumber: string
   roomType: string
+  roomId: number
+  createdAt: Date
+  updatedAt: Date
 }
 
 export interface IRoomsListProps {

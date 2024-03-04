@@ -20,9 +20,9 @@ export class PersonRecordsController {
     return this.personRecordsService.personDashboard(params);
   }
 
-  @Get('id')
+  @Get(':id')
   public async getPersonRecordById(@Param('id') id: number) {
-    return this.personRecordsService.getOne(id);
+    return this.personRecordsService.getByPersonId(id);
   }
 
   @Post()

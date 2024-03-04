@@ -5,6 +5,7 @@ import moment from 'moment'
 import {COLORS, SIZES} from '../../shared/constants'
 import {DivElement, Title} from './styles.ts'
 import styled from 'styled-components'
+import {SCREEN} from "../../shared/styles";
 
 export const Element: FC<RoomRecordsElementProps> = ({data}) => {
   const {
@@ -58,4 +59,8 @@ const Date = styled.div`
     right: ${SIZES.md};
     font-size: 1.3rem;
     font-weight: bold;
+
+    ${SCREEN.MOBILE} {
+        font-size: 1.0rem;
+    }
 `

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {COLORS, SIZES} from "../../shared/constants";
+import {SCREEN} from "../../shared/styles";
 
 export const DivElement = styled.div`
     background: ${COLORS.green2};
@@ -7,6 +8,12 @@ export const DivElement = styled.div`
     height: 65px;
     padding: ${SIZES.md};
     border-radius: ${SIZES.sm};
+
+    ${SCREEN.MOBILE} {
+        width: 100%;
+        height: 100%;
+        font-size: 0.7rem;
+    }
 `
 
 export const DivContainer = styled.div`

@@ -9,7 +9,7 @@ import {useNavigate} from "react-router-dom";
 import {Button, Popover} from "antd";
 
 export const Element: FC<IPersonsElementProps> = ({data}) => {
-  const {personId, name, role, studyGroup} = data
+  const {personId, name, role, studyGroup, surname, patronymic} = data
   const navigate = useNavigate()
   const toRecordsHandler = (): void => {
     navigate(`/${PATH.ADMIN}/${PATH.PERSONS}/${PATH.RECORDS}/${personId}`)
@@ -31,7 +31,7 @@ export const Element: FC<IPersonsElementProps> = ({data}) => {
       <DivElement>
         <BetweenItems>
           <DataBlock>
-            <Block>{name}</Block>
+            <Block>{surname} {name} {patronymic}</Block>
             <Block>{studyGroup}</Block>
           </DataBlock>
 
