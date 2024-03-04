@@ -12,6 +12,14 @@ export class CreatePersonRequest {
 
   @IsString()
   @MinLength(3)
+  surname: string;
+
+  @IsString()
+  @MinLength(3)
+  patronymic: string;
+
+  @IsString()
+  @MinLength(3)
   studyGroup: string;
 
   @Optional()

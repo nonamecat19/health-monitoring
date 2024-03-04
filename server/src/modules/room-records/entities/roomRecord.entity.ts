@@ -7,22 +7,22 @@ export class RoomRecord extends BaseEntity {
   @ManyToOne(() => Room, ({id}) => id)
   room: Room;
 
-  @Column()
+  @Column('decimal')
   humidity: number;
 
-  @Column()
+  @Column('decimal')
   temperature: number;
 
-  @Column()
+  @Column('decimal')
   pressure: number;
 
-  @Column()
+  @Column('decimal')
   carbonDioxide: number;
 
-  @Column()
+  @Column('decimal')
   airIons: number;
 
-  @Column()
+  @Column('decimal')
   ozone: number;
 
   @Column()

@@ -85,11 +85,11 @@ export class RoomRecordsService implements CrudOperations<RoomRecord> {
     const {airIons, carbonDioxide, humidity, ozone, pressure, temperature} = record;
 
     return !every([
-      inRange(humidity, 40, 61),
-      inRange(temperature, 19, 25),
-      inRange(pressure, 750, 771),
-      inRange(carbonDioxide, 400, 601),
-      inRange(airIons, 400, 601),
+      inRange(humidity, 40.0, 61.0),
+      inRange(temperature, 19.0, 25.0),
+      inRange(pressure, 750.0, 771.0),
+      inRange(carbonDioxide, 400.0, 601.0),
+      inRange(airIons, 400.0, 601.0),
       inRange(ozone, 0.1, 0.17),
     ]);
   }

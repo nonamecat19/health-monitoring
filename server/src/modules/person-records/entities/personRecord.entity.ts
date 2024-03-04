@@ -11,13 +11,13 @@ export class PersonRecord extends BaseEntity {
   @ManyToOne(() => Room, ({id}) => id)
   room: Room;
 
-  @Column()
+  @Column('decimal')
   saturation: number;
 
-  @Column()
+  @Column('decimal')
   heartRate: number;
 
-  @Column()
+  @Column('decimal')
   temperature: number;
 
   @Column()
